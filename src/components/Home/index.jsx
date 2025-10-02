@@ -59,24 +59,6 @@ const work = [
   },
 ];
 
-const highlightMetrics = [
-  {
-    label: 'Projects',
-    value: '12+',
-    detail: 'Real-world builds shipped across web and mobile.',
-  },
-  {
-    label: 'Community',
-    value: '80+',
-    detail: 'Mentees guided through UMN\'s 5C values.',
-  },
-  {
-    label: 'Recognition',
-    value: 'Top 5',
-    detail: 'WeShare stood out at Garuda Hacks 5.0.',
-  },
-];
-
 const Home = () => {
   const navigate = useNavigate();
   const aboutSectionRef = useRef(null);
