@@ -59,24 +59,6 @@ const work = [
   },
 ];
 
-const highlightMetrics = [
-  {
-    label: 'Projects',
-    value: '12+',
-    detail: 'Real-world builds shipped across web and mobile.',
-  },
-  {
-    label: 'Community',
-    value: '80+',
-    detail: 'Mentees guided through UMN\'s 5C values.',
-  },
-  {
-    label: 'Recognition',
-    value: 'Top 5',
-    detail: 'WeShare stood out at Garuda Hacks 5.0.',
-  },
-];
-
 const Home = () => {
   const navigate = useNavigate();
   const aboutSectionRef = useRef(null);
@@ -211,29 +193,6 @@ const Home = () => {
             </div>
           </motion.div>
         </div>
-      </motion.div>
-
-      <motion.div
-        className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-10 relative z-10 pb-12"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.25 }}
-      >
-        <motion.div className="grid gap-5 sm:grid-cols-3" variants={sectionVariants}>
-          {highlightMetrics.map((metric) => (
-            <motion.div
-              key={metric.label}
-              className="rounded-3xl border border-green-100/60 bg-white/70 px-4 py-6 sm:px-6 sm:py-8 shadow-lg backdrop-blur hover:border-green-200 transition-all"
-              variants={itemVariants}
-              whileHover={{ y: -6 }}
-            >
-              <p className="text-xs uppercase tracking-[0.35em] text-green-500 poppins-medium">{metric.label}</p>
-              <p className="text-3xl poppins-bold text-neutral-900 mt-2">{metric.value}</p>
-              <p className="text-sm text-neutral-600 mt-3 leading-relaxed">{metric.detail}</p>
-            </motion.div>
-          ))}
-        </motion.div>
       </motion.div>
 
       <motion.div
