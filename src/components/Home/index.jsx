@@ -214,14 +214,14 @@ const Home = () => {
           {skills.map((skill) => (
             <motion.div
               key={skill.alt}
-              className="p-4 rounded-2xl hover:shadow-xl transition-all duration-300 bg-white/40 backdrop-blur-sm"
+              className="p-4 rounded-2xl"
               variants={skillIconVariants}
               whileHover="hover"
             >
               <img
                 src={skill.src}
                 alt={skill.alt}
-                className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 object-contain filter drop-shadow-lg"
+                className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 object-contain"
               />
             </motion.div>
           ))}
