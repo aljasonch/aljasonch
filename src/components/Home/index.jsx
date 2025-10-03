@@ -3,12 +3,13 @@ import { motion }from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { useNavigate } from 'react-router-dom';
 
-import Profile from '../../assets/aljasonch.png';
+import Profile from '../../assets/aljasonch.jpg';
 import tailwindcss from '../../assets/tailwindcss.png';
 import html from '../../assets/html.png';
 import css from '../../assets/css.png';
 import reactLogo from '../../assets/react.png';
 import kotlin from '../../assets/kotlin.png';
+import odoo from '../../assets/odoo.png';
 
 const skills = [
   { src: html, alt: 'HTML5' },
@@ -16,6 +17,7 @@ const skills = [
   { src: reactLogo, alt: 'React' },
   { src: tailwindcss, alt: 'Tailwind CSS' },
   { src: kotlin, alt: 'Kotlin' },
+  { src: odoo, alt: 'Odoo' },
 ];
 
 const experiences = [
@@ -55,7 +57,7 @@ const work = [
     date: 'Jan 2025 - Present',
     organization: 'Kompas Gramedia',
     description:
-      "",
+      "Responsible for optimizing ERP modules based on Odoo, including bug fixing, feature enhancements, and performance improvements to align with the company’s operational needs.",
   },
 ];
 
@@ -120,7 +122,7 @@ const Home = () => {
               variants={itemVariants}
             >
               <TypeAnimation
-                sequence={["I'm an Experienced Website Developer", 2000, "I'm an Experienced App Developer", 2000]}
+                sequence={["I'm a Junior Software Engineer", 2000]}
                 wrapper="span"
                 cursor
                 repeat={Infinity}
@@ -130,14 +132,14 @@ const Home = () => {
             </motion.h2>
             <motion.div className="flex w-full justify-center lg:hidden" variants={itemVariants}>
               <div className="relative w-48 h-48 sm:w-56 sm:h-56">
-                <div className="absolute inset-0 rounded-[28px] bg-gradient-to-tr from-primary-500/20 via-secondary-500/10 to-accent-500/20 blur-2xl"></div>
-                <div className="relative w-full h-full rounded-[28px] overflow-hidden shadow-large border border-white/20 backdrop-blur-lg">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary-500/20 via-secondary-500/10 to-accent-500/20 blur-2xl"></div>
+                <div className="relative w-full h-full rounded-full overflow-hidden shadow-large border border-white/20 backdrop-blur-lg">
                   <img
                     src={Profile}
                     alt="Profile"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-full"
                   />
-                  <div className="absolute inset-0 rounded-[28px] border-4 border-white/20"></div>
+                  <div className="absolute inset-0 rounded-full border-4 border-white/20"></div>
                 </div>
               </div>
             </motion.div>
@@ -145,8 +147,7 @@ const Home = () => {
               className="text-neutral-600 poppins-regular text-base sm:text-lg leading-relaxed text-modern max-w-2xl"
               variants={itemVariants}
             >
-              I'm a passionate website and app developer with a strong background in creating engaging and functional
-              digital experiences. I love exploring new technologies and translating ideas into polished, user-friendly products.
+              Software Engineer specializing in Odoo Development, with experience in optimizing ERP modules and building user-friendly digital solutions.
             </motion.p>
             <motion.div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto sm:items-center" variants={itemVariants}>
               <motion.button
@@ -178,14 +179,14 @@ const Home = () => {
 
           <motion.div className="relative hidden justify-center lg:flex" variants={itemVariants}>
             <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
-              <div className="absolute inset-0 rounded-[32px] bg-gradient-to-tr from-primary-500/20 via-secondary-500/10 to-accent-500/20 blur-2xl"></div>
-              <div className="relative w-full h-full rounded-[32px] overflow-hidden shadow-large border border-white/20 backdrop-blur-lg">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary-500/20 via-secondary-500/10 to-accent-500/20 blur-2xl"></div>
+              <div className="relative w-full h-full rounded-full overflow-hidden shadow-large border border-white/20 backdrop-blur-lg">
                 <img
                   src={Profile}
                   alt="Profile"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-full"
                 />
-                <div className="absolute inset-0 rounded-[32px] border-4 border-white/20"></div>
+                <div className="absolute inset-0 rounded-full border-4 border-white/20"></div>
               </div>
               <div className="absolute -top-4 -right-4 w-10 h-10 bg-primary-500 rounded-full animate-bounce-gentle opacity-80"></div>
               <div className="absolute -bottom-6 left-6 w-8 h-8 bg-accent-500 rounded-full animate-bounce-gentle opacity-80" style={{ animationDelay: '0.5s' }}></div>
