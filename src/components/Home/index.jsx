@@ -201,7 +201,7 @@ const Home = () => {
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <motion.h2 className="text-3xl sm:text-4xl lg:text-5xl text-center font-bold text-green-600 mb-12 sm:mb-16" variants={itemVariants}>
           EXPERIENCE WITH
