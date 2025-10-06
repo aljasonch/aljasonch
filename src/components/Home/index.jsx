@@ -110,7 +110,7 @@ const Home = () => {
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.35 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center">
           <motion.div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6" variants={itemVariants}>
@@ -201,7 +201,7 @@ const Home = () => {
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.25 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <motion.h2 className="text-3xl sm:text-4xl lg:text-5xl text-center font-bold text-green-600 mb-12 sm:mb-16" variants={itemVariants}>
           EXPERIENCE WITH
