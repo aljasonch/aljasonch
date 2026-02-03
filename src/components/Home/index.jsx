@@ -54,7 +54,7 @@ const experiences = [
 const work = [
   {
     title: 'Junior Software Engineer Intern',
-    date: 'Jan 2025 - Present',
+    date: 'Jan 2025 - Jan 2026',
     organization: 'Kompas Gramedia',
     description:
       "Responsible for optimizing ERP modules based on Odoo, including bug fixing, feature enhancements, and performance improvements to align with the company’s operational needs.",
