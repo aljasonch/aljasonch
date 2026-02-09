@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => { 
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNavbar = () => {
@@ -44,16 +44,15 @@ const Navbar = () => {
       transition: { y: { stiffness: 1000 } },
     },
   };
-  
+
   const navItems = [
     { label: 'Home', path: '/' },
     { label: 'Projects', path: '/projects' },
-    { label: 'Blog', path: '/blog' },
     { label: 'Contact', path: '/contact' },
   ];
 
-  return (    
-  <motion.header
+  return (
+    <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -84,7 +83,7 @@ const Navbar = () => {
                 </motion.div>
               </Link>
             ))}
-          </nav>          
+          </nav>
           <div className="lg:hidden">
             <button
               onClick={toggleNavbar}
@@ -123,13 +122,13 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              onClick={toggleNavbar} 
+              onClick={toggleNavbar}
             />
 
             <motion.div
               className="fixed top-0 right-0 h-full w-3/4 max-w-xs glass-card shadow-large p-6 z-60 flex flex-col"
               variants={mobileMenuPanelVariants}
-              onClick={(e) => e.stopPropagation()} 
+              onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-end mb-6">
                 <motion.button
@@ -147,10 +146,10 @@ const Navbar = () => {
 
               <nav className="flex flex-col items-start space-y-4">
                 {navItems.map((item) => (
-                  <Link 
-                    key={item.path} 
-                    to={item.path} 
-                    className="text-green-500  poppins-medium text-lg cursor-pointer py-3 px-4 w-full rounded-lg hover:bg-white/50 transition-all duration-300" 
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className="text-green-500  poppins-medium text-lg cursor-pointer py-3 px-4 w-full rounded-lg hover:bg-white/50 transition-all duration-300"
                     onClick={() => setIsOpen(false)}
                   >
                     <motion.div

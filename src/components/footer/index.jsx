@@ -6,7 +6,6 @@ import { FaInstagram, FaTwitter, FaYoutube, FaEnvelope } from 'react-icons/fa';
 const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'Projects', to: '/projects' },
-  { label: 'Blog', to: '/blog' },
   { label: 'Contact', to: '/contact' },
 ];
 
