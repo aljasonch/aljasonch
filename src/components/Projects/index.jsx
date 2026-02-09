@@ -2,28 +2,14 @@ import React from "react";
 import { motion } from "framer-motion";
 // import htmlImg from "../../assets/html.png"; // Not used, can be removed
 import Mentoring from "../../assets/mentoring.png";
-import Minko from "../../assets/minko.png";
-import Orion from "../../assets/orion.png";
 
 const projectData = [
   {
     title: "MENTORING UMN 2024",
     image: Mentoring,
     link: "https://mentoring2024.vercel.app",
-    alt: "Mentoring UMN 2024 Project",
-  },
-  {
-    title: "Minko | Furniture Store",
-    image: Minko,
-    link: "https://minko.vercel.app",
-    alt: "Minko Furniture Store Project",
-  },
-  {
-    title: "Kailux",
-    image: Orion, // Assuming Orion is the image for Kailux
-    link: "http://kailux.vercel.app/",
-    alt: "Kailux Project",
-  },
+    alt: "Mentoring UMN 2024 Project"
+  }
 ];
 
 const Projects = () => {
@@ -40,7 +26,7 @@ const Projects = () => {
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };  return (
+  }; return (
     <motion.section
       id="projects"
       className="pt-32 pb-20 section-gradient relative overflow-hidden"
@@ -51,7 +37,7 @@ const Projects = () => {
     >
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 right-20 w-40 h-40 bg-primary-500/5 rounded-full blur-xl animate-float"></div>
-        <div className="absolute bottom-20 left-20 w-32 h-32 bg-accent-500/5 rounded-full blur-xl animate-float" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 left-20 w-32 h-32 bg-accent-500/5 rounded-full blur-xl animate-float" style={{ animationDelay: '1s' }}></div>
       </div>
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
