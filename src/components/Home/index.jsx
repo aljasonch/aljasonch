@@ -147,7 +147,7 @@ const Home = () => {
               className="text-neutral-600 poppins-regular text-base sm:text-lg leading-relaxed text-modern max-w-2xl"
               variants={itemVariants}
             >
-              Software Engineer specializing in Odoo Development, with experience in optimizing ERP modules and building user-friendly digital solutions.
+              Software Engineer specializing in full-stack development and ERP systems, turning complex business needs into clean, reliable software.
             </motion.p>
             <motion.div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto sm:items-center" variants={itemVariants}>
               <motion.button

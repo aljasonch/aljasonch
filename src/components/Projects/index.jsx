@@ -1,7 +1,6 @@
-import React from "react";
 import { motion } from "framer-motion";
-// import htmlImg from "../../assets/html.png"; // Not used, can be removed
-import Mentoring from "../../assets/mentoring.png";
+import Mentoring from "../../assets/mentoring2024.webp";
+import Chainew from "../../assets/chainew.webp";
 
 const projectData = [
   {
@@ -9,6 +8,12 @@ const projectData = [
     image: Mentoring,
     link: "https://mentoring2024.vercel.app",
     alt: "Mentoring UMN 2024 Project"
+  },
+  {
+    title: "Chainew",
+    image: Chainew,
+    link: "https://chainew.vercel.app",
+    alt: "Chainew Project"
   }
 ];
 
@@ -58,7 +63,7 @@ const Projects = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            A showcase of innovative solutions and creative implementations
+            Things I've built, problems I've solved, and ideas I've shipped.
           </motion.p>
           <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-green-600 mx-auto mt-6 rounded-full"></div>
         </motion.div>        <motion.div
