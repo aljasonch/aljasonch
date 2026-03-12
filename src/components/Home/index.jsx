@@ -196,6 +196,34 @@ const Home = () => {
         </div>
       </motion.div>
 
+      {/* Scroll Down Indicator */}
+      <motion.div
+        className="flex flex-col items-center gap-2 pb-6 sm:pb-8 relative z-10"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2, duration: 0.6 }}
+      >
+        <span className="text-neutral-400 poppins-regular text-xs sm:text-sm tracking-widest uppercase">
+          Scroll Down
+        </span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+          className="text-green-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </motion.div>
+      </motion.div>
+
       <motion.div
         className="container mx-auto max-w-6xl px-5 sm:px-6 lg:px-10 relative z-10 mt-12 sm:mt-20"
         variants={sectionVariants}

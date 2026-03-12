@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Mentoring from "../../assets/mentoring2024.webp";
 import Chainew from "../../assets/chainew.webp";
+import Bayar_Bareng from "../../assets/bayarbareng.webp";
 
 const projectData = [
   {
@@ -14,6 +15,12 @@ const projectData = [
     image: Chainew,
     link: "https://chainew.vercel.app",
     alt: "Chainew Project"
+  },
+  {
+    title: "Bayar Bareng",
+    image: Bayar_Bareng,
+    link: "https://bayar-bareng.vercel.app",
+    alt: "Bayar Bareng Project"
   }
 ];
 
