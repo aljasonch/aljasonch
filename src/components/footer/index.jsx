@@ -1,7 +1,6 @@
-﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaInstagram, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { FaInstagram, FaEnvelope } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
 const navLinks = [
