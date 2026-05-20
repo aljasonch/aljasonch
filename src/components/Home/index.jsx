@@ -1,393 +1,309 @@
-import React, { useRef } from 'react';
-import { motion }from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { useNavigate } from 'react-router-dom';
+import { 
+  FaTrophy, 
+  FaBriefcase, 
+  FaGraduationCap, 
+  FaCode, 
+  FaArrowRight, 
+  FaCalendarAlt, 
+  FaFileDownload 
+} from 'react-icons/fa';
 
-import Profile from '../../assets/aljasonch.jpg';
-import tailwindcss from '../../assets/tailwindcss.png';
-import html from '../../assets/html.png';
-import css from '../../assets/css.png';
-import reactLogo from '../../assets/react.png';
-import kotlin from '../../assets/kotlin.png';
-import odoo from '../../assets/odoo.png';
-
-const skills = [
-  { src: html, alt: 'HTML5' },
-  { src: css, alt: 'CSS3' },
-  { src: reactLogo, alt: 'React' },
-  { src: tailwindcss, alt: 'Tailwind CSS' },
-  { src: kotlin, alt: 'Kotlin' },
-  { src: odoo, alt: 'Odoo' },
-];
-
-const experiences = [
-  {
-    title: 'Website Coordinator',
-    date: 'Jan 2024 - Dec 2024',
-    organization: 'Character Building Mentoring UMN 2024',
-    description:
-      "Leading the development of UMN Mentoring's official website with a developer team using React JS, Tailwind CSS, and Firebase. Focused on creating a responsive and user-friendly platform to support mentoring activities.",
-  },
-  {
-    title: 'Participant Garuda Hacks 5.0',
-    date: 'Jul 2024 - Jul 2024',
-    organization: 'Garuda Hacks 5.0',
-    description:
-      'Being a participant for Garuda Hacks 5.0 by creating a project named "WeShare" that could help unprivilege people that difficult getting access to health care',
-  },
-  {
-    title: 'Mentor',
-    date: 'Mar 2023 - Dec 2023',
-    organization: 'Character Building Mentoring UMN 2023',
-    description:
-      "Guided Mentees (first-year students) to understand and apply UMN's 5C values (Caring, Credible, Competent, Competitive, Customer Delight) in their university life. Committed to supporting their personal and professional development through mentoring.",
-  },
-  {
-    title: 'Logistics and Security',
-    date: 'Feb 2023 - Aug 2023',
-    organization: 'ISFEST UMN 2023',
-    description:
-      "Committee for Equipment and Security at ISFEST 2023. Ensuring seamless organization, logistics, and safety for the event. Skilled in problem-solving, communication, and critical decision-making. Committed to delivering exceptional results.",
-  },
-];
-
-const work = [
-  {
-    title: 'Junior Software Engineer Intern',
-    date: 'Jan 2025 - Jan 2026',
-    organization: 'Kompas Gramedia',
-    description:
-      "Responsible for optimizing ERP modules based on Odoo, including bug fixing, feature enhancements, and performance improvements to align with the company’s operational needs.",
-  },
-];
+import { 
+  personalInfo, 
+  skills, 
+  workExperience, 
+  organizationExperience, 
+  achievements 
+} from '../../data/content';
 
 const Home = () => {
   const navigate = useNavigate();
-  const aboutSectionRef = useRef(null);
 
-  const sectionVariants = {
+  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.1 },
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
-
   const skillIconVariants = {
-    hidden: { opacity: 0, scale: 0.5 },
+    hidden: { opacity: 0, scale: 0.8 },
     visible: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: 'easeOut' } },
     hover: {
-      scale: 1.25,
-      rotate: 5,
-      filter: 'drop-shadow(0px 5px 10px rgba(0,0,0,0.2))',
-      transition: { duration: 0.2, type: 'spring', stiffness: 300 },
+      scale: 1.05,
+      borderColor: 'rgba(255, 255, 255, 0.4)',
+      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+      boxShadow: '0 0 15px rgba(255, 255, 255, 0.05)',
+      transition: { duration: 0.2 },
     },
   };
 
+  const getAchievementIcon = (category) => {
+    switch (category.toLowerCase()) {
+      case 'competition':
+        return <FaTrophy className="text-neutral-100 w-6 h-6" />;
+      case 'professional':
+        return <FaBriefcase className="text-neutral-100 w-6 h-6" />;
+      case 'academic':
+        return <FaGraduationCap className="text-neutral-100 w-6 h-6" />;
+      default:
+        return <FaCode className="text-neutral-100 w-6 h-6" />;
+    }
+  };
+
   return (
-    <motion.section
-      id="home"
-      ref={aboutSectionRef}
-      className="relative flex flex-col overflow-hidden"
+    <motion.div
       initial="hidden"
       animate="visible"
-      variants={{ hidden: {}, visible: {} }}
+      variants={containerVariants}
+      className="relative min-h-screen bg-neutral-950 pt-24 overflow-hidden"
     >
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-24 left-1/2 w-[420px] h-[420px] -translate-x-1/2 rounded-full bg-gradient-to-br from-primary-300/30 via-secondary-300/20 to-transparent blur-3xl"></div>
-        <div className="absolute bottom-0 right-[-120px] w-[360px] h-[360px] rounded-full bg-secondary-400/20 blur-3xl animate-float" style={{ animationDelay: '1.5s' }}></div>
-        <div className="absolute top-1/3 left-[-160px] w-[300px] h-[300px] rounded-full bg-accent-400/20 blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
-      </div>
+      {/* Decorative Glows - REMOVED for clean monochrome */}
 
-      <motion.div
-        className="container mx-auto max-w-6xl px-5 sm:px-6 lg:px-10 relative z-10 pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-36"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center">
-          <motion.div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6" variants={itemVariants}>
-            <motion.p className="text-green-500 poppins-medium text-base sm:text-lg tracking-[0.35em]" variants={itemVariants}>
-              Hey, I'm Jason
-            </motion.p>
-            <motion.h2
-              className="text-3xl sm:text-4xl lg:text-5xl poppins-bold leading-tight text-neutral-900 min-h-[4.5rem] sm:min-h-[5rem]"
-              variants={itemVariants}
-            >
+      {/* Hero Section */}
+      <section className="container mx-auto max-w-6xl px-6 py-12 md:py-20 relative z-10">
+        <div className="grid gap-12 md:grid-cols-[1.2fr_0.8fr] items-center">
+          
+          <motion.div className="flex flex-col items-start text-left gap-6" variants={itemVariants}>
+            <span className="text-neutral-400 font-semibold tracking-[0.25em] text-sm sm:text-base uppercase">
+              Welcome to my space
+            </span>
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight poppins-extrabold text-neutral-50">
+              Hey, I'm {personalInfo.name}
+            </h1>
+
+            <div className="h-[3.5rem] sm:h-[4.5rem]">
               <TypeAnimation
-                sequence={["I'm a Junior Software Engineer", 2000]}
-                wrapper="span"
-                cursor
+                sequence={[
+                  personalInfo.role,
+                  2000,
+                  "Informatics Student @ UMN",
+                  2000,
+                  "Custom ERP Developer",
+                  2000,
+                  "Full Stack Developer",
+                  2000,
+                ]}
+                wrapper="h2"
+                cursor={true}
                 repeat={Infinity}
-                style={{ display: 'inline-block', lineHeight: '1.1' }}
-                className="text-green-600"
+                className="text-2xl sm:text-3xl font-semibold text-neutral-250 poppins-semibold"
               />
-            </motion.h2>
-            <motion.div className="flex w-full justify-center lg:hidden" variants={itemVariants}>
-              <div className="relative w-48 h-48 sm:w-56 sm:h-56">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary-500/20 via-secondary-500/10 to-accent-500/20 blur-2xl"></div>
-                <div className="relative w-full h-full rounded-full overflow-hidden shadow-large border border-white/20 backdrop-blur-lg">
-                  <img
-                    src={Profile}
-                    alt="Profile"
-                    className="w-full h-full object-cover rounded-full"
-                  />
-                  <div className="absolute inset-0 rounded-full border-4 border-white/20"></div>
-                </div>
-              </div>
-            </motion.div>
-            <motion.p
-              className="text-neutral-600 poppins-regular text-base sm:text-lg leading-relaxed text-modern max-w-2xl"
-              variants={itemVariants}
-            >
-              Software Engineer specializing in full-stack development and ERP systems, turning complex business needs into clean, reliable software.
-            </motion.p>
-            <motion.div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto sm:items-center" variants={itemVariants}>
-              <motion.button
-                onClick={() => navigate('/contact')}
-                className="btn-modern bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 poppins-medium w-full sm:w-auto"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            </div>
+
+            <p className="text-neutral-400 poppins-regular text-base sm:text-lg leading-relaxed max-w-xl">
+              {personalInfo.bio}
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-2">
+              <button
+                onClick={() => navigate('/portfolio')}
+                className="btn-primary flex items-center justify-center gap-2 font-semibold py-3.5 px-8 rounded-full text-base w-full sm:w-auto"
               >
-                Get In Touch
-              </motion.button>
-              <motion.button
-                className="glass-card border border-green-200 hover:border-green-300 text-green-600 hover:text-green-700 font-semibold py-4 px-8 rounded-full transition-all duration-300 poppins-medium interactive-hover w-full sm:w-auto"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                Explore Portfolio
+                <FaArrowRight size={14} />
+              </button>
+              <button
+                onClick={() => navigate('/cv')}
+                className="btn-secondary flex items-center justify-center gap-2 font-semibold py-3.5 px-8 rounded-full text-base w-full sm:w-auto border-neutral-800 text-neutral-200 hover:text-white"
               >
-                <a
-                  href="/CV_Alfonsus Jason Christian.pdf"
-                  download="CV_Alfonsus Jason Christian.pdf"
-                  className="flex items-center justify-center gap-2"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  Download CV
-                </a>
-              </motion.button>
-            </motion.div>
+                View Resume
+                <FaFileDownload size={14} />
+              </button>
+            </div>
           </motion.div>
 
-          <motion.div className="relative hidden justify-center lg:flex" variants={itemVariants}>
-            <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary-500/20 via-secondary-500/10 to-accent-500/20 blur-2xl"></div>
-              <div className="relative w-full h-full rounded-full overflow-hidden shadow-large border border-white/20 backdrop-blur-lg">
+          <motion.div className="relative flex justify-center order-first md:order-last" variants={itemVariants}>
+            <div className="relative w-64 h-64 sm:w-80 sm:h-80">
+              <div className="relative w-full h-full rounded-3xl overflow-hidden border border-neutral-800 shadow-2xl p-2 bg-neutral-900/60 backdrop-blur-md">
                 <img
-                  src={Profile}
-                  alt="Profile"
-                  className="w-full h-full object-cover rounded-full"
+                  src={personalInfo.profileImage}
+                  alt={personalInfo.name}
+                  className="w-full h-full object-cover rounded-2xl filter brightness-95"
                 />
-                <div className="absolute inset-0 rounded-full border-4 border-white/20"></div>
               </div>
-              <div className="absolute -top-4 -right-4 w-10 h-10 bg-primary-500 rounded-full animate-bounce-gentle opacity-80"></div>
-              <div className="absolute -bottom-6 left-6 w-8 h-8 bg-accent-500 rounded-full animate-bounce-gentle opacity-80" style={{ animationDelay: '0.5s' }}></div>
-              <div className="absolute top-1/2 -left-6 w-6 h-6 bg-secondary-500 rounded-full animate-bounce-gentle opacity-80" style={{ animationDelay: '1s' }}></div>
             </div>
           </motion.div>
         </div>
-      </motion.div>
+      </section>
 
-      {/* Scroll Down Indicator */}
-      <motion.div
-        className="flex flex-col items-center gap-2 pb-6 sm:pb-8 relative z-10"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-      >
-        <span className="text-neutral-400 poppins-regular text-xs sm:text-sm tracking-widest uppercase">
-          Scroll Down
-        </span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-          className="text-green-500"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-          </svg>
-        </motion.div>
-      </motion.div>
-
-      <motion.div
-        className="container mx-auto max-w-6xl px-5 sm:px-6 lg:px-10 relative z-10 mt-12 sm:mt-20"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <motion.h2 className="text-3xl sm:text-4xl lg:text-5xl text-center font-bold text-green-600 mb-12 sm:mb-16" variants={itemVariants}>
-          EXPERIENCE WITH
-        </motion.h2>
-
-        <motion.div
-          className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 lg:gap-12 pb-12 sm:pb-20"
-          variants={sectionVariants}
-        >
+      {/* Skills Showcase */}
+      <section className="container mx-auto max-w-6xl px-6 py-12 border-t border-neutral-900">
+        <motion.div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 lg:gap-8" variants={itemVariants}>
           {skills.map((skill) => (
             <motion.div
-              key={skill.alt}
-              className="p-4 rounded-2xl"
+              key={skill.name}
+              className="flex items-center gap-3 py-3 px-5 rounded-2xl bg-neutral-900/40 border border-neutral-800/80 backdrop-blur-sm cursor-default"
               variants={skillIconVariants}
               whileHover="hover"
             >
               <img
                 src={skill.src}
-                alt={skill.alt}
-                className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 object-contain"
+                alt={skill.name}
+                className="w-6 h-6 sm:w-8 sm:h-8 object-contain"
               />
+              <span className="text-sm sm:text-base font-medium text-neutral-300">{skill.name}</span>
             </motion.div>
           ))}
         </motion.div>
+      </section>
 
-        <motion.div
-          className="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto mb-12 rounded-full"
-          variants={itemVariants}
-        ></motion.div>
-
-        <motion.h2 className="text-3xl sm:text-4xl lg:text-5xl text-center font-bold text-green-600 mb-12" variants={itemVariants}>
-          WORK EXPERIENCE
-        </motion.h2>
-
-        <motion.div
-          className="relative max-w-5xl mx-auto sm:px-6 lg:px-0"
-          variants={sectionVariants}
-        >
-          <div className="relative before:hidden sm:before:block before:absolute before:left-6 sm:before:left-7 lg:before:left-8 before:top-0 before:bottom-0 before:w-0.5 before:bg-gradient-to-b from-green-500/40 to-transparent">
-            <div className="ml-0 sm:ml-6 lg:ml-12 space-y-7 sm:space-y-12">
-              {work.map((exp, index) => (
-                <motion.article
-                  key={exp.title}
-                  className="relative pl-1 sm:pl-12 lg:pl-16"
-                  variants={itemVariants}
-                  whileHover={{ x: 6 }}
-                >
-                  <div className="absolute left-0 top-6 sm:top-7 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-green-500 to-green-600 text-white shadow-glow hidden sm:flex items-center justify-center">
-                    <span className="text-sm sm:text-base font-semibold">{String(index + 1).padStart(2, '0')}</span>
-                  </div>
-                  <div className="rounded-3xl border border-gray hover:border-gray-300/50 p-4 sm:p-6 lg:p-8 shadow-lg bg-white/80 backdrop-blur">
-                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                      <div>
-                        <p className="text-xs tracking-[0.35em] uppercase text-green-500 poppins-medium mb-2">
-                          Role
-                        </p>
-                        <h3 className="text-2xl lg:text-3xl poppins-bold text-neutral-800">
-                          {exp.title}
-                        </h3>
-                      </div>
-                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white text-sm poppins-semibold shadow-soft">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        {exp.date}
-                      </div>
-                    </div>
-                    <div className="mt-5 space-y-2">
-                      <p className="text-sm uppercase tracking-[0.2em] text-neutral-400 poppins-medium">
-                        {exp.organization}
-                      </p>
-                      <p className="text-neutral-600 leading-relaxed text-justify">
-                        {exp.description && exp.description.length > 0
-                          ? exp.description
-                          : 'Actively contributing to high-impact initiatives, elevating user experiences, and building resilient product foundations.'}
-                      </p>
-                    </div>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.h2 className="text-3xl sm:text-4xl lg:text-5xl text-center font-bold text-green-600 mt-24 mb-12" variants={itemVariants}>
-          ORGANIZATION EXPERIENCE
-        </motion.h2>
-
-        <motion.div
-          className="relative max-w-5xl mx-auto sm:px-6 lg:px-0 pb-24"
-          variants={sectionVariants}
-        >
-          <div className="relative before:hidden sm:before:block before:absolute before:left-6 sm:before:left-7 lg:before:left-8 before:top-0 before:bottom-0 before:w-0.5 before:bg-gradient-to-b from-green-500/40 to-transparent">
-            <div className="ml-0 sm:ml-6 lg:ml-12 space-y-7 sm:space-y-12">
-              {experiences.map((exp, index) => (
-                <motion.article
-                  key={exp.title}
-                  className="relative pl-1 sm:pl-12 lg:pl-16"
-                  variants={itemVariants}
-                  whileHover={{ x: 6 }}
-                >
-                  <div className="absolute left-0 top-6 sm:top-7 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-green-500 to-green-600 text-white shadow-glow hidden sm:flex items-center justify-center">
-                    <span className="text-sm sm:text-base font-semibold">{String(index + 1).padStart(2, '0')}</span>
-                  </div>
-                  <div className="rounded-3xl border border-gray hover:border-gray-300/50 p-4 sm:p-6 lg:p-8 shadow-lg bg-white/80 backdrop-blur">
-                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                      <div>
-                        <p className="text-xs tracking-[0.35em] uppercase text-green-500 poppins-medium mb-2">
-                          Role
-                        </p>
-                        <h3 className="text-2xl lg:text-3xl poppins-bold text-neutral-800">
-                          {exp.title}
-                        </h3>
-                      </div>
-                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white text-sm poppins-semibold shadow-soft">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        {exp.date}
-                      </div>
-                    </div>
-                    <div className="mt-5 space-y-2">
-                      <p className="text-sm uppercase tracking-[0.2em] text-neutral-400 poppins-medium">
-                        {exp.organization}
-                      </p>
-                      <p className="text-neutral-600 leading-relaxed text-justify">
-                        {exp.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="max-w-4xl mx-auto text-center pb-24"
-          variants={itemVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <h3 className="text-3xl sm:text-4xl poppins-bold text-neutral-900 mb-6">Let’s build something remarkable together.</h3>
-          <p className="text-neutral-600 text-base sm:text-lg leading-relaxed mb-8">
-            Whether it’s refining an existing product or launching a new idea, I’m ready to collaborate and deliver polished, performance-driven experiences.
+      {/* Experience Section */}
+      <section className="container mx-auto max-w-5xl px-6 py-16 md:py-24 border-t border-neutral-900 relative z-10">
+        <motion.div className="text-center mb-16" variants={itemVariants}>
+          <h2 className="text-3xl sm:text-4xl font-bold poppins-bold mb-3">
+            Experience History
+          </h2>
+          <p className="text-neutral-400 max-w-xl mx-auto text-sm sm:text-base">
+            Tracing my professional journey in software engineering and academic leadership roles.
           </p>
-          <motion.button
-            onClick={() => navigate('/contact')}
-            className="btn-modern bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-4 px-10 rounded-full transition-all duration-300 poppins-medium"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Start a conversation
-          </motion.button>
+          <div className="w-16 h-[2px] bg-neutral-800 mx-auto mt-4 rounded-full" />
         </motion.div>
-      </motion.div>
-    </motion.section>
+
+        {/* Timeline */}
+        <div className="relative border-l border-neutral-800 ml-4 md:ml-12 space-y-12">
+          {/* Work Experience */}
+          <div className="relative">
+            <div className="absolute -left-[45px] top-1 bg-neutral-950 p-2 border border-neutral-800 rounded-full text-neutral-300">
+              <FaBriefcase size={16} />
+            </div>
+            <div className="pl-6 md:pl-10">
+              <h3 className="text-xs uppercase font-semibold text-neutral-400 tracking-wider mb-2">Professional Work</h3>
+              <div className="space-y-6">
+                {workExperience.map((exp, idx) => (
+                  <motion.div 
+                    key={idx}
+                    className="glass-card rounded-2xl p-6 hover:shadow-2xl"
+                    variants={itemVariants}
+                  >
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-4">
+                      <div>
+                        <h4 className="text-xl font-bold text-neutral-100">{exp.title}</h4>
+                        <p className="text-sm text-neutral-400 font-medium">{exp.organization}</p>
+                      </div>
+                      <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-xs text-neutral-300 font-medium">
+                        <FaCalendarAlt size={11} />
+                        {exp.date}
+                      </span>
+                    </div>
+                    <p className="text-neutral-400 text-sm leading-relaxed mb-4">{exp.description}</p>
+                    <ul className="list-disc pl-4 space-y-1.5 text-xs text-neutral-500">
+                      {exp.details.map((detail, dIdx) => (
+                        <li key={dIdx}>{detail}</li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Organization Experience */}
+          <div className="relative">
+            <div className="absolute -left-[45px] top-1 bg-neutral-950 p-2 border border-neutral-800 rounded-full text-neutral-300">
+              <FaGraduationCap size={16} />
+            </div>
+            <div className="pl-6 md:pl-10">
+              <h3 className="text-xs uppercase font-semibold text-neutral-400 tracking-wider mb-2">Organization & Campus Activities</h3>
+              <div className="space-y-6">
+                {organizationExperience.map((exp, idx) => (
+                  <motion.div 
+                    key={idx}
+                    className="glass-card rounded-2xl p-6 hover:shadow-2xl"
+                    variants={itemVariants}
+                  >
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-4">
+                      <div>
+                        <h4 className="text-xl font-bold text-neutral-100">{exp.title}</h4>
+                        <p className="text-sm text-neutral-400 font-medium">{exp.organization}</p>
+                      </div>
+                      <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-xs text-neutral-300 font-medium">
+                        <FaCalendarAlt size={11} />
+                        {exp.date}
+                      </span>
+                    </div>
+                    <p className="text-neutral-400 text-sm leading-relaxed mb-4">{exp.description}</p>
+                    <ul className="list-disc pl-4 space-y-1.5 text-xs text-neutral-500">
+                      {exp.details.map((detail, dIdx) => (
+                        <li key={dIdx}>{detail}</li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Achievements Section */}
+      <section className="container mx-auto max-w-6xl px-6 py-16 md:py-24 border-t border-neutral-900 relative z-10">
+        <motion.div className="text-center mb-16" variants={itemVariants}>
+          <h2 className="text-3xl sm:text-4xl font-bold poppins-bold mb-3">
+            Key Achievements
+          </h2>
+          <p className="text-neutral-400 max-w-xl mx-auto text-sm sm:text-base">
+            Recognitions, milestones, and high-impact accomplishments throughout my work and academics.
+          </p>
+          <div className="w-16 h-[2px] bg-neutral-800 mx-auto mt-4 rounded-full" />
+        </motion.div>
+
+        <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
+          {achievements.map((achievement, idx) => (
+            <motion.div
+              key={idx}
+              className="glass-panel rounded-2xl p-6 flex gap-5 items-start hover:border-neutral-700 transition-all duration-300 group"
+              variants={itemVariants}
+              whileHover={{ y: -3 }}
+            >
+              <div className="p-3.5 bg-neutral-900 border border-neutral-800 rounded-xl group-hover:scale-105 transition-transform duration-300">
+                {getAchievementIcon(achievement.category)}
+              </div>
+              <div className="flex-1">
+                <span className="text-xs uppercase font-semibold text-neutral-500 tracking-wider">
+                  {achievement.category}
+                </span>
+                <h3 className="text-lg font-bold text-neutral-100 mt-1 mb-2 group-hover:text-white transition-colors duration-300">
+                  {achievement.title}
+                </h3>
+                <p className="text-sm text-neutral-400 leading-relaxed">
+                  {achievement.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Call to action section */}
+      <section className="container mx-auto max-w-4xl px-6 py-16 md:py-24 border-t border-neutral-900 text-center relative z-10">
+        <motion.div variants={itemVariants} className="glass-panel rounded-3xl p-8 sm:p-12 border border-neutral-800 bg-neutral-900/60">
+          <h3 className="text-2xl sm:text-3xl font-bold text-neutral-100 mb-4">
+            Let's collaborate on your next venture
+          </h3>
+          <p className="text-neutral-400 max-w-lg mx-auto text-sm sm:text-base leading-relaxed mb-8">
+            I'm currently seeking internships, junior roles, or freelance project opportunities. Reach out if you have code that needs compiling or workflows that need optimizing.
+          </p>
+          <button
+            onClick={() => navigate('/contact')}
+            className="btn-primary font-semibold py-3 px-8 rounded-full text-base"
+          >
+            Start a Conversation
+          </button>
+        </motion.div>
+      </section>
+    </motion.div>
   );
 };
 

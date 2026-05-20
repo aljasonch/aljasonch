@@ -1,172 +1,204 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { personalInfo } from '../../data/content';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
-  const toggleNavbar = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const desktopNavItemVariants = {
-    hover: {
-      scale: 1.05,
-      transition: { duration: 0.2 },
-    },
-    tap: {
-      scale: 0.95,
-    },
-  };
-
-  const mobileMenuPanelVariants = {
-    open: {
-      x: 0,
-      opacity: 1,
-      transition: { type: 'spring', stiffness: 300, damping: 35, delayChildren: 0.2, staggerChildren: 0.07 },
-    },
-    closed: {
-      x: '100%',
-      opacity: 0.8,
-      transition: { type: 'spring', stiffness: 300, damping: 35, staggerChildren: 0.05, staggerDirection: -1 },
-    },
-  };
-
-  const mobileNavListItemVariants = {
-    open: {
-      y: 0,
-      opacity: 1,
-      transition: { y: { stiffness: 1000, velocity: -100 } },
-    },
-    closed: {
-      y: 50,
-      opacity: 0,
-      transition: { y: { stiffness: 1000 } },
-    },
-  };
+  const toggleNavbar = () => setIsOpen((prev) => !prev);
+  const closeNavbar = () => setIsOpen(false);
 
   const navItems = [
     { label: 'Home', path: '/' },
-    { label: 'Projects', path: '/projects' },
+    { label: 'Portfolio', path: '/portfolio' },
+    { label: 'Blog', path: '/blog' },
+    { label: 'CV', path: '/cv' },
     { label: 'Contact', path: '/contact' },
   ];
 
+  const desktopNavItemVariants = {
+    hover: { scale: 1.02, y: -1, transition: { duration: 0.2 } },
+    tap: { scale: 0.98 },
+  };
+
+  const overlayVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.2 } },
+    exit: { opacity: 0, transition: { duration: 0.2 } },
+  };
+
+  const panelVariants = {
+    hidden: { x: '100%' },
+    visible: { x: 0, transition: { type: 'spring', stiffness: 350, damping: 30 } },
+    exit: { x: '100%', transition: { type: 'spring', stiffness: 350, damping: 30 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: 20 },
+    visible: (i) => ({
+      opacity: 1,
+      x: 0,
+      transition: { delay: i * 0.06, duration: 0.3 },
+    }),
+  };
+
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="fixed top-0 w-full z-50 bg-white/80 transition-all duration-300 shadow-md"
-    >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between lg:justify-evenly gap-12">
-          <Link to="/" className="cursor-pointer">
-            <motion.div
-              className="text-2xl font-bold text-green-500 poppins-extrabold"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              aljasonch
-            </motion.div>
-          </Link>
-          <nav className="hidden lg:flex space-x-8">
-            {navItems.map((item) => (
-              <Link key={item.path} to={item.path} className="cursor-pointer group">
-                <motion.div
-                  className="relative text-dark-700 hover:text-green-600 font-semibold transition-all duration-300 py-2 px-4 rounded-lg"
-                  variants={desktopNavItemVariants}
-                  whileHover="hover"
-                  whileTap="tap"
-                >
-                  {item.label}
-                  <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-green-500 to-green-600 group-hover:w-full group-hover:left-0 transition-all duration-300 rounded-full"></div>
-                </motion.div>
-              </Link>
-            ))}
-          </nav>
-          <div className="lg:hidden">
-            <button
-              onClick={toggleNavbar}
-              className="text-dark-700 hover:text-green-600 focus:outline-none transition-colors duration-300 p-2 rounded-lg bg-white/80 backdrop-blur-sm border border-white/30 shadow-sm"
-              aria-label="Open menu"
-            >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+    <>
+      {/* ─── Fixed Header Bar ─── */}
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        style={{ backgroundColor: 'rgba(9,9,11,0.85)' }}
+        className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-neutral-800/50 shadow-lg"
+      >
+        <div className="container mx-auto px-6 py-4 max-w-6xl">
+          <div className="flex items-center justify-between">
+
+            {/* Logo */}
+            <Link to="/" className="cursor-pointer" onClick={closeNavbar}>
+              <motion.div
+                className="text-2xl font-bold text-neutral-50 poppins-extrabold"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <motion.path
-                  animate={isOpen ? { d: "M6 18L18 6M6 6l12 12" } : { d: "M4 6h16M4 12h16M4 18h16" }}
-                  transition={{ duration: 0.3 }}
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="lg:hidden fixed inset-0"
-            initial="closed"
-            animate="open"
-            exit="closed"
-          >
-            <motion.div
-              className="absolute inset-0 "
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={toggleNavbar}
-            />
+                aljasonch
+              </motion.div>
+            </Link>
 
-            <motion.div
-              className="fixed top-0 right-0 h-full w-3/4 max-w-xs glass-card shadow-large p-6 z-60 flex flex-col"
-              variants={mobileMenuPanelVariants}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex justify-end mb-6">
-                <motion.button
-                  onClick={toggleNavbar}
-                  className="text-neutral-700 hover:text-accent-500 p-2 rounded-full hover:bg-white/50 transition-all duration-300"
-                  whileHover={{ scale: 1.2, rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
-                  aria-label="Close menu"
-                >
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </motion.button>
-              </div>
-
-              <nav className="flex flex-col items-start space-y-4">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className="text-green-500  poppins-medium text-lg cursor-pointer py-3 px-4 w-full rounded-lg hover:bg-white/50 transition-all duration-300"
-                    onClick={() => setIsOpen(false)}
-                  >
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex items-center space-x-2">
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.path;
+                return (
+                  <Link key={item.path} to={item.path} className="cursor-pointer">
                     <motion.div
-                      variants={mobileNavListItemVariants}
-                      whileHover={{ x: 5 }}
-                      whileTap={{ scale: 0.95 }}
+                      className={`relative px-4 py-2 rounded-full text-sm poppins-semibold transition-colors duration-300 ${
+                        isActive
+                          ? 'text-primary-500 bg-primary-500/10'
+                          : 'text-neutral-300 hover:text-primary-500 hover:bg-neutral-800/30'
+                      }`}
+                      variants={desktopNavItemVariants}
+                      whileHover="hover"
+                      whileTap="tap"
                     >
                       {item.label}
+                      {isActive && (
+                        <motion.div
+                          layoutId="activeNavIndicator"
+                          className="absolute bottom-0 left-1/4 right-1/4 h-[2px] bg-primary-500 rounded-full"
+                          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                        />
+                      )}
                     </motion.div>
                   </Link>
-                ))}
-              </nav>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+                );
+              })}
+            </nav>
+
+            {/* Mobile Hamburger */}
+            <div className="md:hidden">
+              <button
+                onClick={toggleNavbar}
+                className="text-neutral-300 hover:text-primary-500 focus:outline-none transition-colors duration-300 p-2 rounded-lg bg-neutral-900 border border-neutral-800"
+                aria-label="Open menu"
+              >
+                <FaBars className="h-5 w-5" />
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </motion.header>
+
+      {/* ─── Mobile Menu Portal (rendered outside header to avoid stacking context) ─── */}
+      {createPortal(
+        <AnimatePresence>
+          {isOpen && (
+            <>
+              {/* Semi-transparent overlay */}
+              <motion.div
+                key="mobile-overlay"
+                variants={overlayVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                onClick={closeNavbar}
+                className="fixed inset-0 z-[100]"
+                style={{ backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(4px)' }}
+              />
+
+              {/* Sidebar panel — fully opaque, above overlay */}
+              <motion.div
+                key="mobile-panel"
+                variants={panelVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="fixed top-0 right-0 h-full w-4/5 max-w-xs z-[101] border-l border-neutral-800 flex flex-col justify-between shadow-2xl"
+                style={{ backgroundColor: '#09090b' }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Top: header + nav links */}
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-10">
+                    <span className="text-xl font-bold text-neutral-50 poppins-extrabold">
+                      Menu
+                    </span>
+                    <button
+                      onClick={closeNavbar}
+                      className="text-neutral-400 hover:text-primary-500 p-2 rounded-full bg-neutral-900 border border-neutral-800 transition-colors"
+                      aria-label="Close menu"
+                    >
+                      <FaTimes className="h-5 w-5" />
+                    </button>
+                  </div>
+
+                  <nav className="flex flex-col space-y-2">
+                    {navItems.map((item, i) => {
+                      const isActive = location.pathname === item.path;
+                      return (
+                        <motion.div
+                          key={item.path}
+                          custom={i}
+                          variants={itemVariants}
+                          initial="hidden"
+                          animate="visible"
+                        >
+                          <Link
+                            to={item.path}
+                            onClick={closeNavbar}
+                            className={`block poppins-medium text-lg py-3 px-4 rounded-xl transition-all duration-200 ${
+                              isActive
+                                ? 'text-primary-500 bg-primary-500/10'
+                                : 'text-neutral-300 hover:text-primary-500 hover:bg-neutral-900'
+                            }`}
+                          >
+                            {item.label}
+                          </Link>
+                        </motion.div>
+                      );
+                    })}
+                  </nav>
+                </div>
+
+                {/* Bottom: contact info */}
+                <div className="px-6 pb-8 border-t border-neutral-900 pt-6">
+                  <p className="text-xs text-neutral-500 font-medium tracking-wide">
+                    {personalInfo.email}
+                  </p>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+    </>
   );
 };
 

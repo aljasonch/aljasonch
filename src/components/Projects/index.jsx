@@ -1,134 +1,179 @@
-import { motion } from "framer-motion";
-import Mentoring from "../../assets/mentoring2024.webp";
-import Chainew from "../../assets/chainew.webp";
-import Bayar_Bareng from "../../assets/bayarbareng.webp";
-
-const projectData = [
-  {
-    title: "MENTORING UMN 2024",
-    image: Mentoring,
-    link: "https://mentoring2024.vercel.app",
-    alt: "Mentoring UMN 2024 Project"
-  },
-  {
-    title: "Chainew",
-    image: Chainew,
-    link: "https://chainew.vercel.app",
-    alt: "Chainew Project"
-  },
-  {
-    title: "Bayar Bareng",
-    image: Bayar_Bareng,
-    link: "https://bayar-bareng.vercel.app",
-    alt: "Bayar Bareng Project"
-  }
-];
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaGithub, FaExternalLinkAlt, FaFolderOpen } from 'react-icons/fa';
+import { initialProjects } from '../../data/content';
 
 const Projects = () => {
-  const sectionVariants = {
+  const [activeFilter, setActiveFilter] = useState('All');
+
+  // Extract categories dynamically
+  const categories = ['All', ...new Set(initialProjects.map(p => p.category))];
+
+  const filteredProjects = activeFilter === 'All' 
+    ? initialProjects 
+    : initialProjects.filter(p => p.category === activeFilter);
+
+  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
     },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  }; return (
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } },
+    exit: { opacity: 0, y: 20, scale: 0.95, transition: { duration: 0.3 } }
+  };
+
+  return (
     <motion.section
       id="projects"
-      className="pt-32 pb-20 section-gradient relative overflow-hidden"
-      variants={sectionVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="min-h-screen pt-32 pb-20 bg-neutral-950 relative overflow-hidden"
     >
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-20 w-40 h-40 bg-primary-500/5 rounded-full blur-xl animate-float"></div>
-        <div className="absolute bottom-20 left-20 w-32 h-32 bg-accent-500/5 rounded-full blur-xl animate-float" style={{ animationDelay: '1s' }}></div>
-      </div>
+      {/* Decorative Blur elements - REMOVED for clean monochrome */}
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
-        <motion.div className="text-center mb-16">
+        
+        {/* Header */}
+        <div className="text-center mb-12">
           <motion.h2
-            className="text-4xl md:text-5xl poppins-bold text-green-600 mb-4"
+            className="text-4xl sm:text-5xl font-bold poppins-bold text-neutral-50 mb-4"
             initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            PROJECTS
+            My Portfolio
           </motion.h2>
           <motion.p
-            className="text-lg text-neutral-600 poppins-regular max-w-2xl mx-auto"
+            className="text-base sm:text-lg text-neutral-400 max-w-xl mx-auto poppins-regular"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Things I've built, problems I've solved, and ideas I've shipped.
+            A compilation of professional modules, academic activities, and side projects built using modern frameworks.
           </motion.p>
-          <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-green-600 mx-auto mt-6 rounded-full"></div>
-        </motion.div>        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={sectionVariants}
+          <div className="w-16 h-[2px] bg-neutral-800 mx-auto mt-5 rounded-full" />
+        </div>
+
+        {/* Filter Navigation */}
+        <motion.div 
+          className="flex flex-wrap justify-center gap-3 mb-12"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
         >
-          {projectData.map((project, index) => (
-            <motion.div
-              key={index}
-              className="card-modern group cursor-pointer"
-              variants={cardVariants}
-              whileHover={{ y: -12, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveFilter(category)}
+              className={`px-5 py-2 rounded-full text-sm font-semibold poppins-medium transition-all duration-300 border ${
+                activeFilter === category
+                  ? 'bg-white border-white text-black shadow-lg'
+                  : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-neutral-100 hover:border-neutral-700'
+              }`}
             >
-              <a href={project.link} target="_blank" rel="noopener noreferrer" className="block h-full">
-                <div className="relative overflow-hidden rounded-t-[20px]">
+              {category}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Portfolio Cards Grid */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          layout
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.title}
+                className="glass-card rounded-[24px] overflow-hidden flex flex-col h-full hover:shadow-2xl group border border-neutral-800 bg-neutral-900/30 backdrop-blur-sm"
+                variants={cardVariants}
+                layout
+                whileHover={{ y: -8 }}
+              >
+                {/* Visual Image */}
+                <div className="relative aspect-video overflow-hidden border-b border-neutral-900">
                   <img
                     src={project.image}
                     alt={project.alt}
-                    className="w-full aspect-video object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                    <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
-                      <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </div>
+                  <div className="absolute inset-0 bg-neutral-950/40 group-hover:bg-neutral-950/20 transition-all duration-300" />
+                  
+                  {/* Category Badge overlay */}
+                  <span className="absolute top-4 left-4 bg-neutral-950/80 backdrop-blur-md border border-neutral-800 text-neutral-300 text-xs px-3 py-1.5 rounded-full font-bold poppins-semibold">
+                    {project.category}
+                  </span>
+                </div>
+
+                {/* Body Content */}
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-xl font-bold text-neutral-50 mb-3 group-hover:text-neutral-100 transition-colors duration-300 leading-tight">
+                    {project.title}
+                  </h3>
+                  <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed mb-6 flex-1 poppins-regular">
+                    {project.description}
+                  </p>
+
+                  {/* Technology Tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {project.tech.map((tag) => (
+                      <span 
+                        key={tag}
+                        className="bg-neutral-900 border border-neutral-800 text-neutral-400 text-[10px] sm:text-xs px-2.5 py-1 rounded-md font-medium"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Action Links */}
+                  <div className="flex items-center gap-4 pt-4 border-t border-neutral-850">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-neutral-300 hover:text-white transition-colors duration-200"
+                    >
+                      <FaExternalLinkAlt size={12} />
+                      Live Demo
+                    </a>
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-neutral-400 hover:text-neutral-200 transition-colors duration-200"
+                      >
+                        <FaGithub size={14} />
+                        GitHub
+                      </a>
+                    )}
                   </div>
                 </div>
-                <div className="p-6">
-                  <div className="mb-3">
-                    <span className="text-green-600 poppins-medium text-sm tracking-wide">
-                      Click to visit
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-start">
-                    <h3 className="text-xl poppins-bold text-neutral-800 group-hover:text-green-600 transition-colors duration-300 leading-tight">
-                      {project.title}
-                    </h3>
-                    <div className="text-green-600 text-xl transition-all duration-300 group-hover:translate-x-1 group-hover:text-green-500 ml-2 mt-1">
-                      →
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-4 border-t border-neutral-100 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                    <div className="flex items-center text-sm text-neutral-500 poppins-regular">
-                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                      </svg>
-                      View Project
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </motion.div>
+
+        {/* Empty state if filter doesn't match */}
+        {filteredProjects.length === 0 && (
+          <motion.div 
+            className="flex flex-col items-center justify-center py-20 text-center text-neutral-500"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <FaFolderOpen size={48} className="mb-4 text-neutral-700" />
+            <p className="text-lg">No projects found in this category.</p>
+          </motion.div>
+        )}
       </div>
     </motion.section>
   );
