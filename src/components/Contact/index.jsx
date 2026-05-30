@@ -6,13 +6,12 @@ import { personalInfo } from "../../data/content";
 const Contact = () => {
   return (
     <section id="contact" className="py-32 bg-neutral-950 flex items-center min-h-[85vh] relative overflow-hidden">
-      {/* Decorative Glows */}
-      <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-primary-500/5 rounded-full blur-[90px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-secondary-500/5 rounded-full blur-[90px] pointer-events-none" />
+      {/* Subtle dotted backdrop (solid dots, no gradient) */}
+      <div className="absolute inset-0 dot-grid opacity-[0.3] pointer-events-none" />
 
       <div className="container mx-auto px-6 max-w-2xl text-center relative z-10">
         <motion.p
-          className="text-primary-500 font-semibold tracking-widest uppercase mb-4 text-sm"
+          className="text-theme font-semibold tracking-widest uppercase mb-4 text-sm"
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -49,7 +48,7 @@ const Contact = () => {
         >
           <a
             href={`mailto:${personalInfo.email}`}
-            className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full hover:from-primary-650 hover:to-primary-700 transition-all duration-300 font-semibold text-lg poppins-medium hover:shadow-lg hover:-translate-y-0.5"
+            className="btn-primary flex items-center gap-3 px-8 py-4 rounded-full transition-all duration-300 font-semibold text-lg poppins-medium hover:shadow-lg"
           >
             <FaEnvelope size={18} />
             Say Hello
@@ -61,7 +60,7 @@ const Contact = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="w-11 h-11 bg-neutral-900 border border-neutral-800 rounded-full flex items-center justify-center text-neutral-400 hover:text-primary-500 hover:border-primary-500/50 hover:bg-primary-500/5 transition-all duration-300"
+              className="w-11 h-11 bg-neutral-900 border border-neutral-800 rounded-full flex items-center justify-center text-neutral-400 hover:text-theme hover:border-theme transition-all duration-300"
             >
               <FaInstagram size={20} />
             </a>
@@ -70,7 +69,7 @@ const Contact = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="X"
-              className="w-11 h-11 bg-neutral-900 border border-neutral-800 rounded-full flex items-center justify-center text-neutral-400 hover:text-primary-500 hover:border-primary-500/50 hover:bg-primary-500/5 transition-all duration-300"
+              className="w-11 h-11 bg-neutral-900 border border-neutral-800 rounded-full flex items-center justify-center text-neutral-400 hover:text-theme hover:border-theme transition-all duration-300"
             >
               <FaXTwitter size={18} />
             </a>

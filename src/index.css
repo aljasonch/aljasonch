@@ -33,6 +33,96 @@ HEX CODES:
   --secondary-rgb: 59, 130, 246;
   --border-color: #27272a;
   --accent: #f59e0b;
+  --accent-rgb: 245, 158, 11;
+
+  /* Live theme accent — controlled by the Command Palette surprise feature.
+     Defaults to the emerald primary. No gradients, single solid color. */
+  --theme-accent: #10b981;
+  --theme-accent-rgb: 16, 185, 129;
+  /* Readable text/icon color to sit ON the accent fill (per-accent for contrast). */
+  --theme-on-accent: #09090b;
+
+  /* Neutral scale (space-separated RGB) consumed by Tailwind's neutral-* utils.
+     DARK THEME (default). */
+  --n-50: 250 250 250;
+  --n-100: 244 244 245;
+  --n-200: 228 228 231;
+  --n-300: 212 212 216;
+  --n-400: 161 161 170;
+  --n-500: 113 113 122;
+  --n-600: 82 82 91;
+  --n-700: 63 63 70;
+  --n-800: 39 39 42;
+  --n-850: 32 32 36;
+  --n-900: 24 24 27;
+  --n-950: 9 9 11;
+
+  /* Theme-aware surfaces for the glassmorphism panels */
+  --glass-panel-bg: rgba(18, 18, 20, 0.85);
+  --glass-card-bg: rgba(18, 18, 20, 0.6);
+
+  /* Header + mobile drawer surfaces */
+  --header-bg: rgba(9, 9, 11, 0.85);
+  --panel-solid-bg: #09090b;
+
+  /* Shimmer skeleton tones */
+  --shimmer-base: rgba(24, 24, 27, 0.6);
+  --shimmer-highlight: rgba(39, 39, 42, 0.8);
+
+  color-scheme: dark;
+}
+
+/* ====================== LIGHT THEME ======================
+   Intentionally tuned (not a raw inversion):
+   - Page sits on a soft gray so white cards lift off it.
+   - Border/surface tokens stay mid-light so dividers remain visible
+     both on the page and inside white cards.
+   - Text tokens map to dark zinc values with solid contrast.
+   No gradients introduced. */
+[data-theme='light'] {
+  --bg-primary: #f4f4f5;
+  --bg-secondary: #ffffff;
+  --surface: #ffffff;
+  --text-primary: #18181b;
+  --text-secondary: #52525b;
+  --border-color: #e4e4e7;
+
+  /* Text roles → dark */
+  --n-50: 9 9 11;       /* strongest heading / logo */
+  --n-100: 24 24 27;    /* headings */
+  --n-200: 39 39 42;
+  --n-300: 63 63 70;    /* body / nav text */
+  --n-400: 82 82 91;    /* secondary body text */
+  --n-500: 113 113 122; /* muted text */
+  --n-600: 138 138 147; /* faint micro-labels */
+  /* Surface / border roles → light */
+  --n-700: 196 196 202;
+  --n-800: 212 212 216; /* visible borders */
+  --n-850: 224 224 227;
+  --n-900: 228 228 231; /* card dividers + soft surfaces/badges */
+  --n-950: 244 244 245; /* page-level fills / pills */
+
+  --glass-panel-bg: rgba(255, 255, 255, 0.88);
+  --glass-card-bg: rgba(255, 255, 255, 0.78);
+
+  --header-bg: rgba(255, 255, 255, 0.85);
+  --panel-solid-bg: #ffffff;
+
+  --shimmer-base: rgba(228, 228, 231, 0.7);
+  --shimmer-highlight: rgba(244, 244, 245, 0.95);
+
+  color-scheme: light;
+}
+
+/* Give cards real depth in light mode (subtle shadow, no gradient) */
+[data-theme='light'] .glass-card {
+  box-shadow: 0 1px 2px rgba(24, 24, 27, 0.04), 0 4px 12px -6px rgba(24, 24, 27, 0.08);
+}
+[data-theme='light'] .glass-panel {
+  box-shadow: 0 1px 3px rgba(24, 24, 27, 0.05);
+}
+[data-theme='light'] .glass-card:hover {
+  box-shadow: 0 8px 24px -10px rgba(var(--theme-accent-rgb), 0.25);
 }
 
 * {
@@ -46,6 +136,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom Scrollbar */
@@ -73,14 +164,14 @@ body {
 
 /* Custom Glassmorphism */
 .glass-panel {
-  background: rgba(18, 18, 20, 0.85);
+  background: var(--glass-panel-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
 }
 
 .glass-card {
-  background: rgba(18, 18, 20, 0.6);
+  background: var(--glass-card-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-color);
@@ -88,15 +179,15 @@ body {
 }
 
 .glass-card:hover {
-  border-color: rgba(16, 185, 129, 0.35);
-  box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.05);
+  border-color: rgba(var(--theme-accent-rgb), 0.35);
+  box-shadow: 0 10px 30px -12px rgba(var(--theme-accent-rgb), 0.12);
   transform: translateY(-4px);
 }
 
 /* Flat colored buttons (no gradients, no neon glow) */
 .btn-primary {
-  background: var(--primary);
-  color: #09090b;
+  background: var(--theme-accent);
+  color: var(--theme-on-accent);
   transition: all 0.2s ease;
 }
 
@@ -114,8 +205,8 @@ body {
 
 .btn-secondary:hover {
   background: #18181b;
-  border-color: var(--primary);
-  color: var(--primary);
+  border-color: var(--theme-accent);
+  color: var(--theme-accent);
   transform: translateY(-2px);
 }
 
@@ -130,9 +221,9 @@ h1, h2, h3, h4, h5, h6 {
 .shimmer-bg {
   background: linear-gradient(
     90deg,
-    rgba(24, 24, 27, 0.6) 25%,
-    rgba(39, 39, 42, 0.8) 37%,
-    rgba(24, 24, 27, 0.6) 63%
+    var(--shimmer-base) 25%,
+    var(--shimmer-highlight) 37%,
+    var(--shimmer-base) 63%
   );
   background-size: 400% 100%;
   animation: shimmer-animation 1.4s ease infinite;
@@ -145,4 +236,121 @@ h1, h2, h3, h4, h5, h6 {
   100% {
     background-position: 0% 50%;
   }
+}
+
+/* ============================================================
+   ADDITIONAL MOTION & THEME UTILITIES (no gradients)
+   ============================================================ */
+
+/* Live accent helpers driven by --theme-accent */
+.text-theme { color: var(--theme-accent); }
+.bg-theme { background-color: var(--theme-accent); }
+.border-theme { border-color: var(--theme-accent); }
+.bg-theme-soft { background-color: rgba(var(--theme-accent-rgb), 0.1); }
+.ring-theme { box-shadow: 0 0 0 1px rgba(var(--theme-accent-rgb), 0.4); }
+
+/* Text that always sits ON an accent fill — color is chosen per-accent
+   (see ThemeContext `on`) for proper contrast in BOTH themes. */
+.text-on-accent { color: var(--theme-on-accent); }
+
+/* Infinite marquee for the skills strip */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Subtle non-gradient dotted grid backdrop (solid dots, no gradient fills) */
+.dot-grid {
+  background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Animated blinking caret accent */
+.pulse-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.85); }
+}
+
+/* Command palette key hint styling */
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--border-color);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Underline draw animation for links/headings */
+.underline-grow {
+  position: relative;
+}
+.underline-grow::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0;
+  background: var(--theme-accent);
+  transition: width 0.3s ease;
+}
+.underline-grow:hover::after {
+  width: 100%;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .pulse-dot,
+  .shimmer-bg {
+    animation: none !important;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   LIGHT MODE FINE-TUNING
+   ============================================================ */
+
+/* The blog/admin markdown uses Tailwind Typography's `prose-invert`
+   (designed for dark bg). In light mode, neutralize the inversion so
+   article text renders dark and readable. */
+[data-theme='light'] .prose-invert {
+  color: #3f3f46;
+}
+[data-theme='light'] .prose-invert :where(h1, h2, h3, h4, strong) {
+  color: #18181b;
+}
+[data-theme='light'] .prose-invert :where(code) {
+  color: #18181b;
+}
+
+/* Project thumbnails dim with a dark scrim on hover-out. In light mode,
+   keep a gentle light scrim instead of a dark one. */
+[data-theme='light'] .img-scrim {
+  background-color: rgba(244, 244, 245, 0.25);
+}
+[data-theme='light'] .group:hover .img-scrim {
+  background-color: rgba(244, 244, 245, 0.1);
 }

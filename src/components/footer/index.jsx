@@ -47,8 +47,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-8 border-b border-neutral-900">
           
           <motion.div variants={itemVariants} className="flex flex-col items-start text-left">
-            <Link to="/" className="text-2xl poppins-extrabold text-neutral-50 tracking-tight">
-              aljasonch
+            <Link to="/" className="inline-block">
+              <img src="/aljasonch.png" alt="aljasonch" className="h-9 w-auto object-contain" />
             </Link>
             <p className="mt-3 text-sm text-neutral-500 max-w-sm poppins-regular">
               Software engineer crafting optimized code, responsive web designs, and user-centric operations.

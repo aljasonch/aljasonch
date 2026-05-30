@@ -11,7 +11,15 @@ import {
   FaLock,
   FaFileAlt
 } from 'react-icons/fa';
-import { fetchPosts, savePost, deletePost } from '../../firebase';
+import {
+  fetchPosts,
+  savePost,
+  deletePost,
+  signInAdmin,
+  signOutAdmin,
+  subscribeToAuth,
+  isAuthEnabled,
+} from '../../firebase';
 
 // Safely normalize tags
 const getTags = (post) => {
@@ -118,8 +126,11 @@ const renderPreviewMarkdown = (content) => {
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authReady, setAuthReady] = useState(false);
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isSigningIn, setIsSigningIn] = useState(false);
   
   const [posts, setPosts] = useState([]);
   const [editingPost, setEditingPost] = useState(null);
@@ -145,30 +156,52 @@ const Admin = () => {
       }
     };
     loadBlogData();
-
-    // Check if user has an active session
-    const session = sessionStorage.getItem('aljasonch_admin_session');
-    if (session === 'active') {
-      setIsAuthenticated(true);
-    }
   }, []);
 
-  const handleLogin = (e) => {
+  // Track Firebase auth state — keeps the admin signed in across reloads.
+  useEffect(() => {
+    const unsubscribe = subscribeToAuth((user) => {
+      setIsAuthenticated(!!user);
+      setAuthReady(true);
+    });
+    return unsubscribe;
+  }, []);
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const envPassword = process.env.REACT_APP_ADMIN_PASSWORD || 'admin123';
-    
-    if (password === envPassword) {
-      setIsAuthenticated(true);
-      setError('');
-      sessionStorage.setItem('aljasonch_admin_session', 'active');
-    } else {
-      setError('Incorrect admin password. Please try again.');
+    if (!isAuthEnabled()) {
+      setError('Authentication is not configured. Add your Firebase credentials to the .env file.');
+      return;
+    }
+    setIsSigningIn(true);
+    setError('');
+    try {
+      await signInAdmin(email.trim(), password);
+      // onAuthStateChanged will flip isAuthenticated.
+    } catch (err) {
+      const code = err?.code || '';
+      if (code === 'auth/invalid-credential' || code === 'auth/wrong-password' || code === 'auth/user-not-found') {
+        setError('Incorrect email or password. Please try again.');
+      } else if (code === 'auth/invalid-email') {
+        setError('Please enter a valid email address.');
+      } else if (code === 'auth/too-many-requests') {
+        setError('Too many attempts. Please wait a moment and try again.');
+      } else {
+        setError('Unable to sign in. Please try again.');
+        console.error('Login failed:', err);
+      }
+    } finally {
+      setIsSigningIn(false);
     }
   };
 
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    sessionStorage.removeItem('aljasonch_admin_session');
+  const handleLogout = async () => {
+    try {
+      await signOutAdmin();
+    } catch (err) {
+      console.error('Logout failed:', err);
+    }
+    setEmail('');
     setPassword('');
   };
 
@@ -272,11 +305,21 @@ const Admin = () => {
     }
   };
 
+  // Wait for Firebase to report the current auth state before deciding what to show.
+  if (!authReady) {
+    return (
+      <div className="min-h-screen bg-neutral-950 flex items-center justify-center">
+        <div className="shimmer-bg h-12 w-12 rounded-full" />
+      </div>
+    );
+  }
+
   // Render Login state
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-neutral-950 flex items-center justify-center px-6 relative overflow-hidden">
-        {/* Decorative Glows - REMOVED for clean monochrome */}
+        {/* Subtle dotted backdrop (solid dots, no gradient) */}
+        <div className="absolute inset-0 dot-grid opacity-[0.3] pointer-events-none" />
 
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
@@ -288,19 +331,36 @@ const Admin = () => {
           </div>
 
           <h2 className="text-2xl font-bold poppins-bold text-neutral-100 mb-2">Admin Dashboard</h2>
-          <p className="text-neutral-400 text-xs sm:text-sm mb-6">Enter password to manage blog posts.</p>
+          <p className="text-neutral-400 text-xs sm:text-sm mb-6">Sign in with your admin account to manage blog posts.</p>
 
           <form onSubmit={handleLogin} className="space-y-4 text-left">
             <div>
               <label className="text-xs uppercase font-semibold text-neutral-500 tracking-wider block mb-2">
-                System Password
+                Email
+              </label>
+              <input
+                type="email"
+                autoComplete="username"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full bg-neutral-900 border border-neutral-800 text-neutral-200 placeholder-neutral-600 px-4 py-3 rounded-xl focus:outline-none focus:border-neutral-400 transition-colors"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="text-xs uppercase font-semibold text-neutral-500 tracking-wider block mb-2">
+                Password
               </label>
               <input
                 type="password"
+                autoComplete="current-password"
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full bg-neutral-900 border border-neutral-800 text-neutral-200 placeholder-neutral-600 px-4 py-3 rounded-xl focus:outline-none focus:border-neutral-400 transition-colors"
+                required
               />
             </div>
 
@@ -308,9 +368,10 @@ const Admin = () => {
 
             <button
               type="submit"
-              className="w-full btn-primary py-3 rounded-xl font-bold mt-2 hover:shadow-lg transition-shadow flex items-center justify-center gap-2"
+              disabled={isSigningIn}
+              className="w-full btn-primary py-3 rounded-xl font-bold mt-2 hover:shadow-lg transition-shadow flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Sign In
+              {isSigningIn ? 'Signing In...' : 'Sign In'}
             </button>
           </form>
         </motion.div>
@@ -328,7 +389,7 @@ const Admin = () => {
           <div className="flex items-center justify-between pb-6 border-b border-neutral-900 mb-8">
             <button
               onClick={cancelForm}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-400 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-400 hover:text-neutral-50 transition-colors"
             >
               <FaArrowLeft size={12} />
               Cancel Changes
@@ -419,7 +480,7 @@ const Admin = () => {
                       type="button"
                       onClick={() => setFormMode('write')}
                       className={`px-3 py-1 text-xs rounded-md font-semibold transition-all ${
-                        formMode === 'write' ? 'bg-primary-500 text-neutral-950' : 'text-neutral-400 hover:text-neutral-250'
+                        formMode === 'write' ? 'bg-theme text-on-accent' : 'text-neutral-400 hover:text-neutral-250'
                       }`}
                     >
                       Write
@@ -428,7 +489,7 @@ const Admin = () => {
                       type="button"
                       onClick={() => setFormMode('preview')}
                       className={`px-3 py-1 text-xs rounded-md font-semibold transition-all ${
-                        formMode === 'preview' ? 'bg-primary-500 text-neutral-950' : 'text-neutral-400 hover:text-neutral-250'
+                        formMode === 'preview' ? 'bg-theme text-on-accent' : 'text-neutral-400 hover:text-neutral-250'
                       }`}
                     >
                       <span className="flex items-center gap-1">

@@ -5,11 +5,10 @@ import { FaHome } from 'react-icons/fa';
 const NotFound = () => {
   return (
     <div className="min-h-screen bg-neutral-950 flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
-      {/* Decorative Glows */}
-      <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-primary-500/5 rounded-full blur-[90px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-secondary-500/5 rounded-full blur-[90px] pointer-events-none" />
+      {/* Subtle dotted backdrop (solid dots, no gradient) */}
+      <div className="absolute inset-0 dot-grid opacity-[0.3] pointer-events-none" />
 
-      <h1 className="text-6xl font-bold poppins-bold text-primary-500 mb-4 relative z-10">404</h1>
+      <h1 className="text-6xl font-bold poppins-bold text-theme mb-4 relative z-10">404</h1>
       <h2 className="text-2xl font-semibold text-neutral-100 mb-4 relative z-10">Page Not Found</h2>
       <p className="text-neutral-400 max-w-sm mb-8 relative z-10">The link you followed may be broken or the page may have been removed.</p>
       

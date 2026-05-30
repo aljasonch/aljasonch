@@ -33,9 +33,8 @@ const CV = () => {
       variants={containerVariants}
       className="min-h-screen pt-32 pb-24 bg-neutral-950 relative overflow-hidden"
     >
-      {/* Decorative Glows */}
-      <div className="absolute top-10 left-10 w-[300px] h-[300px] bg-primary-500/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[350px] h-[350px] bg-secondary-500/5 rounded-full blur-[110px] pointer-events-none" />
+      {/* Subtle dotted backdrop (solid dots, no gradient) */}
+      <div className="absolute inset-0 dot-grid opacity-[0.3] pointer-events-none" />
 
       <div className="container mx-auto px-6 max-w-5xl relative z-10">
         
@@ -45,7 +44,7 @@ const CV = () => {
           variants={itemVariants}
         >
           <div>
-            <span className="text-xs uppercase font-semibold text-primary-500 tracking-wider">
+            <span className="text-xs uppercase font-semibold text-theme tracking-wider">
               Curriculum Vitae
             </span>
             <h1 className="text-3xl sm:text-4xl font-bold poppins-bold text-neutral-50 mt-1 mb-2">
@@ -78,24 +77,24 @@ const CV = () => {
               </h3>
               <ul className="space-y-4 text-xs sm:text-sm text-neutral-400 poppins-regular">
                 <li className="flex items-center gap-3">
-                  <FaEnvelope className="text-primary-500 w-4 h-4 flex-shrink-0" />
-                  <a href={`mailto:${personalInfo.email}`} className="hover:text-primary-400 break-all">
+                  <FaEnvelope className="text-theme w-4 h-4 flex-shrink-0" />
+                  <a href={`mailto:${personalInfo.email}`} className="hover:text-neutral-100 break-all">
                     {personalInfo.email}
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
-                  <FaMapMarkerAlt className="text-primary-500 w-4 h-4 flex-shrink-0" />
+                  <FaMapMarkerAlt className="text-theme w-4 h-4 flex-shrink-0" />
                   <span>{personalInfo.location}</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <FaGithub className="text-primary-500 w-4 h-4 flex-shrink-0" />
-                  <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 break-all">
+                  <FaGithub className="text-theme w-4 h-4 flex-shrink-0" />
+                  <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="hover:text-neutral-100 break-all">
                     github.com/aljasonch
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
-                  <FaInstagram className="text-primary-500 w-4 h-4 flex-shrink-0" />
-                  <a href={personalInfo.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 break-all">
+                  <FaInstagram className="text-theme w-4 h-4 flex-shrink-0" />
+                  <a href={personalInfo.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-neutral-100 break-all">
                     @aljasonch
                   </a>
                 </li>
@@ -121,7 +120,7 @@ const CV = () => {
             {/* Tech Skills */}
             <motion.div className="glass-card rounded-[24px] p-6 border border-neutral-900" variants={itemVariants}>
               <h3 className="text-lg font-bold text-neutral-100 mb-4 border-b border-neutral-900 pb-2 poppins-bold flex items-center gap-2">
-                <FaLaptopCode className="text-primary-500" />
+                <FaLaptopCode className="text-theme" />
                 Technical Skills
               </h3>
               <div className="flex flex-wrap gap-2">
@@ -155,13 +154,13 @@ const CV = () => {
             {/* Work History details */}
             <motion.div className="glass-card rounded-[24px] p-6 border border-neutral-900" variants={itemVariants}>
               <h3 className="text-lg font-bold text-neutral-100 mb-6 border-b border-neutral-900 pb-2 poppins-bold flex items-center gap-2">
-                <FaBriefcase className="text-primary-500" />
+                <FaBriefcase className="text-theme" />
                 Work History
               </h3>
               <div className="space-y-8">
                 {workExperience.map((exp, idx) => (
                   <div key={idx} className="relative pl-6 border-l-2 border-neutral-800 last:pb-0 pb-2">
-                    <div className="absolute w-3.5 h-3.5 bg-primary-500 rounded-full -left-[8px] top-1.5 border-4 border-neutral-950" />
+                    <div className="absolute w-3.5 h-3.5 bg-theme rounded-full -left-[8px] top-1.5 border-4 border-neutral-950" />
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-3">
                       <div>
                         <h4 className="font-bold text-neutral-100 text-base sm:text-lg">{exp.title}</h4>

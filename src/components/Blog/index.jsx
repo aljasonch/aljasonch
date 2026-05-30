@@ -82,7 +82,7 @@ const Blog = () => {
           <p className="text-neutral-400 text-sm sm:text-base max-w-xl mx-auto">
             Thoughts, stories, and ideas — from tech and projects to life and everything in between.
           </p>
-          <div className="w-16 h-[2px] bg-neutral-800 mx-auto mt-5 rounded-full" />
+          <div className="w-16 h-[2px] bg-theme mx-auto mt-5 rounded-full" />
         </div>
 
         {/* Search & Tag Filter Grid */}
@@ -95,7 +95,7 @@ const Blog = () => {
                 onClick={() => setSelectedTag(tag)}
                 className={`px-4 py-1.5 rounded-full text-xs font-semibold poppins-medium transition-all duration-300 border ${
                   selectedTag === tag
-                    ? 'bg-white border-white text-black shadow-lg'
+                    ? 'bg-theme border-theme text-on-accent shadow-lg'
                     : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-neutral-250'
                 }`}
               >
@@ -164,7 +164,7 @@ const Blog = () => {
                   </div>
                   <Link
                     to={`/blog/${post.slug}`}
-                    className="flex items-center gap-1 text-xs font-semibold text-neutral-300 hover:text-white transition-colors duration-200"
+                    className="flex items-center gap-1 text-xs font-semibold text-neutral-300 hover:text-neutral-50 transition-colors duration-200"
                   >
                     Read More
                     <FaChevronRight size={9} className="group-hover:translate-x-0.5 transition-transform" />
@@ -175,8 +175,17 @@ const Blog = () => {
           </div>
         ) : (
           <div className="text-center py-20 text-neutral-500">
-            <p className="text-lg mb-2">No articles found.</p>
-            <p className="text-sm">Try resetting your search query or tag selection filters.</p>
+            {posts.length === 0 ? (
+              <>
+                <p className="text-lg mb-2">No articles published yet.</p>
+                <p className="text-sm">Check back soon — new posts will appear here.</p>
+              </>
+            ) : (
+              <>
+                <p className="text-lg mb-2">No articles found.</p>
+                <p className="text-sm">Try resetting your search query or tag selection filters.</p>
+              </>
+            )}
           </div>
         )}
       </div>

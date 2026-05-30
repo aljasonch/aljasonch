@@ -12,31 +12,36 @@ import ScrollToTopButton from './components/ScrollToTopButton';
 import ScrollToTop from './components/ScrollToTop';
 import NotFound from './components/NotFound';
 import Footer from './components/footer';
+import CommandPalette from './components/CommandPalette';
+import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
   return (
-    <Router>
-      <div className="min-h-screen bg-neutral-950 flex flex-col justify-between">
-        <ScrollToTop />
-        <Navbar />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            {/* Redirect old projects path to the new portfolio URL */}
-            <Route path="/projects" element={<Navigate to="/portfolio" replace />} />
-            <Route path="/portfolio" element={<Projects />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogDetail />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/cv" element={<CV />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-        <Footer />
-        <ScrollToTopButton />
-      </div>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <div className="min-h-screen bg-neutral-950 flex flex-col justify-between">
+          <ScrollToTop />
+          <Navbar />
+          <CommandPalette />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              {/* Redirect old projects path to the new portfolio URL */}
+              <Route path="/projects" element={<Navigate to="/portfolio" replace />} />
+              <Route path="/portfolio" element={<Projects />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogDetail />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/cv" element={<CV />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
+          <ScrollToTopButton />
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 

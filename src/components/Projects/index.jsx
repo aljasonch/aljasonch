@@ -56,7 +56,7 @@ const Projects = () => {
           >
             A compilation of professional modules, academic activities, and side projects built using modern frameworks.
           </motion.p>
-          <div className="w-16 h-[2px] bg-neutral-800 mx-auto mt-5 rounded-full" />
+          <div className="w-16 h-[2px] bg-theme mx-auto mt-5 rounded-full" />
         </div>
 
         {/* Filter Navigation */}
@@ -72,7 +72,7 @@ const Projects = () => {
               onClick={() => setActiveFilter(category)}
               className={`px-5 py-2 rounded-full text-sm font-semibold poppins-medium transition-all duration-300 border ${
                 activeFilter === category
-                  ? 'bg-white border-white text-black shadow-lg'
+                  ? 'bg-theme border-theme text-on-accent shadow-lg'
                   : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-neutral-100 hover:border-neutral-700'
               }`}
             >
@@ -105,7 +105,7 @@ const Projects = () => {
                     alt={project.alt}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-neutral-950/40 group-hover:bg-neutral-950/20 transition-all duration-300" />
+                  <div className="absolute inset-0 img-scrim bg-neutral-950/40 group-hover:bg-neutral-950/20 transition-all duration-300" />
                   
                   {/* Category Badge overlay */}
                   <span className="absolute top-4 left-4 bg-neutral-950/80 backdrop-blur-md border border-neutral-800 text-neutral-300 text-xs px-3 py-1.5 rounded-full font-bold poppins-semibold">
@@ -140,7 +140,7 @@ const Projects = () => {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-neutral-300 hover:text-white transition-colors duration-200"
+                      className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-neutral-300 hover:text-neutral-50 transition-colors duration-200"
                     >
                       <FaExternalLinkAlt size={12} />
                       Live Demo

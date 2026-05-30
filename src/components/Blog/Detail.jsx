@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FaCalendarAlt, FaArrowLeft, FaTag, FaClock } from 'react-icons/fa';
-import { initialBlogPosts } from '../../data/content';
 import { fetchPosts } from '../../firebase';
 
 // Safely normalize tags
@@ -176,7 +175,7 @@ const BlogDetail = () => {
         {/* Navigation Button */}
         <button
           onClick={() => navigate('/blog')}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-400 hover:text-white transition-colors mb-10 group"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-400 hover:text-neutral-50 transition-colors mb-10 group"
         >
           <FaArrowLeft size={12} className="group-hover:-translate-x-0.5 transition-transform" />
           Back to Articles
@@ -221,7 +220,7 @@ const BlogDetail = () => {
         {/* Author box */}
         <div className="glass-panel rounded-2xl p-6 border border-neutral-900 flex gap-4 items-center">
           <div className="w-12 h-12 rounded-full overflow-hidden border border-neutral-800">
-            <img src={post.authorImage || initialBlogPosts[0]?.authorImage || "/aljasonch.png"} alt="Author" className="w-full h-full object-cover" />
+            <img src={post.authorImage || "/aljasonch.png"} alt="Author" className="w-full h-full object-cover" />
           </div>
           <div>
             <h4 className="font-bold text-neutral-200 text-sm sm:text-base">Alfonsus Jason Christian</h4>

@@ -13,7 +13,7 @@ import Bayar_Bareng from '../assets/bayarbareng.webp';
 export const personalInfo = {
   name: "Alfonsus Jason Christian",
   role: "Junior Software Engineer & Informatics Student",
-  email: "alfonsusjasonchristian@gmail.com",
+  email: "aljasonch@gmail.com",
   instagram: "https://www.instagram.com/aljasonch/",
   twitter: "https://x.com/aljasonch",
   github: "https://github.com/aljasonch",
@@ -151,132 +151,72 @@ export const initialProjects = [
   }
 ];
 
-export const initialBlogPosts = [
+// What I do — service offerings shown on the Home page
+export const services = [
   {
-    id: 1,
-    title: "Getting Started with Odoo ERP Development",
-    date: "May 15, 2026",
-    tags: ["ERP", "Odoo", "Python", "Backend"],
-    excerpt: "Learn the fundamentals of customizing Odoo modules, setting up local databases, and writing your first custom ERP flows.",
-    content: `Odoo is a powerful open-source ERP framework written in Python. During my junior software engineering internship at Kompas Gramedia, I learned that customizing Odoo requires a solid understanding of its ORM, XML view definitions, and architectural design patterns.
-
-### Why Odoo?
-Odoo provides a modular structure out-of-the-box. It has CRM, sales, billing, inventory, and human resources components. The real value is in customizing these modules to meet specific business workflows.
-
-### Setting Up a Development Instance
-To start developing, you need:
-1. Python 3.10+
-2. PostgreSQL database server
-3. Odoo source code (Community or Enterprise edition)
-
-Setting up a config file is direct:
-\`\`\`ini
-[options]
-addons_path = /path/to/odoo/addons,/path/to/custom_addons
-db_host = localhost
-db_user = odoo
-db_password = odoo_password
-\`\`\`
-
-### Writing Your First Model
-A basic model definition inherits from \`models.Model\`:
-\`\`\`python
-from odoo import models, fields, api
-
-class CustomSalesOrder(models.Model):
-    _inherit = 'sale.order'
-    
-    custom_notes = fields.Text(string="Operations Notes")
-    approval_status = fields.Selection([
-        ('draft', 'Draft'),
-        ('submitted', 'Submitted'),
-        ('approved', 'Approved')
-    ], default='draft', string="Approval status")
-    
-    def action_submit_for_approval(self):
-        self.write({'approval_status': 'submitted'})
-\`\`\`
-
-### Constructing the View
-The view extends the existing XML definitions:
-\`\`\`xml
-<record id="view_order_form_inherit" model="ir.ui.view">
-    <field name="name">sale.order.form.inherit</field>
-    <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.view_order_form"/>
-    <field name="arch" type="xml">
-        <xpath expr="//field[@name='payment_term_id']" position="after">
-            <field name="approval_status" readonly="1"/>
-            <field name="custom_notes"/>
-        </xpath>
-        <xpath expr="//header" position="inside">
-            <button name="action_submit_for_approval" string="Submit Approval" type="object" class="btn-primary"/>
-        </xpath>
-    </field>
-</record>
-\`\`\`
-
-By deploying custom addons like this, we've automated complex procurement checks and reduced data entries. Hopefully, this simple guide gives you a quick start in Odoo!`,
-    slug: "getting-started-odoo-erp"
+    icon: "code",
+    accent: "primary",
+    title: "Full-Stack Web Development",
+    description:
+      "I build responsive, accessible web apps end-to-end with React, Tailwind CSS, and Firebase — from pixel-clean UI to data layers that just work.",
   },
   {
-    id: 2,
-    title: "Why Framer Motion is the Best Choice for React Animations",
-    date: "May 18, 2026",
-    tags: ["React", "Framer Motion", "CSS", "Frontend"],
-    excerpt: "A detailed comparison of React animation libraries, showing why Framer Motion stands out in usability, performance, and API design.",
-    content: `Animations can make or break a website's user experience. A subtle fade or slide can guide users, while sudden transitions can feel jarring. In the React ecosystem, we have several choices: React Transition Group, React Spring, and Framer Motion. 
+    icon: "server",
+    accent: "secondary",
+    title: "ERP & Odoo Engineering",
+    description:
+      "I customize Odoo modules in Python: automating sales reporting, purchase flows, and squashing legacy bugs that slow real businesses down.",
+  },
+  {
+    icon: "palette",
+    accent: "accent",
+    title: "Interface & Motion Design",
+    description:
+      "I sweat the details — micro-interactions, smooth transitions, and layouts that feel premium without ever getting in the user's way.",
+  },
+];
 
-During the redesign of this portfolio website, I evaluated these options and found Framer Motion to be the most productive and capable library.
+// Why work with me — value propositions
+export const whyMe = [
+  {
+    icon: "bridge",
+    title: "I speak business and code",
+    description:
+      "At Kompas Gramedia I sat between analysts and systems, translating messy requirements into modules people actually use.",
+  },
+  {
+    icon: "bolt",
+    title: "I ship, then I sharpen",
+    description:
+      "Built a hackathon prototype in under 48 hours, then spent months optimizing ERP scripts. I move fast and I refine relentlessly.",
+  },
+  {
+    icon: "users",
+    title: "I lead and I listen",
+    description:
+      "Directed a 5-developer team for UMN's mentoring platform and mentored 15+ freshmen. Good software is a team sport.",
+  },
+  {
+    icon: "heart",
+    title: "I care about the last 10%",
+    description:
+      "The empty states, the loading shimmer, the keyboard shortcut nobody asked for. Polish is where trust is earned.",
+  },
+];
 
-### Declarative API
-Framer Motion introduces the concept of \`motion\` elements. Instead of writing complex CSS keyframes or hook structures, you write:
-\`\`\`jsx
-import { motion } from 'framer-motion';
+// Quick stats — animated counters on the Home page
+export const stats = [
+  { value: 3, suffix: "+", label: "Years writing code" },
+  { value: 1000, suffix: "+", label: "Students served by my apps" },
+  { value: 50, suffix: "+", label: "Legacy bugs resolved" },
+  { value: 10, suffix: "+", label: "Projects shipped" },
+];
 
-const Component = () => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, type: 'spring' }}
-  >
-    Hello World
-  </motion.div>
-);
-\`\`\`
-
-### Exit Animations with AnimatePresence
-One of the most complex things to achieve in React is animating elements as they leave the DOM (unmount). Framer Motion solves this with \`AnimatePresence\`:
-\`\`\`jsx
-import { motion, AnimatePresence } from 'framer-motion';
-
-const Drawer = ({ isOpen }) => (
-  <AnimatePresence>
-    {isOpen && (
-      <motion.div
-        initial={{ x: '100%' }}
-        animate={{ x: 0 }}
-        exit={{ x: '100%' }}
-        transition={{ type: 'spring', damping: 25 }}
-      />
-    )}
-  </AnimatePresence>
-);
-\`\`\`
-
-### Scroll-triggered animations
-Applying entrance transitions as users scroll is built-in:
-\`\`\`jsx
-<motion.div
-  initial={{ opacity: 0 }}
-  whileInView={{ opacity: 1 }}
-  viewport={{ once: true, amount: 0.2 }}
->
-  I animate when I enter the viewport!
-</motion.div>
-\`\`\`
-
-Framer Motion is standard, performant, and has stellar documentation. Combining it with Tailwind utility classes allows for rapid prototyping of premium, glassmorphic interfaces.`,
-    slug: "framer-motion-react-animations"
-  }
+// Principles — how I work
+export const principles = [
+  "Clean code beats clever code.",
+  "Read the codebase before writing a line.",
+  "Accessibility is not optional.",
+  "Measure, then optimize.",
+  "Ship small, ship often.",
 ];

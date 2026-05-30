@@ -1,4 +1,10 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut as fbSignOut,
+  onAuthStateChanged as fbOnAuthStateChanged,
+} from 'firebase/auth';
 import { 
   getFirestore, 
   collection, 
@@ -9,7 +15,6 @@ import {
   query,
   orderBy
 } from 'firebase/firestore';
-import { initialBlogPosts } from './data/content';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -23,12 +28,16 @@ const firebaseConfig = {
 // Check if firebase is configured
 const isFirebaseConfigured = firebaseConfig.projectId && firebaseConfig.apiKey;
 
+const STORAGE_KEY = 'aljasonch_blog_posts';
+
 let db = null;
+let auth = null;
 
 if (isFirebaseConfigured) {
   try {
     const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
     db = getFirestore(app);
+    auth = getAuth(app);
     console.log("Firebase initialized successfully.");
   } catch (error) {
     console.error("Firebase failed to initialize: ", error);
@@ -37,14 +46,36 @@ if (isFirebaseConfigured) {
   console.log("Firebase credentials not configured. Using LocalStorage fallback.");
 }
 
-// Helper: Seed initial blog posts to local storage
-const seedLocalStorage = () => {
-  const stored = localStorage.getItem('aljasonch_blog_posts');
-  if (!stored) {
-    localStorage.setItem('aljasonch_blog_posts', JSON.stringify(initialBlogPosts));
-    return initialBlogPosts;
+export const isAuthEnabled = () => !!auth;
+
+// Sign in an admin with email + password
+export const signInAdmin = (email, password) => {
+  if (!auth) {
+    return Promise.reject(new Error('auth/not-configured'));
   }
-  return JSON.parse(stored);
+  return signInWithEmailAndPassword(auth, email, password);
+};
+
+// Sign the current admin out
+export const signOutAdmin = () => {
+  if (!auth) return Promise.resolve();
+  return fbSignOut(auth);
+};
+
+// Subscribe to auth state changes. Returns an unsubscribe function.
+export const subscribeToAuth = (callback) => {
+  if (!auth) {
+    // No Firebase auth available — report signed-out and no-op unsubscribe.
+    callback(null);
+    return () => {};
+  }
+  return fbOnAuthStateChanged(auth, callback);
+};
+
+// Read posts from local storage (no template seeding — starts empty)
+const readLocalPosts = () => {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  return stored ? JSON.parse(stored) : [];
 };
 
 // Fetch all posts
@@ -58,17 +89,6 @@ export const fetchPosts = async () => {
       querySnapshot.forEach((docSnap) => {
         postsList.push({ id: docSnap.id, ...docSnap.data() });
       });
-
-      // If database is empty on Firestore, seed it once with initialBlogPosts
-      if (postsList.length === 0) {
-        console.log("Firestore empty. Seeding with initial blog data...");
-        for (const post of initialBlogPosts) {
-          // Use ID as string doc name
-          const docRef = doc(db, 'posts', post.slug);
-          await setDoc(docRef, post);
-          postsList.push(post);
-        }
-      }
       return postsList;
     } catch (error) {
       console.error("Failed to fetch from Firestore. Falling back to LocalStorage: ", error);
@@ -76,7 +96,7 @@ export const fetchPosts = async () => {
   }
 
   // Fallback
-  return seedLocalStorage();
+  return readLocalPosts();
 };
 
 // Save (create or update) post
@@ -103,7 +123,7 @@ export const savePost = async (post) => {
   }
 
   // Fallback
-  const localPosts = seedLocalStorage();
+  const localPosts = readLocalPosts();
   const index = localPosts.findIndex(p => p.slug === post.slug || p.id === post.id);
 
   if (index !== -1) {
@@ -113,7 +133,7 @@ export const savePost = async (post) => {
     localPosts.unshift({ id: nextId, ...postData });
   }
 
-  localStorage.setItem('aljasonch_blog_posts', JSON.stringify(localPosts));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(localPosts));
   return true;
 };
 
@@ -131,8 +151,8 @@ export const deletePost = async (post) => {
   }
 
   // Fallback
-  const localPosts = seedLocalStorage();
+  const localPosts = readLocalPosts();
   const updated = localPosts.filter(p => p.slug !== post.slug && p.id !== post.id);
-  localStorage.setItem('aljasonch_blog_posts', JSON.stringify(updated));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
   return true;
 };
