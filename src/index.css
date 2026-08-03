@@ -303,6 +303,53 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
+/* Command palette surfaces and readable light-mode contrast */
+.command-palette-backdrop {
+  background: rgba(9, 9, 11, 0.7);
+}
+
+.command-palette-panel {
+  background: rgba(24, 24, 27, 0.58);
+  color: var(--text-primary);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  box-shadow:
+    0 24px 70px -28px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.command-palette-input {
+  color: var(--text-primary);
+}
+
+.command-palette-input::placeholder,
+.command-palette-group-label,
+.command-palette-item-hint,
+.command-palette-footer,
+.command-palette-empty {
+  color: var(--text-secondary);
+}
+
+.command-palette-item-label {
+  color: var(--text-primary);
+}
+
+.command-palette-item-icon:not(.text-theme) {
+  color: var(--text-secondary);
+}
+
+[data-theme='light'] .command-palette-backdrop {
+  background: rgba(24, 24, 27, 0.38);
+}
+
+[data-theme='light'] .command-palette-panel {
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow:
+    0 24px 70px -28px rgba(15, 23, 42, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.45);
+}
+
 /* Underline draw animation for links/headings */
 .underline-grow {
   position: relative;

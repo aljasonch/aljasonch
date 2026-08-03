@@ -190,7 +190,7 @@ const CommandPalette = () => {
         >
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="command-palette-backdrop absolute inset-0 backdrop-blur-sm"
             onClick={close}
             aria-hidden="true"
           />
@@ -200,7 +200,7 @@ const CommandPalette = () => {
             role="dialog"
             aria-modal="true"
             aria-label="Command palette"
-            className="relative w-full max-w-xl glass-panel rounded-2xl border border-neutral-800 overflow-hidden shadow-2xl"
+            className="command-palette-panel relative w-full max-w-xl rounded-2xl overflow-hidden shadow-2xl"
             initial={{ opacity: 0, y: -16, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.98 }}
@@ -208,14 +208,14 @@ const CommandPalette = () => {
             onKeyDown={onKeyDown}
           >
             {/* Search input */}
-            <div className="flex items-center gap-3 px-4 py-3.5 border-b border-neutral-800">
+            <div className="command-palette-section flex items-center gap-3 px-4 py-3.5">
               <FaSearch className="text-neutral-500 flex-shrink-0" size={15} />
               <input
                 ref={inputRef}
                 value={queryText}
                 onChange={(e) => setQueryText(e.target.value)}
                 placeholder="Search pages, actions, or change the accent color..."
-                className="flex-1 bg-transparent text-neutral-100 placeholder-neutral-500 text-sm focus:outline-none poppins-regular"
+                className="command-palette-input flex-1 bg-transparent text-neutral-100 placeholder-neutral-500 text-sm focus:outline-none poppins-regular"
               />
               <span className="kbd">Esc</span>
             </div>
@@ -223,13 +223,13 @@ const CommandPalette = () => {
             {/* Results */}
             <div ref={listRef} className="max-h-[52vh] overflow-y-auto py-2">
               {filtered.length === 0 ? (
-                <div className="px-4 py-10 text-center text-neutral-500 text-sm">
+                <div className="command-palette-empty px-4 py-10 text-center text-neutral-500 text-sm">
                   No results for "{queryText}"
                 </div>
               ) : (
                 Object.entries(grouped).map(([group, items]) => (
                   <div key={group} className="mb-1">
-                    <p className="px-4 pt-2 pb-1 text-[10px] uppercase tracking-widest font-semibold text-neutral-600">
+                    <p className="command-palette-group-label px-4 pt-2 pb-1 text-[10px] uppercase tracking-widest font-semibold text-neutral-600">
                       {group}
                     </p>
                     {items.map((item) => {
@@ -243,7 +243,7 @@ const CommandPalette = () => {
                           data-idx={idx}
                           onClick={item.run}
                           onMouseMove={() => setActiveIndex(idx)}
-                          className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors ${
+                          className={`command-palette-item w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors ${
                             isActive ? 'bg-theme-soft' : ''
                           }`}
                         >
@@ -258,14 +258,14 @@ const CommandPalette = () => {
                                 style={{ backgroundColor: item.swatch }}
                               />
                             ) : (
-                              <Icon size={13} className={isActive ? 'text-theme' : 'text-neutral-400'} />
+                              <Icon size={13} className={`command-palette-item-icon ${isActive ? 'text-theme' : 'text-neutral-400'}`} />
                             )}
                           </span>
-                          <span className="flex-1 text-sm text-neutral-200 poppins-medium">
+                          <span className="command-palette-item-label flex-1 text-sm text-neutral-200 poppins-medium">
                             {item.label}
                           </span>
                           {item.hint && (
-                            <span className="text-[11px] text-neutral-500">{item.hint}</span>
+                            <span className="command-palette-item-hint text-[11px] text-neutral-500">{item.hint}</span>
                           )}
                           {isActive && <FaArrowRight size={11} className="text-theme" />}
                         </button>
@@ -277,7 +277,7 @@ const CommandPalette = () => {
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-between px-4 py-2.5 border-t border-neutral-800 text-[11px] text-neutral-500">
+            <div className="command-palette-footer flex items-center justify-between px-4 py-2.5 text-[11px] text-neutral-500">
               <span className="flex items-center gap-2">
                 <span className="kbd">↑</span>
                 <span className="kbd">↓</span>
