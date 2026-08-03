@@ -334,6 +334,11 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
 }
 
+.command-palette-item:hover .command-palette-item-label,
+.command-palette-item:hover .command-palette-item-icon:not(.text-theme) {
+  color: var(--theme-accent);
+}
+
 .command-palette-item-icon:not(.text-theme) {
   color: var(--text-secondary);
 }
