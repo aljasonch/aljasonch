@@ -8,7 +8,7 @@ const BlogShimmer = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       {[1, 2].map((n) => (
-        <div key={n} className="glass-card rounded-[24px] overflow-hidden p-6 space-y-4 border border-neutral-900 bg-neutral-900/20">
+        <div key={n} className="glass-card rounded-[24px] overflow-hidden p-6 space-y-4 border border-neutral-900">
           <div className="shimmer-bg h-48 w-full rounded-xl" />
           <div className="shimmer-bg h-6 w-3/4 rounded" />
           <div className="shimmer-bg h-4 w-1/2 rounded" />
@@ -93,10 +93,10 @@ const Blog = () => {
               <button
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold poppins-medium transition-all duration-300 border ${
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold poppins-medium transition-all duration-300 ${
                   selectedTag === tag
-                    ? 'bg-theme border-theme text-on-accent shadow-lg'
-                    : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-neutral-250'
+                    ? 'bg-theme text-white shadow-lg'
+                    : 'text-neutral-400 hover:text-theme border border-transparent hover:border-theme'
                 }`}
               >
                 {tag}
@@ -112,7 +112,7 @@ const Blog = () => {
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-neutral-900 border border-neutral-800 text-neutral-200 placeholder-neutral-500 pl-10 pr-4 py-2 rounded-xl text-sm focus:outline-none focus:border-neutral-450 transition-colors"
+              className="w-full text-neutral-200 placeholder-neutral-500 pl-10 pr-4 py-2 rounded-xl text-sm focus:outline-none transition-colors"
             />
           </div>
         </div>
@@ -128,7 +128,7 @@ const Blog = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass-card rounded-[24px] overflow-hidden flex flex-col h-full bg-neutral-900/20 backdrop-blur-sm border border-neutral-900/80 p-6 hover:shadow-2xl group"
+                className="glass-card rounded-[24px] overflow-hidden flex flex-col h-full backdrop-blur-sm border border-neutral-900/80 p-6 hover:shadow-2xl group"
               >
                 <div className="flex items-center gap-3 text-xs text-neutral-500 mb-4">
                   <span className="flex items-center gap-1">
@@ -156,7 +156,7 @@ const Blog = () => {
                 <div className="flex justify-between items-center pt-4 border-t border-neutral-900">
                   <div className="flex flex-wrap gap-1.5">
                     {getTags(post).map(tag => (
-                      <span key={tag} className="flex items-center gap-1 bg-neutral-950 border border-neutral-850 text-neutral-400 text-[10px] px-2.5 py-1 rounded-md font-semibold">
+                      <span key={tag} className="flex items-center gap-1 text-neutral-400 text-[10px] px-2.5 py-1 rounded-md font-semibold">
                         <FaTag size={8} className="text-neutral-600" />
                         {tag}
                       </span>

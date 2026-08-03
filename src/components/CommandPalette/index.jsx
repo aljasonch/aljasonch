@@ -244,12 +244,12 @@ const CommandPalette = () => {
                           onClick={item.run}
                           onMouseMove={() => setActiveIndex(idx)}
                           className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors ${
-                            isActive ? 'bg-neutral-800/70' : 'hover:bg-neutral-800/40'
+                            isActive ? 'bg-theme-soft' : ''
                           }`}
                         >
                           <span
-                            className={`flex items-center justify-center w-8 h-8 rounded-lg border ${
-                              isActive ? 'border-theme bg-theme-soft' : 'border-neutral-800 bg-neutral-900'
+                            className={`flex items-center justify-center w-8 h-8 rounded-lg ${
+                              isActive ? '' : ''
                             }`}
                           >
                             {item.swatch ? (

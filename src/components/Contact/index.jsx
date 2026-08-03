@@ -60,7 +60,7 @@ const Contact = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="w-11 h-11 bg-neutral-900 border border-neutral-800 rounded-full flex items-center justify-center text-neutral-400 hover:text-theme hover:border-theme transition-all duration-300"
+              className="w-11 h-11 rounded-full flex items-center justify-center text-neutral-400 hover:text-theme transition-all duration-300"
             >
               <FaInstagram size={20} />
             </a>
@@ -69,7 +69,7 @@ const Contact = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="X"
-              className="w-11 h-11 bg-neutral-900 border border-neutral-800 rounded-full flex items-center justify-center text-neutral-400 hover:text-theme hover:border-theme transition-all duration-300"
+              className="w-11 h-11 rounded-full flex items-center justify-center text-neutral-400 hover:text-theme transition-all duration-300"
             >
               <FaXTwitter size={18} />
             </a>

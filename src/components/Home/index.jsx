@@ -96,7 +96,7 @@ const TiltProfile = () => {
           transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
         />
         <div
-          className="relative w-full h-full rounded-3xl overflow-hidden border border-neutral-800 shadow-2xl p-2 bg-neutral-900/60 backdrop-blur-md"
+          className="relative w-full h-full rounded-3xl overflow-hidden border border-neutral-800 shadow-2xl p-2 backdrop-blur-md"
           style={{ transform: 'translateZ(40px)' }}
         >
           <img
@@ -105,16 +105,6 @@ const TiltProfile = () => {
             className="w-full h-full object-cover rounded-2xl"
           />
         </div>
-        {/* Floating availability badge */}
-        <motion.div
-          className="absolute -bottom-4 -left-4 flex items-center gap-2 px-3.5 py-2 rounded-full bg-neutral-900 border border-neutral-800 shadow-xl"
-          style={{ transform: 'translateZ(60px)' }}
-          animate={{ y: [0, -6, 0] }}
-          transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <span className="w-2.5 h-2.5 rounded-full bg-theme pulse-dot" />
-          <span className="text-xs font-semibold text-neutral-200">Open to work</span>
-        </motion.div>
       </motion.div>
     </motion.div>
   );
@@ -150,8 +140,7 @@ const Home = () => {
       <section className="container mx-auto max-w-6xl px-6 py-12 md:py-20 relative z-10">
         <div className="grid gap-12 md:grid-cols-[1.2fr_0.8fr] items-center">
           <motion.div className="flex flex-col items-start text-left gap-6" variants={itemVariants}>
-            <span className="inline-flex items-center gap-2 text-neutral-400 font-semibold tracking-[0.2em] text-xs sm:text-sm uppercase px-3 py-1.5 rounded-full border border-neutral-800 bg-neutral-900/50">
-              <span className="w-1.5 h-1.5 rounded-full bg-theme pulse-dot" />
+            <span className="inline-flex items-center gap-2 text-neutral-400 font-semibold tracking-[0.2em] text-xs sm:text-sm uppercase px-3 py-1.5 rounded-full">
               Welcome to my space
             </span>
 
@@ -166,7 +155,7 @@ const Home = () => {
                   2000,
                   'Informatics Student @ UMN',
                   2000,
-                  'Custom ERP Developer',
+                  'ERP Developer',
                   2000,
                   'Full Stack Developer',
                   2000,
@@ -222,7 +211,7 @@ const Home = () => {
       {/* Stats strip with animated counters */}
       <section className="container mx-auto max-w-6xl px-6 py-8 relative z-10">
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -260,7 +249,7 @@ const Home = () => {
               key={skill.name}
               variants={itemVariants}
               whileHover={{ y: -4, scale: 1.04 }}
-              className="flex items-center gap-3 py-3 px-5 rounded-2xl bg-neutral-900/50 border border-neutral-800 backdrop-blur-sm cursor-default"
+              className="flex items-center gap-3 py-3 px-5 rounded-2xl backdrop-blur-sm cursor-default"
             >
               <img src={skill.src} alt={skill.name} className="w-7 h-7 object-contain" />
               <span className="text-sm font-medium text-neutral-300 whitespace-nowrap">{skill.name}</span>
@@ -301,7 +290,7 @@ const Home = () => {
                 whileHover={{ y: -6 }}
                 className="glass-card rounded-2xl p-7 group"
               >
-                <div className="w-12 h-12 rounded-xl bg-theme-soft border border-neutral-800 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                   <Icon className="text-theme" size={20} />
                 </div>
                 <h3 className="text-lg font-bold text-neutral-100 mb-2">{service.title}</h3>
@@ -358,7 +347,7 @@ const Home = () => {
                   whileHover={{ y: -4 }}
                   className="glass-card rounded-2xl p-6"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center mb-4">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4">
                     <Icon className="text-theme" size={16} />
                   </div>
                   <h3 className="text-base font-bold text-neutral-100 mb-2">{reason.title}</h3>
@@ -389,7 +378,7 @@ const Home = () => {
         <div className="relative border-l border-neutral-800 ml-4 md:ml-12 space-y-12">
           {/* Work Experience */}
           <div className="relative">
-            <div className="absolute -left-[45px] top-1 bg-neutral-950 p-2 border border-neutral-800 rounded-full text-theme">
+            <div className="absolute -left-[45px] top-1 p-2 rounded-full text-theme">
               <FaBriefcase size={16} />
             </div>
             <div className="pl-6 md:pl-10">
@@ -411,17 +400,12 @@ const Home = () => {
                         <h4 className="text-xl font-bold text-neutral-100">{exp.title}</h4>
                         <p className="text-sm text-neutral-400 font-medium">{exp.organization}</p>
                       </div>
-                      <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-xs text-neutral-300 font-medium">
+                      <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs text-neutral-300 font-medium">
                         <FaCalendarAlt size={11} />
                         {exp.date}
                       </span>
                     </div>
-                    <p className="text-neutral-400 text-sm leading-relaxed mb-4">{exp.description}</p>
-                    <ul className="list-disc pl-4 space-y-1.5 text-xs text-neutral-500">
-                      {exp.details.map((detail, dIdx) => (
-                        <li key={dIdx}>{detail}</li>
-                      ))}
-                    </ul>
+                    <p className="text-neutral-400 text-sm leading-relaxed">{exp.summary}</p>
                   </motion.div>
                 ))}
               </div>
@@ -430,7 +414,7 @@ const Home = () => {
 
           {/* Organization Experience */}
           <div className="relative">
-            <div className="absolute -left-[45px] top-1 bg-neutral-950 p-2 border border-neutral-800 rounded-full text-theme">
+            <div className="absolute -left-[45px] top-1 p-2 rounded-full text-theme">
               <FaGraduationCap size={16} />
             </div>
             <div className="pl-6 md:pl-10">
@@ -452,17 +436,12 @@ const Home = () => {
                         <h4 className="text-xl font-bold text-neutral-100">{exp.title}</h4>
                         <p className="text-sm text-neutral-400 font-medium">{exp.organization}</p>
                       </div>
-                      <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-xs text-neutral-300 font-medium">
+                      <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs text-neutral-300 font-medium">
                         <FaCalendarAlt size={11} />
                         {exp.date}
                       </span>
                     </div>
-                    <p className="text-neutral-400 text-sm leading-relaxed mb-4">{exp.description}</p>
-                    <ul className="list-disc pl-4 space-y-1.5 text-xs text-neutral-500">
-                      {exp.details.map((detail, dIdx) => (
-                        <li key={dIdx}>{detail}</li>
-                      ))}
-                    </ul>
+                    <p className="text-neutral-400 text-sm leading-relaxed">{exp.summary}</p>
                   </motion.div>
                 ))}
               </div>
@@ -497,11 +476,11 @@ const Home = () => {
           {achievements.map((achievement, idx) => (
             <motion.div
               key={idx}
-              className="glass-panel rounded-2xl p-6 flex gap-5 items-start hover:border-neutral-700 transition-all duration-300 group"
+              className="glass-card rounded-2xl p-6 flex gap-5 items-start hover:border-neutral-700 transition-all duration-300 group"
               variants={itemVariants}
               whileHover={{ y: -3 }}
             >
-              <div className="p-3.5 bg-neutral-900 border border-neutral-800 rounded-xl group-hover:scale-105 transition-transform duration-300">
+              <div className="p-3.5 rounded-xl group-hover:scale-105 transition-transform duration-300">
                 {getAchievementIcon(achievement.category)}
               </div>
               <div className="flex-1">
@@ -525,7 +504,7 @@ const Home = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
-          className="glass-panel rounded-3xl p-8 sm:p-12 border border-neutral-800 bg-neutral-900/60"
+          className="glass-card rounded-3xl p-8 sm:p-12 border border-neutral-800"
         >
           <h3 className="text-2xl sm:text-3xl font-bold text-neutral-100 mb-4">
             Let's collaborate on your next venture

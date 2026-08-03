@@ -85,8 +85,8 @@ const Navbar = () => {
                     <motion.div
                       className={`relative px-4 py-2 rounded-full text-sm poppins-semibold transition-colors duration-300 ${
                         isActive
-                          ? 'text-theme bg-theme-soft'
-                          : 'text-neutral-300 hover:text-theme hover:bg-neutral-800/30'
+                          ? 'text-theme'
+                          : 'text-neutral-300 hover:text-theme'
                       }`}
                       variants={desktopNavItemVariants}
                       whileHover="hover"
@@ -108,17 +108,17 @@ const Navbar = () => {
               {/* Command palette trigger */}
               <button
                 onClick={openCommandPalette}
-                className="ml-2 flex items-center gap-2 px-3 py-2 rounded-full text-sm text-neutral-400 border border-neutral-800 bg-neutral-900/50 hover:text-theme hover:border-theme transition-colors duration-300"
+                className="ml-2 border border-neutral-600 hover:border-theme flex items-center gap-2 px-3 py-2 rounded-full text-sm text-neutral-400 hover:text-theme transition-colors duration-300"
                 aria-label="Open command palette"
               >
                 <FaSearch size={12} />
-                <span className="kbd">Ctrl K</span>
+                <span className="kbd">Ctrl + K</span>
               </button>
 
               {/* Light / dark toggle */}
               <button
                 onClick={toggleMode}
-                className="p-2.5 rounded-full text-neutral-400 border border-neutral-800 bg-neutral-900/50 hover:text-theme hover:border-theme transition-colors duration-300 overflow-hidden"
+                className="p-2.5 rounded-full text-neutral-400 hover:text-theme transition-colors duration-300 overflow-hidden"
                 aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
               >
                 <AnimatePresence mode="wait" initial={false}>
@@ -140,21 +140,21 @@ const Navbar = () => {
             <div className="md:hidden flex items-center gap-2">
               <button
                 onClick={toggleMode}
-                className="text-neutral-300 hover:text-theme focus:outline-none transition-colors duration-300 p-2 rounded-lg bg-neutral-900 border border-neutral-800"
+                className="text-neutral-300 hover:text-theme focus:outline-none transition-colors duration-300 p-2 rounded-lg"
                 aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
               >
                 {isDark ? <FaMoon className="h-5 w-5" /> : <FaSun className="h-5 w-5" />}
               </button>
               <button
                 onClick={openCommandPalette}
-                className="text-neutral-300 hover:text-theme focus:outline-none transition-colors duration-300 p-2 rounded-lg bg-neutral-900 border border-neutral-800"
+                className="text-neutral-300 hover:text-theme focus:outline-none transition-colors duration-300 p-2 rounded-lg"
                 aria-label="Open command palette"
               >
                 <FaSearch className="h-5 w-5" />
               </button>
               <button
                 onClick={toggleNavbar}
-                className="text-neutral-300 hover:text-theme focus:outline-none transition-colors duration-300 p-2 rounded-lg bg-neutral-900 border border-neutral-800"
+                className="text-neutral-300 hover:text-theme focus:outline-none transition-colors duration-300 p-2 rounded-lg"
                 aria-label="Open menu"
               >
                 <FaBars className="h-5 w-5" />
@@ -201,7 +201,7 @@ const Navbar = () => {
                     </span>
                     <button
                       onClick={closeNavbar}
-                      className="text-neutral-400 hover:text-theme p-2 rounded-full bg-neutral-900 border border-neutral-800 transition-colors"
+                      className="text-neutral-400 hover:text-theme p-2 rounded-full transition-colors"
                       aria-label="Close menu"
                     >
                       <FaTimes className="h-5 w-5" />
@@ -225,7 +225,7 @@ const Navbar = () => {
                             className={`block poppins-medium text-lg py-3 px-4 rounded-xl transition-all duration-200 ${
                               isActive
                                 ? 'text-theme bg-theme-soft'
-                                : 'text-neutral-300 hover:text-theme hover:bg-neutral-900'
+                                : 'text-neutral-300 hover:text-theme'
                             }`}
                           >
                             {item.label}

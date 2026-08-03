@@ -40,7 +40,7 @@ const renderMarkdown = (content) => {
       if (inCodeBlock) {
         // End of block
         parsedComponents.push(
-          <pre key={`code-${i}`} className="bg-neutral-900 border border-neutral-850 p-4 rounded-2xl overflow-x-auto my-6 text-xs sm:text-sm font-mono text-neutral-300">
+          <pre key={`code-${i}`} className="border border-neutral-850 p-4 rounded-2xl overflow-x-auto my-6 text-xs sm:text-sm font-mono text-neutral-300">
             <code>{codeLines.join('\n')}</code>
           </pre>
         );
@@ -203,7 +203,7 @@ const BlogDetail = () => {
             {getTags(post).map((tag) => (
               <span 
                 key={tag}
-                className="flex items-center gap-1 bg-neutral-900 border border-neutral-850 text-neutral-300 text-xs px-3.5 py-1.5 rounded-full font-semibold poppins-medium"
+                className="flex items-center gap-1 text-neutral-300 text-xs px-3.5 py-1.5 rounded-full font-semibold poppins-medium"
               >
                 <FaTag size={10} className="text-neutral-600" />
                 {tag}

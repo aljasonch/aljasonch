@@ -55,7 +55,7 @@ const renderPreviewMarkdown = (content) => {
     if (line.startsWith('```')) {
       if (inCodeBlock) {
         parsedComponents.push(
-          <pre key={`code-${i}`} className="bg-neutral-950 border border-neutral-850 p-4 rounded-xl overflow-x-auto my-4 text-xs font-mono text-neutral-300">
+          <pre key={`code-${i}`} className="border border-neutral-850 p-4 rounded-xl overflow-x-auto my-4 text-xs font-mono text-neutral-300">
             <code>{codeLines.join('\n')}</code>
           </pre>
         );
@@ -326,7 +326,7 @@ const Admin = () => {
           animate={{ opacity: 1, scale: 1 }}
           className="glass-panel border border-neutral-900 rounded-[28px] max-w-sm w-full p-8 relative z-10 text-center"
         >
-          <div className="mx-auto w-12 h-12 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-100 mb-6">
+          <div className="mx-auto w-12 h-12 rounded-full flex items-center justify-center text-neutral-100 mb-6">
             <FaLock size={20} />
           </div>
 
@@ -344,7 +344,7 @@ const Admin = () => {
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-neutral-900 border border-neutral-800 text-neutral-200 placeholder-neutral-600 px-4 py-3 rounded-xl focus:outline-none focus:border-neutral-400 transition-colors"
+                className="w-full text-neutral-200 placeholder-neutral-600 px-4 py-3 rounded-xl focus:outline-none transition-colors"
                 required
               />
             </div>
@@ -359,7 +359,7 @@ const Admin = () => {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-neutral-900 border border-neutral-800 text-neutral-200 placeholder-neutral-600 px-4 py-3 rounded-xl focus:outline-none focus:border-neutral-400 transition-colors"
+                className="w-full text-neutral-200 placeholder-neutral-600 px-4 py-3 rounded-xl focus:outline-none transition-colors"
                 required
               />
             </div>
@@ -412,7 +412,7 @@ const Admin = () => {
                   placeholder="e.g. Setting Up an Odoo Instance"
                   value={formTitle}
                   onChange={(e) => handleTitleChange(e.target.value)}
-                  className="w-full bg-neutral-900/60 border border-neutral-800 text-neutral-200 px-4 py-2.5 rounded-xl focus:outline-none focus:border-neutral-450"
+                  className="w-full text-neutral-200 px-4 py-2.5 rounded-xl focus:outline-none"
                   required
                 />
               </div>
@@ -426,7 +426,7 @@ const Admin = () => {
                     type="text"
                     value={formDate}
                     onChange={(e) => setFormDate(e.target.value)}
-                    className="w-full bg-neutral-900/60 border border-neutral-800 text-neutral-200 px-4 py-2.5 rounded-xl focus:outline-none focus:border-neutral-450"
+                    className="w-full text-neutral-200 px-4 py-2.5 rounded-xl focus:outline-none"
                     required
                   />
                 </div>
@@ -438,7 +438,7 @@ const Admin = () => {
                     type="text"
                     value={formSlug}
                     onChange={(e) => setFormSlug(e.target.value)}
-                    className="w-full bg-neutral-900/60 border border-neutral-800 text-neutral-200 px-4 py-2.5 rounded-xl focus:outline-none focus:border-neutral-450"
+                    className="w-full text-neutral-200 px-4 py-2.5 rounded-xl focus:outline-none"
                     required
                   />
                 </div>
@@ -453,7 +453,7 @@ const Admin = () => {
                   placeholder="React, Backend, Javascript"
                   value={formTags}
                   onChange={(e) => setFormTags(e.target.value)}
-                  className="w-full bg-neutral-900/60 border border-neutral-800 text-neutral-200 px-4 py-2.5 rounded-xl focus:outline-none focus:border-neutral-450"
+                  className="w-full text-neutral-200 px-4 py-2.5 rounded-xl focus:outline-none"
                 />
               </div>
 
@@ -466,7 +466,7 @@ const Admin = () => {
                   placeholder="Brief summary of the article..."
                   value={formExcerpt}
                   onChange={(e) => setFormExcerpt(e.target.value)}
-                  className="w-full bg-neutral-900/60 border border-neutral-800 text-neutral-200 px-4 py-2.5 rounded-xl focus:outline-none focus:border-neutral-450 resize-none"
+                  className="w-full text-neutral-200 px-4 py-2.5 rounded-xl focus:outline-none resize-none"
                 />
               </div>
 
@@ -475,7 +475,7 @@ const Admin = () => {
                   <label className="text-xs uppercase font-semibold text-neutral-400 tracking-wider">
                     Content (Markdown)
                   </label>
-                  <div className="flex gap-2 bg-neutral-900 p-0.5 rounded-lg border border-neutral-800">
+                  <div className="flex gap-2 p-0.5 rounded-lg">
                     <button
                       type="button"
                       onClick={() => setFormMode('write')}
@@ -506,11 +506,11 @@ const Admin = () => {
                     placeholder="Write article details here using markdown tags..."
                     value={formContent}
                     onChange={(e) => setFormContent(e.target.value)}
-                    className="w-full bg-neutral-900/60 border border-neutral-800 text-neutral-200 px-4 py-3 rounded-xl focus:outline-none focus:border-neutral-450 font-mono text-sm resize-y"
+                    className="w-full text-neutral-200 px-4 py-3 rounded-xl focus:outline-none font-mono text-sm resize-y"
                     required
                   />
                 ) : (
-                  <div className="w-full h-[324px] bg-neutral-900/40 border border-neutral-800 rounded-xl px-4 py-3 overflow-y-auto text-left border-dashed">
+                  <div className="w-full h-[324px] rounded-xl px-4 py-3 overflow-y-auto text-left">
                     {renderPreviewMarkdown(formContent)}
                   </div>
                 )}
@@ -535,7 +535,7 @@ const Admin = () => {
             </div>
 
             {/* Split Preview Panel (Desktop only visible) */}
-            <div className="hidden lg:block border border-neutral-850 bg-neutral-900/20 backdrop-blur-sm rounded-[24px] p-8 overflow-y-auto max-h-[660px]">
+            <div className="hidden lg:block backdrop-blur-sm rounded-[24px] p-8 overflow-y-auto max-h-[660px]">
               <div className="pb-4 border-b border-neutral-900 mb-6">
                 <span className="text-xs font-semibold text-neutral-300 uppercase tracking-widest block mb-2">
                   Live Page View
@@ -585,7 +585,7 @@ const Admin = () => {
             </button>
             <button
               onClick={handleLogout}
-              className="btn-secondary flex items-center gap-2 font-semibold px-4 py-2.5 rounded-xl text-sm border-neutral-800 text-neutral-400 hover:text-neutral-250 hover:bg-neutral-900"
+              className="btn-secondary flex items-center gap-2 font-semibold px-4 py-2.5 rounded-xl text-sm text-neutral-400 hover:text-neutral-250"
             >
               <FaSignOutAlt size={12} />
               Logout
@@ -599,7 +599,7 @@ const Admin = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-neutral-900 bg-neutral-900/40 text-xs uppercase font-bold text-neutral-500 tracking-wider">
+                  <tr className="border-b border-neutral-900 text-xs uppercase font-bold text-neutral-500 tracking-wider">
                     <th className="px-6 py-4">Title</th>
                     <th className="px-6 py-4">Date</th>
                     <th className="px-6 py-4">Tags</th>
@@ -608,7 +608,7 @@ const Admin = () => {
                 </thead>
                 <tbody className="divide-y divide-neutral-900 text-neutral-300">
                   {posts.map((post) => (
-                    <tr key={post.id} className="hover:bg-neutral-900/20 transition-colors">
+                    <tr key={post.id} className="transition-colors">
                       <td className="px-6 py-4">
                         <div className="font-bold text-neutral-100 text-sm sm:text-base">
                           {post.title}
@@ -625,7 +625,7 @@ const Admin = () => {
                           {getTags(post).map((tag) => (
                             <span 
                               key={tag} 
-                              className="bg-neutral-900 border border-neutral-850 text-neutral-400 text-[10px] px-2 py-0.5 rounded"
+                              className="text-neutral-400 text-[10px] px-2 py-0.5 rounded"
                             >
                               {tag}
                             </span>
@@ -636,14 +636,14 @@ const Admin = () => {
                         <div className="inline-flex gap-2">
                           <button
                             onClick={() => initEditForm(post)}
-                            className="p-2 rounded-lg bg-neutral-900 border border-neutral-850 text-neutral-400 hover:text-neutral-100 hover:border-neutral-500 transition-all"
+                            className="p-2 rounded-lg text-neutral-400 hover:text-neutral-100 transition-all"
                             title="Edit Post"
                           >
                             <FaEdit size={14} />
                           </button>
                           <button
                             onClick={() => handleDeletePost(post)}
-                            className="p-2 rounded-lg bg-neutral-900 border border-neutral-850 text-neutral-400 hover:text-red-500 hover:border-red-500/30 transition-all"
+                            className="p-2 rounded-lg text-neutral-400 hover:text-red-500 transition-all"
                             title="Delete Post"
                           >
                             <FaTrash size={14} />

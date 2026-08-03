@@ -1,14 +1,15 @@
 import Profile from '../assets/aljasonch.jpg';
-import html from '../assets/html.png';
-import css from '../assets/css.png';
 import reactLogo from '../assets/react.png';
+import nextLogo from '../assets/next.png';
 import tailwindcss from '../assets/tailwindcss.png';
+import python from '../assets/python.webp';
 import kotlin from '../assets/kotlin.png';
 import odoo from '../assets/odoo.png';
 
 import Mentoring from '../assets/mentoring2024.webp';
 import Chainew from '../assets/chainew.webp';
-import Bayar_Bareng from '../assets/bayarbareng.webp';
+import Bilbil from '../assets/bilbil.webp';
+import KKI from '../assets/kki.webp';
 
 export const personalInfo = {
   name: "Alfonsus Jason Christian",
@@ -23,10 +24,10 @@ export const personalInfo = {
 };
 
 export const skills = [
-  { src: html, name: 'HTML5', category: 'Frontend' },
-  { src: css, name: 'CSS3', category: 'Frontend' },
   { src: reactLogo, name: 'React', category: 'Frontend' },
+  { src: nextLogo, name: 'Next.js', category: 'Frontend' },
   { src: tailwindcss, name: 'Tailwind CSS', category: 'Frontend' },
+  { src: python, name: 'Python', category: 'Backend' },
   { src: kotlin, name: 'Kotlin', category: 'Mobile' },
   { src: odoo, name: 'Odoo', category: 'ERP / Backend' },
 ];
@@ -36,6 +37,8 @@ export const workExperience = [
     title: 'Junior Software Engineer Intern',
     date: 'Jan 2025 - Jan 2026',
     organization: 'Kompas Gramedia',
+    summary:
+      "Optimized Odoo-based ERP systems and built Python modules for business workflows.",
     description:
       "Responsible for optimizing ERP modules based on Odoo, including bug fixing, feature enhancements, and performance improvements to align with the company's operational needs.",
     details: [
@@ -52,6 +55,8 @@ export const organizationExperience = [
     title: 'Website Coordinator',
     date: 'Jan 2024 - Dec 2024',
     organization: 'Character Building Mentoring UMN 2024',
+    summary:
+      "Led a student developer team building UMN Mentoring's official website.",
     description:
       "Leading the development of UMN Mentoring's official website with a developer team using React JS, Tailwind CSS, and Firebase. Focused on creating a responsive and user-friendly platform to support mentoring activities.",
     details: [
@@ -64,6 +69,8 @@ export const organizationExperience = [
     title: 'Participant',
     date: 'Jul 2024',
     organization: 'Garuda Hacks 5.0',
+    summary:
+      'Built WeShare, a healthcare access platform, during a 48-hour hackathon.',
     description:
       'Participated in Garuda Hacks 5.0 by creating a project named "WeShare" that helps underprivileged people gain access to healthcare.',
     details: [
@@ -75,6 +82,8 @@ export const organizationExperience = [
     title: 'Mentor',
     date: 'Mar 2023 - Dec 2023',
     organization: 'Character Building Mentoring UMN 2023',
+    summary:
+      "Guided first-year students in applying UMN's 5C values.",
     description:
       "Guided Mentees (first-year students) to understand and apply UMN's 5C values (Caring, Credible, Competent, Competitive, Customer Delight) in their university life.",
     details: [
@@ -86,6 +95,8 @@ export const organizationExperience = [
     title: 'Logistics and Security',
     date: 'Feb 2023 - Aug 2023',
     organization: 'ISFEST UMN 2023',
+    summary:
+      'Supported logistics and security for ISFEST UMN 2023.',
     description:
       "Committee for Equipment and Security at ISFEST 2023. Ensuring seamless organization, logistics, and safety for the event.",
     details: [
@@ -123,31 +134,41 @@ export const initialProjects = [
     title: "MENTORING UMN 2024",
     image: Mentoring,
     link: "https://mentoring2024.vercel.app",
-    github: "https://github.com/aljasonch",
-    alt: "Mentoring UMN 2024 Project",
+    // github: "https://github.com/aljasonch",
+    alt: "Mentoring UMN 2024",
     category: "Web App",
     tech: ["React", "Tailwind CSS", "Firebase", "Firestore"],
-    description: "The official mentoring website for UMN students. Includes user dashboards, resource document distribution, and mentor-mentee group matching features."
+    description: "An information and engagement website for UMN's Character Building Mentoring program, featuring event details, FAQs, galleries, and a searchable mentee group directory."
   },
   {
     title: "Chainew",
     image: Chainew,
     link: "https://chainew.vercel.app",
-    github: "https://github.com/aljasonch",
-    alt: "Chainew Project",
+    // github: "https://github.com/aljasonch",
+    alt: "Chainew",
     category: "Web App",
     tech: ["React", "Tailwind CSS", "Framer Motion"],
-    description: "A digital agency presentation platform highlighting animations and modern responsive grid layouts for clients."
+    description: "A digital newsroom covering technology, finance, blockchain, and public affairs through categorized news, trending stories, articles, and RSS updates."
   },
   {
-    title: "Bayar Bareng",
-    image: Bayar_Bareng,
-    link: "https://bayar-bareng.vercel.app",
-    github: "https://github.com/aljasonch",
-    alt: "Bayar Bareng Project",
+    title: "KKI Santo Agustinus",
+    image: KKI,
+    link: "https://kkisantoagustinus.vercel.app",
+    // github: "https://github.com/aljasonch",
+    alt: "KKI Santo Agustinus",
     category: "Web App",
-    tech: ["React", "Tailwind CSS", "Local Storage"],
-    description: "An intuitive bill splitting and expense management utility. Allows user groups to split bills and calculate precise debts without signup."
+    tech: ["Next.Js", "Tailwind CSS", "Firebase", "Cloudinary"],
+    description: "A community website for KKI Santo Agustinus featuring reflections, prayer guides, schedules, activities, galleries, and contact information."
+  },
+  {
+    title: "Bilbil",
+    image: Bilbil,
+    link: "https://bilbilapp.vercel.app",
+    // github: "https://github.com/aljasonch",
+    alt: "Bilbil",
+    category: "Web App",
+    tech: ["Next.Js", "Tailwind CSS", "Local Storage"],
+    description: "A bill-splitting app for recording receipts, adjusting discounts and charges, calculating each person's share, and saving payment history."
   }
 ];
 
@@ -206,9 +227,9 @@ export const whyMe = [
 
 // Quick stats — animated counters on the Home page
 export const stats = [
-  { value: 3, suffix: "+", label: "Years writing code" },
+  { value: 4, suffix: "+", label: "Years writing code" },
   { value: 1000, suffix: "+", label: "Students served by my apps" },
-  { value: 50, suffix: "+", label: "Legacy bugs resolved" },
+  // { value: 50, suffix: "+", label: "Legacy bugs resolved" },
   { value: 10, suffix: "+", label: "Projects shipped" },
 ];
 

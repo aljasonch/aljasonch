@@ -57,7 +57,7 @@ HEX CODES:
   --n-900: 24 24 27;
   --n-950: 9 9 11;
 
-  /* Theme-aware surfaces for the glassmorphism panels */
+  /* Theme-aware panel surface */
   --glass-panel-bg: rgba(18, 18, 20, 0.85);
   --glass-card-bg: rgba(18, 18, 20, 0.6);
 
@@ -74,13 +74,13 @@ HEX CODES:
 
 /* ====================== LIGHT THEME ======================
    Intentionally tuned (not a raw inversion):
-   - Page sits on a soft gray so white cards lift off it.
+   - Page and main surfaces use a clean white background.
    - Border/surface tokens stay mid-light so dividers remain visible
      both on the page and inside white cards.
    - Text tokens map to dark zinc values with solid contrast.
    No gradients introduced. */
 [data-theme='light'] {
-  --bg-primary: #f4f4f5;
+  --bg-primary: #ffffff;
   --bg-secondary: #ffffff;
   --surface: #ffffff;
   --text-primary: #18181b;
@@ -100,10 +100,10 @@ HEX CODES:
   --n-800: 212 212 216; /* visible borders */
   --n-850: 224 224 227;
   --n-900: 228 228 231; /* card dividers + soft surfaces/badges */
-  --n-950: 244 244 245; /* page-level fills / pills */
+  --n-950: 255 255 255; /* page-level fills / pills */
 
   --glass-panel-bg: rgba(255, 255, 255, 0.88);
-  --glass-card-bg: rgba(255, 255, 255, 0.78);
+  --glass-card-bg: rgba(255, 255, 255, 0.62);
 
   --header-bg: rgba(255, 255, 255, 0.85);
   --panel-solid-bg: #ffffff;
@@ -114,13 +114,19 @@ HEX CODES:
   color-scheme: light;
 }
 
-/* Give cards real depth in light mode (subtle shadow, no gradient) */
+/* Liquid-glass cards for light mode */
 [data-theme='light'] .glass-card {
-  box-shadow: 0 1px 2px rgba(24, 24, 27, 0.04), 0 4px 12px -6px rgba(24, 24, 27, 0.08);
+  background: var(--glass-card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  box-shadow:
+    0 10px 30px -16px rgba(15, 23, 42, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.45);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
-[data-theme='light'] .glass-panel {
-  box-shadow: 0 1px 3px rgba(24, 24, 27, 0.05);
-}
+
 [data-theme='light'] .glass-card:hover {
   box-shadow: 0 8px 24px -10px rgba(var(--theme-accent-rgb), 0.25);
 }
@@ -162,13 +168,6 @@ body {
 .poppins-bold { font-family: "Poppins", sans-serif; font-weight: 700; }
 .poppins-extrabold { font-family: "Poppins", sans-serif; font-weight: 800; }
 
-/* Custom Glassmorphism */
-.glass-panel {
-  background: var(--glass-panel-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-color);
-}
 
 .glass-card {
   background: var(--glass-card-bg);
@@ -187,7 +186,7 @@ body {
 /* Flat colored buttons (no gradients, no neon glow) */
 .btn-primary {
   background: var(--theme-accent);
-  color: var(--theme-on-accent);
+  color: #ffffff;
   transition: all 0.2s ease;
 }
 
@@ -204,7 +203,7 @@ body {
 }
 
 .btn-secondary:hover {
-  background: #18181b;
+  background: transparent;
   border-color: var(--theme-accent);
   color: var(--theme-accent);
   transform: translateY(-2px);
@@ -248,7 +247,13 @@ h1, h2, h3, h4, h5, h6 {
 .border-theme { border-color: var(--theme-accent); }
 .bg-theme-soft { background-color: rgba(var(--theme-accent-rgb), 0.1); }
 .ring-theme { box-shadow: 0 0 0 1px rgba(var(--theme-accent-rgb), 0.4); }
+.hover\:text-theme:hover {
+  color: var(--theme-accent);
+}
 
+.hover\:border-theme:hover {
+  border-color: var(--theme-accent);
+}
 /* Text that always sits ON an accent fill — color is chosen per-accent
    (see ThemeContext `on`) for proper contrast in BOTH themes. */
 .text-on-accent { color: var(--theme-on-accent); }
@@ -290,9 +295,8 @@ h1, h2, h3, h4, h5, h6 {
   min-width: 1.4rem;
   padding: 0.1rem 0.4rem;
   border-radius: 0.375rem;
-  border: 1px solid var(--border-color);
-  background: var(--surface);
-  color: var(--text-secondary);
+  border: 0;
+  background: transparent;
   font-size: 0.7rem;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;

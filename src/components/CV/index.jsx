@@ -2,9 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   FaFileDownload, 
-  FaBriefcase, 
-  FaGraduationCap, 
-  FaLaptopCode, 
   FaEnvelope, 
   FaMapMarkerAlt, 
   FaGithub, 
@@ -104,7 +101,6 @@ const CV = () => {
             {/* Education details */}
             <motion.div className="glass-card rounded-[24px] p-6 border border-neutral-900" variants={itemVariants}>
               <h3 className="text-lg font-bold text-neutral-100 mb-4 border-b border-neutral-900 pb-2 poppins-bold flex items-center gap-2">
-                <FaGraduationCap className="text-secondary-500" />
                 Education
               </h3>
               <div>
@@ -120,14 +116,13 @@ const CV = () => {
             {/* Tech Skills */}
             <motion.div className="glass-card rounded-[24px] p-6 border border-neutral-900" variants={itemVariants}>
               <h3 className="text-lg font-bold text-neutral-100 mb-4 border-b border-neutral-900 pb-2 poppins-bold flex items-center gap-2">
-                <FaLaptopCode className="text-theme" />
                 Technical Skills
               </h3>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill) => (
                   <span 
                     key={skill.name}
-                    className="inline-flex items-center gap-2 bg-neutral-900 border border-neutral-800 text-neutral-300 text-xs px-3.5 py-1.5 rounded-xl font-medium"
+                    className="inline-flex items-center gap-2 text-neutral-300 text-xs px-3.5 py-1.5 rounded-xl font-medium"
                   >
                     <img src={skill.src} alt={skill.name} className="w-4 h-4 object-contain" />
                     {skill.name}
@@ -154,19 +149,17 @@ const CV = () => {
             {/* Work History details */}
             <motion.div className="glass-card rounded-[24px] p-6 border border-neutral-900" variants={itemVariants}>
               <h3 className="text-lg font-bold text-neutral-100 mb-6 border-b border-neutral-900 pb-2 poppins-bold flex items-center gap-2">
-                <FaBriefcase className="text-theme" />
                 Work History
               </h3>
               <div className="space-y-8">
                 {workExperience.map((exp, idx) => (
-                  <div key={idx} className="relative pl-6 border-l-2 border-neutral-800 last:pb-0 pb-2">
-                    <div className="absolute w-3.5 h-3.5 bg-theme rounded-full -left-[8px] top-1.5 border-4 border-neutral-950" />
+                  <div key={idx} className="relative last:pb-0 pb-2">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-3">
                       <div>
                         <h4 className="font-bold text-neutral-100 text-base sm:text-lg">{exp.title}</h4>
                         <p className="text-xs sm:text-sm text-neutral-500 font-medium">{exp.organization}</p>
                       </div>
-                      <span className="text-xs text-neutral-400 bg-neutral-900 border border-neutral-850 px-3 py-1 rounded-full whitespace-nowrap inline-self-start sm:inline-self-auto font-medium">
+                      <span className="text-xs text-neutral-400 px-3 py-1 rounded-full whitespace-nowrap inline-self-start sm:inline-self-auto font-medium">
                         {exp.date}
                       </span>
                     </div>
@@ -184,19 +177,17 @@ const CV = () => {
             {/* Organization details */}
             <motion.div className="glass-card rounded-[24px] p-6 border border-neutral-900" variants={itemVariants}>
               <h3 className="text-lg font-bold text-neutral-100 mb-6 border-b border-neutral-900 pb-2 poppins-bold flex items-center gap-2">
-                <FaGraduationCap className="text-secondary-500" />
                 Organization Experience
               </h3>
               <div className="space-y-8">
                 {organizationExperience.map((exp, idx) => (
-                  <div key={idx} className="relative pl-6 border-l-2 border-neutral-800 last:pb-0 pb-2">
-                    <div className="absolute w-3.5 h-3.5 bg-secondary-500 rounded-full -left-[8px] top-1.5 border-4 border-neutral-950" />
+                  <div key={idx} className="relative last:pb-0 pb-2">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-3">
                       <div>
                         <h4 className="font-bold text-neutral-100 text-base sm:text-lg">{exp.title}</h4>
                         <p className="text-xs sm:text-sm text-neutral-500 font-medium">{exp.organization}</p>
                       </div>
-                      <span className="text-xs text-neutral-400 bg-neutral-900 border border-neutral-850 px-3 py-1 rounded-full whitespace-nowrap inline-self-start sm:inline-self-auto font-medium">
+                      <span className="text-xs text-neutral-400 px-3 py-1 rounded-full whitespace-nowrap inline-self-start sm:inline-self-auto font-medium">
                         {exp.date}
                       </span>
                     </div>

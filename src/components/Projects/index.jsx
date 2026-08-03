@@ -70,10 +70,10 @@ const Projects = () => {
             <button
               key={category}
               onClick={() => setActiveFilter(category)}
-              className={`px-5 py-2 rounded-full text-sm font-semibold poppins-medium transition-all duration-300 border ${
+              className={`px-5 py-2 rounded-full text-sm font-semibold poppins-medium transition-all duration-300 ${
                 activeFilter === category
-                  ? 'bg-theme border-theme text-on-accent shadow-lg'
-                  : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-neutral-100 hover:border-neutral-700'
+                  ? 'bg-theme text-white shadow-lg'
+                  : 'text-neutral-400 hover:text-theme border border-transparent hover:border-theme'
               }`}
             >
               {category}
@@ -93,7 +93,7 @@ const Projects = () => {
             {filteredProjects.map((project) => (
               <motion.div
                 key={project.title}
-                className="glass-card rounded-[24px] overflow-hidden flex flex-col h-full hover:shadow-2xl group border border-neutral-800 bg-neutral-900/30 backdrop-blur-sm"
+                className="glass-card rounded-[24px] overflow-hidden flex flex-col h-full hover:shadow-2xl group border border-neutral-800 backdrop-blur-sm"
                 variants={cardVariants}
                 layout
                 whileHover={{ y: -8 }}
@@ -108,7 +108,7 @@ const Projects = () => {
                   <div className="absolute inset-0 img-scrim bg-neutral-950/40 group-hover:bg-neutral-950/20 transition-all duration-300" />
                   
                   {/* Category Badge overlay */}
-                  <span className="absolute top-4 left-4 bg-neutral-950/80 backdrop-blur-md border border-neutral-800 text-neutral-300 text-xs px-3 py-1.5 rounded-full font-bold poppins-semibold">
+                  <span className="absolute top-4 left-4 backdrop-blur-md text-neutral-300 text-xs px-3 py-1.5 rounded-full font-bold poppins-semibold">
                     {project.category}
                   </span>
                 </div>
@@ -127,7 +127,7 @@ const Projects = () => {
                     {project.tech.map((tag) => (
                       <span 
                         key={tag}
-                        className="bg-neutral-900 border border-neutral-800 text-neutral-400 text-[10px] sm:text-xs px-2.5 py-1 rounded-md font-medium"
+                        className="text-neutral-400 text-[10px] sm:text-xs px-2.5 py-1 rounded-md font-medium"
                       >
                         {tag}
                       </span>

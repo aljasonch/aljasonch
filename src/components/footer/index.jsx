@@ -84,7 +84,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-neutral-50 hover:border-neutral-400 hover:bg-neutral-800 transition-all duration-300 transform hover:-translate-y-1"
+                className="w-10 h-10 rounded-full flex items-center justify-center text-neutral-400 hover:text-neutral-50 transition-all duration-300 transform hover:-translate-y-1"
               >
                 <social.icon size={18} />
               </a>
@@ -92,7 +92,7 @@ const Footer = () => {
             <a
               href={`mailto:${personalInfo.email}`}
               aria-label="Email"
-              className="w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-neutral-50 hover:border-neutral-400 hover:bg-neutral-800 transition-all duration-300 transform hover:-translate-y-1"
+              className="w-10 h-10 rounded-full flex items-center justify-center text-neutral-400 hover:text-neutral-50 transition-all duration-300 transform hover:-translate-y-1"
             >
               <FaEnvelope size={18} />
             </a>
