@@ -57,8 +57,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        'sans': ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
-        'display': ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
+        'sans': ['Montserrat', 'Inter', 'system-ui', 'sans-serif'],
+        'display': ['Montserrat', 'Inter', 'system-ui', 'sans-serif'],
+        'montserrat': ['Montserrat', 'sans-serif'],
       },
       boxShadow: {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',

@@ -1,4 +1,4 @@
-import Profile from '../assets/aljasonch.jpg';
+import Profile from '../assets/aljasonch.png';
 import reactLogo from '../assets/react.png';
 import nextLogo from '../assets/next.png';
 import tailwindcss from '../assets/tailwindcss.png';

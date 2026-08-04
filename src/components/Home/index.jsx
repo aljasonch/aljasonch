@@ -140,10 +140,6 @@ const Home = () => {
       <section className="container mx-auto max-w-6xl px-6 py-12 md:py-20 relative z-10">
         <div className="grid gap-12 md:grid-cols-[1.2fr_0.8fr] items-center">
           <motion.div className="flex flex-col items-start text-left gap-6" variants={itemVariants}>
-            <span className="inline-flex items-center gap-2 text-neutral-400 font-semibold tracking-[0.2em] text-xs sm:text-sm uppercase px-3 py-1.5 rounded-full">
-              Welcome to my space
-            </span>
-
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight poppins-extrabold text-neutral-50">
               Hey, I'm <span className="text-theme">Jason</span>
             </h1>
