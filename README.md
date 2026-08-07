@@ -58,7 +58,6 @@ A community website featuring reflections, prayer guides, schedules, activities,
 
 - **Junior Software Engineer Intern - Kompas Gramedia** (Jan 2025 - Jan 2026)
 - **Website Coordinator - Character Building Mentoring UMN 2024** (Jan 2024 - Dec 2024)
-- **Participant - Garuda Hacks 5.0** (Jul 2024)
 - **Mentor - Character Building Mentoring UMN 2023** (Mar 2023 - Dec 2023)
 - **Logistics and Security - ISFEST UMN 2023** (Feb 2023 - Aug 2023)
 

@@ -10,6 +10,7 @@ import Mentoring from '../assets/mentoring2024.webp';
 import Chainew from '../assets/chainew.webp';
 import Bilbil from '../assets/bilbil.webp';
 import KKI from '../assets/kki.webp';
+import Tjahyadi from '../assets/tjahyadi.webp';
 
 export const personalInfo = {
   name: "Alfonsus Jason Christian",
@@ -66,19 +67,6 @@ export const organizationExperience = [
     ]
   },
   {
-    title: 'Participant',
-    date: 'Jul 2024',
-    organization: 'Garuda Hacks 5.0',
-    summary:
-      'Built WeShare, a healthcare access platform, during a 48-hour hackathon.',
-    description:
-      'Participated in Garuda Hacks 5.0 by creating a project named "WeShare" that helps underprivileged people gain access to healthcare.',
-    details: [
-      "Designed and coded front-end interfaces for the 'WeShare' social platform during a 48-hour hackathon.",
-      "Integrated search and map APIs to facilitate finding local free medical checkup locations."
-    ]
-  },
-  {
     title: 'Mentor',
     date: 'Mar 2023 - Dec 2023',
     organization: 'Character Building Mentoring UMN 2023',
@@ -118,11 +106,6 @@ export const achievements = [
     category: "Professional"
   },
   {
-    title: "Garuda Hacks 5.0 Competitor",
-    description: "Built the prototype 'WeShare' web application in under 48 hours, earning praise for practical social impact and seamless API search configurations.",
-    category: "Competition"
-  },
-  {
     title: "Academic Focus in Software Engineering",
     description: "Maintained a strong academic record as an Informatics student at UMN, specializing in modern React frameworks, database design, and systems analysis.",
     category: "Academic"
@@ -137,8 +120,18 @@ export const initialProjects = [
     // github: "https://github.com/aljasonch",
     alt: "Mentoring UMN 2024",
     category: "Web App",
-    tech: ["React", "Tailwind CSS", "Firebase", "Firestore"],
+    tech: ["React", "Tailwind CSS", "Firebase"],
     description: "An information and engagement website for UMN's Character Building Mentoring program, featuring event details, FAQs, galleries, and a searchable mentee group directory."
+  },
+  {
+    title: "Tjahyadi Consulting",
+    image: Tjahyadi,
+    link: "https://tjahyadi-consulting.vercel.app",
+    // github: "https://github.com/aljasonch",
+    alt: "Tjahyadi Consulting",
+    category: "Web App",
+    tech: ["Next.js", "Tailwind CSS", "Firebase"],
+    description: "A multilingual company profile website for a tax, accounting, payroll, and legal consulting firm in Indonesia, featuring service pages, client testimonials, and an articles section covering compliance topics."
   },
   {
     title: "Chainew",
@@ -147,7 +140,7 @@ export const initialProjects = [
     // github: "https://github.com/aljasonch",
     alt: "Chainew",
     category: "Web App",
-    tech: ["React", "Tailwind CSS", "Framer Motion"],
+    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
     description: "A digital newsroom covering technology, finance, blockchain, and public affairs through categorized news, trending stories, articles, and RSS updates."
   },
   {
@@ -157,7 +150,7 @@ export const initialProjects = [
     // github: "https://github.com/aljasonch",
     alt: "KKI Santo Agustinus",
     category: "Web App",
-    tech: ["Next.Js", "Tailwind CSS", "Firebase", "Cloudinary"],
+    tech: ["Next.Js", "Tailwind CSS","Firebase", "Cloudinary"],
     description: "A community website for KKI Santo Agustinus featuring reflections, prayer guides, schedules, activities, galleries, and contact information."
   },
   {
