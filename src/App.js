@@ -13,6 +13,7 @@ import ScrollToTop from './components/ScrollToTop';
 import NotFound from './components/NotFound';
 import Footer from './components/footer';
 import CommandPalette from './components/CommandPalette';
+import ChatWidget from './components/Chat';
 import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
             </Routes>
           </main>
           <Footer />
+          <ChatWidget />
           <ScrollToTopButton />
         </div>
       </Router>

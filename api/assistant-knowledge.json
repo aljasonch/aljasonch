@@ -1,0 +1,122 @@
+{
+  "identity": {
+    "name": "Alfonsus Jason Christian",
+    "role": "Junior Software Engineer & Informatics Student",
+    "location": "Tangerang, Indonesia",
+    "bio": "Software Engineer specializing in full-stack development and ERP systems, turning complex business needs into clean, reliable software. Passionate about web technologies, system optimizations, and UI aesthetics.",
+    "university": "Universitas Multimedia Nusantara (UMN), Informatics"
+  },
+  "contact": {
+    "email": "aljasonch@gmail.com",
+    "github": "https://github.com/aljasonch",
+    "linkedin": "https://www.linkedin.com/in/aljasonch/",
+    "instagram": "https://www.instagram.com/aljasonch/",
+    "twitter": "https://x.com/aljasonch",
+    "portfolio": "https://aljasonch.vercel.app"
+  },
+  "availability": "Open to junior software engineering roles, internships, and freelance collaborations.",
+  "skills": [
+    { "name": "React", "category": "Frontend" },
+    { "name": "Next.js", "category": "Frontend" },
+    { "name": "Tailwind CSS", "category": "Frontend" },
+    { "name": "Python", "category": "Backend" },
+    { "name": "Kotlin", "category": "Mobile" },
+    { "name": "Odoo", "category": "ERP / Backend" },
+    { "name": "Firebase", "category": "Backend / Database" },
+    { "name": "Framer Motion", "category": "Frontend" }
+  ],
+  "workExperience": [
+    {
+      "title": "Junior Software Engineer Intern",
+      "organization": "Kompas Gramedia",
+      "date": "Jan 2025 - Jan 2026",
+      "summary": "Optimized Odoo-based ERP systems and built Python modules for business workflows.",
+      "details": [
+        "Optimized internal ERP systems built on the Odoo framework (bug fixing, feature enhancements, performance improvements).",
+        "Identified and resolved critical workflow bottlenecks, reducing script execution times.",
+        "Implemented custom automated sales reporting and purchase requisition modules in Python.",
+        "Collaborated with business analysis teams to gather requirements and deliver scalable modules."
+      ]
+    }
+  ],
+  "organizationExperience": [
+    {
+      "title": "Website Coordinator",
+      "organization": "Character Building Mentoring UMN 2024",
+      "date": "Jan 2024 - Dec 2024",
+      "summary": "Led a student developer team building UMN Mentoring's official website.",
+      "details": [
+        "Directed a team of 5 student developers using React JS, Tailwind CSS, and Firebase.",
+        "Built authentication, resource materials hosting, and student enrollment dashboard features.",
+        "Ensured mobile responsiveness matching UMN identity guidelines."
+      ]
+    },
+    {
+      "title": "Mentor",
+      "organization": "Character Building Mentoring UMN 2023",
+      "date": "Mar 2023 - Dec 2023",
+      "summary": "Guided first-year students in applying UMN's 5C values (Caring, Credible, Competent, Competitive, Customer Delight).",
+      "details": [
+        "Conducted weekly mentoring sessions for 15+ freshmen.",
+        "Assessed student reports and organized community service activities."
+      ]
+    },
+    {
+      "title": "Logistics and Security",
+      "organization": "ISFEST UMN 2023",
+      "date": "Feb 2023 - Aug 2023",
+      "summary": "Supported logistics and security for ISFEST UMN 2023 (500+ participants).",
+      "details": [
+        "Coordinated vendor partners for stage, sound, and lighting systems.",
+        "Managed crowd control protocols and safety pathways."
+      ]
+    }
+  ],
+  "achievements": [
+    "UMN Mentoring 2024 Web Lead — orchestrated development and deployment of the official mentoring web platform serving 1000+ active student users.",
+    "ERP Workflow Optimization at Kompas Gramedia — built custom sales and inventory reporting automations in Odoo, resolving 50+ critical legacy bugs.",
+    "Academic Focus — Informatics student at UMN specializing in modern React frameworks, database design, and systems analysis."
+  ],
+  "projects": [
+    {
+      "title": "MENTORING UMN 2024",
+      "link": "https://mentoring2024.vercel.app",
+      "tech": ["React", "Tailwind CSS", "Firebase"],
+      "description": "Information and engagement website for UMN's Character Building Mentoring program: event details, FAQs, galleries, searchable mentee group directory."
+    },
+    {
+      "title": "Tjahyadi Consulting",
+      "link": "https://tjahyadi-consulting.vercel.app",
+      "tech": ["Next.js", "Tailwind CSS", "Firebase"],
+      "description": "Multilingual company profile website for a tax, accounting, payroll, and legal consulting firm in Indonesia: service pages, testimonials, compliance articles."
+    },
+    {
+      "title": "Chainew",
+      "link": "https://chainew.vercel.app",
+      "tech": ["Next.js", "Tailwind CSS", "Framer Motion"],
+      "description": "Digital newsroom covering technology, finance, blockchain, and public affairs: categorized news, trending stories, articles, RSS updates."
+    },
+    {
+      "title": "KKI Santo Agustinus",
+      "link": "https://kkisantoagustinus.vercel.app",
+      "tech": ["Next.js", "Tailwind CSS", "Firebase", "Cloudinary"],
+      "description": "Community website: reflections, prayer guides, schedules, activities, galleries, contact information."
+    },
+    {
+      "title": "Bilbil",
+      "link": "https://bilbilapp.vercel.app",
+      "tech": ["Next.js", "Tailwind CSS", "Local Storage"],
+      "description": "Bill-splitting app: record receipts, adjust discounts/charges, calculate each person's share, save payment history."
+    }
+  ],
+  "services": [
+    "Full-Stack Web Development — responsive, accessible web apps with React, Tailwind CSS, and Firebase.",
+    "ERP & Odoo Engineering — Odoo module customization in Python: sales reporting, purchase flows, legacy bug fixes.",
+    "Interface & Motion Design — micro-interactions, smooth transitions, premium-feeling layouts."
+  ],
+  "stats": [
+    { "value": "4+", "label": "Years writing code" },
+    { "value": "1000+", "label": "Students served by shipped apps" },
+    { "value": "10+", "label": "Projects shipped" }
+  ]
+}
