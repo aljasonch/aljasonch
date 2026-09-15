@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaInstagram, FaEnvelope } from "react-icons/fa";
+import { FaInstagram, FaEnvelope, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { personalInfo } from "../../data/content";
 
@@ -63,6 +63,15 @@ const Contact = () => {
               className="w-11 h-11 rounded-full flex items-center justify-center text-neutral-400 hover:text-theme transition-all duration-300"
             >
               <FaInstagram size={20} />
+            </a>
+            <a
+              href={personalInfo.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="w-11 h-11 rounded-full flex items-center justify-center text-neutral-400 hover:text-theme transition-all duration-300"
+            >
+              <FaLinkedin size={20} />
             </a>
             <a
               href={personalInfo.twitter}

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaInstagram, FaEnvelope, FaGithub } from 'react-icons/fa';
+import { FaInstagram, FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { personalInfo } from '../../data/content';
 
@@ -31,6 +31,7 @@ const Footer = () => {
 
   const socialLinks = [
     { label: 'GitHub', href: personalInfo.github, icon: FaGithub },
+    { label: 'LinkedIn', href: personalInfo.linkedin, icon: FaLinkedin },
     { label: 'Instagram', href: personalInfo.instagram, icon: FaInstagram },
     { label: 'X', href: personalInfo.twitter, icon: FaXTwitter },
   ];

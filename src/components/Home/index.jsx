@@ -149,7 +149,7 @@ const Home = () => {
                 sequence={[
                   personalInfo.role,
                   2000,
-                  'Informatics Student @ UMN',
+                  'Informatics Graduate @ UMN',
                   2000,
                   'ERP Developer',
                   2000,
@@ -247,7 +247,7 @@ const Home = () => {
               whileHover={{ y: -4, scale: 1.04 }}
               className="flex items-center gap-3 py-3 px-5 rounded-2xl backdrop-blur-sm cursor-default"
             >
-              <img src={skill.src} alt={skill.name} className="w-7 h-7 object-contain" />
+              {skill.src && <img src={skill.src} alt="" className="w-7 h-7 object-contain" />}
               <span className="text-sm font-medium text-neutral-300 whitespace-nowrap">{skill.name}</span>
             </motion.div>
           ))}

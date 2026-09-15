@@ -11,6 +11,7 @@ import {
   FaEnvelope,
   FaGithub,
   FaInstagram,
+  FaLinkedin,
   FaPalette,
   FaArrowRight,
   FaRegFilePdf,
@@ -58,6 +59,7 @@ const CommandPalette = () => {
       { id: 'email', label: 'Email me', hint: personalInfo.email, icon: FaEnvelope, group: 'Quick actions', run: () => { window.location.href = `mailto:${personalInfo.email}`; close(); } },
       { id: 'resume', label: 'Download my Resume (PDF)', hint: 'File', icon: FaRegFilePdf, group: 'Quick actions', run: () => { window.open('/CV_Alfonsus Jason Christian.pdf', '_blank'); close(); } },
       { id: 'github', label: 'Open GitHub', hint: 'External', icon: FaGithub, group: 'Quick actions', run: ext(personalInfo.github) },
+      { id: 'linkedin', label: 'Open LinkedIn', hint: 'External', icon: FaLinkedin, group: 'Quick actions', run: ext(personalInfo.linkedin) },
       { id: 'instagram', label: 'Open Instagram', hint: 'External', icon: FaInstagram, group: 'Quick actions', run: ext(personalInfo.instagram) },
     ];
 

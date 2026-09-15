@@ -14,23 +14,36 @@ import Tjahyadi from '../assets/tjahyadi.webp';
 
 export const personalInfo = {
   name: "Alfonsus Jason Christian",
-  role: "Junior Software Engineer & Informatics Student",
+  role: "Junior Software Engineer & Informatics Graduate",
   email: "aljasonch@gmail.com",
   instagram: "https://www.instagram.com/aljasonch/",
   twitter: "https://x.com/aljasonch",
+  linkedin: "https://www.linkedin.com/in/aljasonch/",
   github: "https://github.com/aljasonch",
   location: "Tangerang, Indonesia",
-  bio: "Software Engineer specializing in full-stack development and ERP systems, turning complex business needs into clean, reliable software. Passionate about web technologies, system optimizations, and UI aesthetics.",
+  bio: "Informatics graduate from Universitas Multimedia Nusantara with a 3.74 GPA and full-stack development experience across React.js, Next.js, Python, and PostgreSQL. I build practical, business-focused solutions across the software development lifecycle and actively explore AI agents and workflow automation.",
   profileImage: Profile,
 };
 
 export const skills = [
-  { src: reactLogo, name: 'React', category: 'Frontend' },
-  { src: nextLogo, name: 'Next.js', category: 'Frontend' },
-  { src: tailwindcss, name: 'Tailwind CSS', category: 'Frontend' },
-  { src: python, name: 'Python', category: 'Backend' },
-  { src: kotlin, name: 'Kotlin', category: 'Mobile' },
-  { src: odoo, name: 'Odoo', category: 'ERP / Backend' },
+  { src: python, name: 'Python', category: 'Programming Languages', group: 'languages' },
+  { name: 'JavaScript', category: 'Programming Languages', group: 'languages' },
+  { name: 'TypeScript', category: 'Programming Languages', group: 'languages' },
+  { name: 'SQL', category: 'Programming Languages', group: 'languages' },
+  { src: kotlin, name: 'Kotlin', category: 'Programming Languages', group: 'languages' },
+  { src: reactLogo, name: 'React', category: 'Libraries & Frameworks', group: 'frameworks' },
+  { src: nextLogo, name: 'Next.js', category: 'Libraries & Frameworks', group: 'frameworks' },
+  { src: tailwindcss, name: 'Tailwind CSS', category: 'Libraries & Frameworks', group: 'frameworks' },
+  { src: odoo, name: 'Odoo', category: 'Libraries & Frameworks', group: 'frameworks' },
+  { name: 'PostgreSQL', category: 'Tools & Technologies', group: 'tools' },
+  { name: 'Firebase', category: 'Tools & Technologies', group: 'tools' },
+  { name: 'Git', category: 'Tools & Technologies', group: 'tools' },
+  { name: 'GitHub', category: 'Tools & Technologies', group: 'tools' },
+  { name: 'Visual Studio Code', category: 'Tools & Technologies', group: 'tools' },
+  { name: 'Azure', category: 'Tools & Technologies', group: 'tools' },
+  { name: 'RESTful API', category: 'Tools & Technologies', group: 'tools' },
+  { name: 'Claude Code', category: 'Tools & Technologies', group: 'tools' },
+  { name: 'GitHub Copilot', category: 'Tools & Technologies', group: 'tools' },
 ];
 
 export const workExperience = [
@@ -39,14 +52,13 @@ export const workExperience = [
     date: 'Jan 2025 - Jan 2026',
     organization: 'Kompas Gramedia',
     summary:
-      "Optimized Odoo-based ERP systems and built Python modules for business workflows.",
+      "Developed and customized Odoo modules used by multiple companies within the Kompas Gramedia Group.",
     description:
-      "Responsible for optimizing ERP modules based on Odoo, including bug fixing, feature enhancements, and performance improvements to align with the company's operational needs.",
+      "Developed and customized Odoo Accounting, Inventory, Purchase, and related modules using Python Odoo ORM and XML/QWeb. Contributed across configuration, integration, debugging, maintenance, documentation, and production delivery.",
     details: [
-      "Optimized internal enterprise resource planning systems built on top of the Odoo framework.",
-      "Identified and resolved critical workflow bottlenecks, reducing script execution times.",
-      "Implemented custom automated sales reporting and purchase requisition modules in Python.",
-      "Collaborated with cross-functional business analysis teams to gather requirements and deliver scalable modules."
+      "Wrote and optimized SQL queries on PostgreSQL for enterprise workflows.",
+      "Collaborated on system configuration, integration, debugging, maintenance, and technical documentation.",
+      "Worked through Agile sprint planning, development, testing, and production deployment using Gitflow, CI/CD pipelines, and Azure."
     ]
   },
 ];
@@ -57,13 +69,13 @@ export const organizationExperience = [
     date: 'Jan 2024 - Dec 2024',
     organization: 'Character Building Mentoring UMN 2024',
     summary:
-      "Led a student developer team building UMN Mentoring's official website.",
+      "Led the developer team that built and launched the official Mentoring UMN 2024 website for nearly 2,000 student users.",
     description:
-      "Leading the development of UMN Mentoring's official website with a developer team using React JS, Tailwind CSS, and Firebase. Focused on creating a responsive and user-friendly platform to support mentoring activities.",
+      "Led the development and launch of the official Mentoring UMN 2024 website using React.js and Firebase, supporting nearly 2,000 student users with stable performance and no significant lag.",
     details: [
-      "Directed a team of 5 student developers using React JS, Tailwind CSS, and Firebase database.",
-      "Created authentication, resource materials hosting, and student enrollment dashboard features.",
-      "Guaranteed mobile responsiveness and modern layout design, matching the UMN identity guidelines."
+      "Coordinated a developer team throughout planning, development, testing, and launch.",
+      "Built and maintained a responsive website with React.js and Firebase.",
+      "Supported stable performance for nearly 2,000 student users."
     ]
   },
   {
@@ -97,17 +109,17 @@ export const organizationExperience = [
 export const achievements = [
   {
     title: "UMN Mentoring 2024 Web Lead",
-    description: "Successfully orchestrated the development and deployment of the official mentoring web platform for Universitas Multimedia Nusantara, serving over 1,000 active student users.",
+    description: "Led the development and launch of the official Mentoring UMN 2024 website, which supported nearly 2,000 student users with stable performance.",
     category: "Leadership"
   },
   {
     title: "ERP Workflow Optimization at Kompas Gramedia",
-    description: "Designed custom sales and inventory reporting automations in Odoo that eliminated manual tasks and resolved 50+ critical legacy system bugs.",
+    description: "Developed and customized Odoo Accounting, Inventory, and Purchase modules, with PostgreSQL query optimization and Agile delivery practices.",
     category: "Professional"
   },
   {
     title: "Academic Focus in Software Engineering",
-    description: "Maintained a strong academic record as an Informatics student at UMN, specializing in modern React frameworks, database design, and systems analysis.",
+    description: "Graduated in Informatics from Universitas Multimedia Nusantara with a 3.74 GPA and a thesis applying a GRU model with technical indicators to IDX30 stock index price prediction.",
     category: "Academic"
   }
 ];
@@ -220,11 +232,48 @@ export const whyMe = [
 
 // Quick stats — animated counters on the Home page
 export const stats = [
-  { value: 4, suffix: "+", label: "Years writing code" },
-  { value: 1000, suffix: "+", label: "Students served by my apps" },
-  // { value: 50, suffix: "+", label: "Legacy bugs resolved" },
-  { value: 10, suffix: "+", label: "Projects shipped" },
+  { value: 3, suffix: ".74", label: "GPA in Informatics" },
+  { value: 2000, suffix: "+", label: "Students supported" },
+  { value: 1, suffix: "", label: "Year of Odoo experience" },
 ];
+
+export const education = [
+  {
+    institution: 'Universitas Multimedia Nusantara',
+    location: 'Serpong, Kab. Tangerang',
+    degree: "Bachelor's Degree - Informatics",
+    date: '2022 - 2026',
+    details: [
+      'GPA: 3.74',
+      'Relevant coursework: Artificial Intelligence, Web Programming, Object-Oriented Programming, Database Systems, Software Engineering & Project Management, and Algorithms & Data Structure.',
+      'Thesis: IDX30 Stock Index Price Prediction Using a Gated Recurrent Unit (GRU) Model with Technical Indicator Integration.',
+    ],
+  },
+  {
+    institution: 'Strada St. Thomas Aquino',
+    location: 'Pabuaran, Tangerang',
+    degree: 'Senior High School, Natural Science',
+    date: '2019 - 2022',
+    details: [],
+  },
+];
+
+export const certifications = [
+  {
+    title: 'TOEIC Listening & Reading',
+    issuer: 'PT. International Test Center (ITC) Indonesia',
+    date: 'Score: 820/990 | August 2026 - August 2028',
+  },
+  {
+    title: 'Information Technology Specialist - Artificial Intelligence',
+    issuer: 'Certiport - A Pearson VUE Business',
+    date: 'May 2026 - May 2031',
+  },
+];
+
+export const languages = ['Indonesian (Native Speaker)', 'English (Advanced)'];
+
+export const softSkills = ['Problem Solving', 'Communication', 'Team Collaboration', 'Critical Thinking'];
 
 // Principles — how I work
 export const principles = [
