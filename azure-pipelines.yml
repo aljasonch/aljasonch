@@ -5,6 +5,11 @@ pool:
   name: Azure Pipelines
 
 steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '24.x'
+  displayName: 'Use Node.js 24'
+
 - bash: |
     # Global npm tanpa sudo
     mkdir -p "$(Agent.TempDirectory)/.npm-global"
@@ -14,6 +19,12 @@ steps:
 
 - checkout: self
   fetchDepth: 1
+
+- bash: |
+    set -e
+    npm ci
+    npm test
+  displayName: 'Install and verify application'
 
 - bash: |
     set -e
