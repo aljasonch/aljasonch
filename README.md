@@ -1,58 +1,99 @@
-# Alfonsus Jason Christian — portfolio
+# Hi, I'm Alfonsus Jason Christian
 
-A fresh navy-studio portfolio built with Next.js App Router, React, TypeScript, and native CSS. The public profile reflects the October 2026 CV, including PT Solusi Kode Indonesia and the latest freelance and community projects.
+Software Engineer and Informatics graduate from Universitas Multimedia Nusantara, based in Tangerang, Indonesia.
 
-## Run locally
+I build reliable web applications, practical ERP solutions, and polished user interfaces. My main interests are full-stack development, Odoo customization, system optimization, and thoughtful UI details.
 
-Use Node.js 22.18+ (Node 24 recommended).
+[![Portfolio](https://img.shields.io/badge/Portfolio-10b981?style=for-the-badge&logo=vercel&logoColor=white)](https://aljasonch.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-09090b?style=for-the-badge&logo=github&logoColor=white)](https://github.com/aljasonch)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-09090b?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aljasonch/)
+[![Instagram](https://img.shields.io/badge/Instagram-09090b?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/aljasonch/)
+[![Email](https://img.shields.io/badge/Email-09090b?style=for-the-badge&logo=gmail&logoColor=white)](mailto:aljasonch@gmail.com)
 
-```sh
-npm ci
-npm run dev
-```
+## About Me
 
-Open http://localhost:3000. Production: `npm run build`, then `npm start`.
+- Software Engineer at PT Solusi Kode Indonesia since September 2026, developing an online psychological test proctoring system for FIFGROUP.
+- Informatics graduate from Universitas Multimedia Nusantara (2022–2026), with a GPA of 3.74.
+- Former Junior Software Engineer Intern at Kompas Gramedia, working with Odoo ERP, Python, and PostgreSQL.
+- Led the development of the Character Building Mentoring UMN 2024 website with a student developer team, supporting nearly 2,000 students.
+- Interested in building software that is useful, maintainable, and pleasant to use.
+- Exploring AI agents and workflow automation alongside full-stack development and ERP customization.
 
-## Checks
+## Tech Stack
 
-```sh
-npm run typecheck
-npm test
-npm run build
-```
+![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Odoo](https://img.shields.io/badge/Odoo-714B67?style=flat-square&logo=odoo&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-DD2C00?style=flat-square&logo=firebase&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 
-Tests include an isolated local HTTP server for assistant success, upstream error, malformed response, and timeout checks. They require loopback network access but never call Gemini or write to Firebase.
+## Featured Projects
 
-## Content and design
+### [Mentoring UMN 2024](https://mentoring2024.vercel.app)
 
-- `src/lib/content.ts`: profile, project details, experience, education, and skills; also supplies assistant knowledge.
-- `src/app/globals.css`: navy/ice-blue design, responsive layout, and accessible interaction styles.
-- `public/images/`: real project screenshots and the original portrait.
-- `public/alfonsus-jason-christian-cv.pdf`: current CV. The legacy CV filename remains available.
-- `/portfolio`, `/cv`, `/contact`, `/blog`, `/blog/[slug]`, `/admin`: preserved public routes. `/projects` redirects permanently to `/portfolio`.
+An information and engagement website for UMN's Character Building Mentoring program, featuring event details, FAQs, galleries, and a searchable mentee group directory.
 
-## Firebase configuration
+`React` `Tailwind CSS` `Firebase` `Firestore`
 
-Copy `.env.example` to `.env.local` and set your existing public Firebase configuration. Prefer `NEXT_PUBLIC_FIREBASE_*`. During migration, `next.config.ts` also accepts the old `REACT_APP_FIREBASE_*` values. Only those six explicit public Firebase fields are exposed; server secrets are never mapped.
+### [Chainew](https://chainew.vercel.app)
 
-The `posts` collection and existing document IDs, slugs, fields, and comma-separated or array tags remain compatible. Existing browser-local posts under `aljasonch_blog_posts` remain readable when Firebase is not configured. Cloud read errors are displayed; write failures preserve the editor content and never silently become local-only publications.
+A full-stack digital newsroom covering technology, finance, world, and public affairs, with categorized stories, RSS updates, authenticated content management, and automated content sync in collaboration with Neuraspheres.
 
-Enable Firebase email/password authentication and retain Firestore rules that allow public reads and restrict writes to the actual site administrator (for example, a specific UID). The login UI is not a replacement for those rules. A signed-in account does not itself imply admin authorization. This rebuild does not change deployed Firebase rules or existing content.
+`Next.js` `TypeScript` `Firebase`
 
-## Portfolio assistant
+### [Bilbil](https://bilbilapp.vercel.app)
 
-Set server-only `GEMINI_API_KEY`. Optional `GEMINI_MODEL` defaults to the existing `gemini-3.5-flash-lite` configuration. Verify model access in your own project before production use. See `docs/chat-api.md` for the contract, failure responses, test evidence, and limits of per-instance rate limiting. No live model calls are needed to build.
+A bill-splitting app for recording receipts, adjusting charges, calculating each person's share, and saving payment history.
 
-## Deployment
+`Next.js` `Tailwind CSS` `Local Storage`
 
-Vercel uses the Next.js preset, `npm run build`, and `.next` output, explicitly set in `vercel.json`. Keep the existing Vercel project and environment variables. Remove any manually configured CRA output override (`build`) or SPA rewrite to `/index.html` in the Vercel dashboard if present. The repository does not deploy automatically during local development.
+### [KKI Santo Agustinus](https://kkisantoagustinus.vercel.app)
 
-The existing Azure pipeline retains its project-selection and token configuration. It installs Node 24, runs tests, and builds/deploys using Vercel when explicitly triggered. No deployment was performed as part of this rewrite.
+A community website featuring reflections, prayer guides, schedules, activities, galleries, and contact information.
 
-## Asset provenance
+`Next.js` `Tailwind CSS` `Firebase` `Cloudinary`
 
-The hero uses the original profile photograph; navigation and the footer use the original AJ logo. Project previews are original repository assets with their verified landscape aspect ratios preserved. Generated concept screenshots are not used as representations of real projects. Projects without existing screenshots use typography; missing public URLs are not invented.
+### [Tjahyadi Consulting](https://tjahyadi-consulting.vercel.app)
 
-## Assistant formatting and keyboard
+A trilingual website in Indonesian, English, and Mandarin for a tax, accounting, and legal consultancy, with service information, tax calculators, testimonials, and WhatsApp consultation booking.
 
-The assistant uses react-markdown with remark-gfm. Server-side Markdown parsing validates link nodes without stripping domain-like text from email addresses or technology names. Raw HTML and images are not rendered, and client links use the same destination allowlist. Desktop devices with a fine pointer and viewport wider than 760px use Enter to send and Ctrl+Enter for a new line; mobile Enter remains a normal newline. IME composition never sends a message.
+`Next.js` `Multilingual`
+
+### KeGia Art
+
+A bilingual Indonesian and English website for a handmade jewelry brand, featuring a product catalog, cultural storytelling, and a downloadable wholesale catalog for export inquiries.
+
+`Next.js` `Cloudinary`
+
+### WeShare
+
+A healthcare access and donation prototype built with a four-member team during Garuda Hacks 5.0 in 2024, integrating Midtrans and delivered within 48 hours.
+
+`Next.js` `Midtrans`
+
+## Experience Snapshot
+
+- **Software Engineer - PT Solusi Kode Indonesia** (Sep 2026 - Present)
+- **Junior Software Engineer Intern - Kompas Gramedia** (Jan 2025 - Jan 2026)
+- **Website Coordinator - Character Building Mentoring UMN 2024** (Jan 2024 - Dec 2024)
+- **Mentor - Character Building Mentoring UMN 2023** (Mar 2023 - Dec 2023)
+- **Logistics and Security - ISFEST UMN 2023** (Feb 2023 - Aug 2023)
+
+## GitHub Stats
+
+<div align="center">
+  <img src="https://github-stats-extended.vercel.app/api?username=aljasonch&show_icons=true&theme=github_dark&hide_border=true&bg_color=09090b&title_color=10b981&icon_color=10b981&text_color=a1a1aa" height="160" alt="GitHub Stats" />
+  <img src="https://github-stats-extended.vercel.app/api/top-langs?username=aljasonch&layout=compact&theme=github_dark&hide_border=true&bg_color=09090b&title_color=10b981&text_color=a1a1aa" height="160" alt="Top Languages" />
+</div>
+
+<div align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com?user=aljasonch&theme=github-dark-blue&hide_border=true&background=09090B&ring=10B981&fire=10B981&currStreakLabel=10B981&sideLabels=A1A1AA&dates=52525B" alt="GitHub Streak" />
+</div>
+
+<div align="center">
+  <br />
+  Let's build something useful together.
+</div>
