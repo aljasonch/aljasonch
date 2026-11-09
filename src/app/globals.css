@@ -1442,3 +1442,300 @@ textarea::placeholder {
     height: auto;
   }
 }
+
+/* Restrained studio motion & micro-interactions. */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes studio-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes studio-scroll-reveal {
+  from {
+    opacity: 0.15;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes status-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px #a8d8ff18;
+  }
+  50% {
+    box-shadow: 0 0 0 7px #a8d8ff38;
+  }
+}
+@keyframes dialog-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.hero-copy > *,
+.page-heading > *,
+.about-heading > div > * {
+  animation: studio-rise 0.6s var(--ease-out) both;
+}
+.hero-copy > :nth-child(2),
+.page-heading > :nth-child(2),
+.about-heading > div > :nth-child(2) {
+  animation-delay: 65ms;
+}
+.hero-copy > :nth-child(3),
+.page-heading > :nth-child(3),
+.about-heading > div > :nth-child(3) {
+  animation-delay: 130ms;
+}
+.hero-copy > :nth-child(4),
+.page-heading > :nth-child(4),
+.about-heading > div > :nth-child(4) {
+  animation-delay: 195ms;
+}
+.hero-copy > :nth-child(5) {
+  animation-delay: 260ms;
+}
+.hero-portrait,
+.about-heading .portrait {
+  animation: studio-rise 0.7s var(--ease-out) 120ms both;
+}
+.tech-strip,
+.filter-bar,
+.journal-controls,
+.contact-email,
+.contact-details {
+  animation: studio-rise 0.6s var(--ease-out) 180ms both;
+}
+.project-row,
+.journal-card,
+.resume-section,
+.timeline article {
+  animation: studio-rise 0.55s var(--ease-out) both;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .selected-work .project-row,
+    .experience-section .timeline article,
+    .about-note,
+    .footer-invitation,
+    .resume-section {
+      animation: studio-scroll-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 65%;
+    }
+  }
+}
+.wordmark img {
+  transition: transform 0.25s var(--ease-out);
+}
+.wordmark:hover img {
+  transform: translateY(-2px);
+}
+.desktop-nav a {
+  position: relative;
+  transition: color 0.2s ease;
+}
+.desktop-nav a::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 3px;
+  background: var(--accent);
+  border-radius: 50%;
+  margin: 4px auto -7px;
+  transform: scale(0);
+  opacity: 0;
+  transition:
+    transform 0.25s var(--ease-out),
+    opacity 0.2s ease;
+}
+.desktop-nav a:hover::after,
+.desktop-nav a[aria-current]::after {
+  transform: scale(1);
+  opacity: 1;
+}
+.button,
+.text-link,
+.cv-link,
+.command-trigger,
+.email-link,
+.contact-email,
+.filters button,
+.command-results a,
+.footer-bottom a,
+.contact-details a,
+.journal-card h2 a,
+.journal-back,
+.chat-launch,
+.chat-close,
+.chat-send,
+input,
+textarea,
+select {
+  transition:
+    background-color 0.22s var(--ease-out),
+    border-color 0.22s var(--ease-out),
+    color 0.22s var(--ease-out),
+    transform 0.22s var(--ease-out),
+    box-shadow 0.22s var(--ease-out);
+}
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent);
+}
+.button span,
+.text-link span,
+.cv-link span,
+.email-link span:last-child,
+.contact-email span,
+.command-results a span,
+.mobile-nav a span,
+.journal-card h2 a span,
+.chat-launch span {
+  display: inline-block;
+  transition: transform 0.25s var(--ease-out);
+}
+.button:hover span,
+.button:focus-visible span,
+.text-link:hover span,
+.text-link:focus-visible span,
+.cv-link:hover span,
+.cv-link:focus-visible span,
+.email-link:hover span:last-child,
+.email-link:focus-visible span:last-child,
+.contact-email:hover span,
+.contact-email:focus-visible span,
+.command-results a:hover span,
+.command-results a:focus span,
+.mobile-nav a:hover span,
+.journal-card h2 a:hover span,
+.chat-launch:hover span {
+  transform: translate(3px, -3px);
+}
+a[download]:hover span,
+a[download]:focus-visible span {
+  transform: translateY(2px);
+}
+.journal-back:hover {
+  transform: translateX(-3px);
+}
+.hero-portrait img {
+  transition:
+    transform 0.45s var(--ease-out),
+    box-shadow 0.45s var(--ease-out);
+}
+.hero-portrait:hover img {
+  transform: translate(-3px, -3px);
+  box-shadow: 22px 22px 0 #192840;
+}
+.project-stage {
+  transition: border-color 0.35s ease;
+}
+.project-visual:hover .project-stage {
+  border-color: #a8d8ff38;
+}
+.project-browser {
+  transition:
+    transform 0.45s var(--ease-out),
+    box-shadow 0.45s var(--ease-out),
+    border-color 0.35s ease;
+}
+.project-visual:hover .project-browser {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 28px 50px #0007;
+  border-color: #a8d8ff45;
+}
+.project-wordmark strong {
+  transition:
+    transform 0.45s var(--ease-out),
+    color 0.3s ease;
+}
+.project-visual:hover .project-wordmark strong {
+  transform: translateY(-3px);
+  color: var(--accent);
+}
+.stage-corner {
+  transition:
+    transform 0.3s var(--ease-out),
+    color 0.3s ease;
+}
+.project-visual:hover .stage-corner {
+  transform: translate(3px, -3px);
+  color: var(--accent);
+}
+.status-dot,
+.timeline article.current::before {
+  animation: status-pulse 2.8s ease-in-out infinite;
+}
+.timeline article::before {
+  transition:
+    transform 0.25s var(--ease-out),
+    background-color 0.25s ease,
+    outline-color 0.25s ease;
+}
+.timeline article:hover::before {
+  transform: scale(1.25);
+  background: var(--accent);
+  outline-color: var(--accent);
+}
+.journal-card {
+  transition: border-color 0.25s ease;
+}
+.journal-index {
+  transition: color 0.25s ease;
+}
+.journal-card:hover {
+  border-top-color: #526c8e;
+}
+.journal-card:hover .journal-index {
+  color: var(--accent);
+}
+.command-dialog[open],
+.chat-dialog[open] {
+  animation: dialog-enter 0.22s var(--ease-out) both;
+}
+.mobile-nav {
+  animation: studio-rise 0.22s var(--ease-out) both;
+}
+.chat-launch:hover {
+  background: #cce9ff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px #0006;
+}
+.chat-close:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.chat-send:hover:not(:disabled) {
+  background: #cce9ff;
+  transform: translateY(-1px);
+}
+.chat-message {
+  animation: studio-rise 0.25s var(--ease-out) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
