@@ -12,10 +12,10 @@
   grid-template-columns: 5rem 1fr;
   gap: 1rem;
   padding: 2.5rem 0;
-  border-top: 1px solid #34445d;
+  border-top: 1px solid var(--line);
 }
 .journal-index {
-  color: #a9b8ce;
+  color: var(--muted);
   font-size: 0.8rem;
   padding-top: 0.3rem;
 }
@@ -28,7 +28,7 @@
 }
 .journal-card h2 a:hover,
 .journal-back:hover {
-  color: #a8d8ff;
+  color: var(--accent);
 }
 .journal-tags {
   display: flex;
@@ -37,11 +37,11 @@
   margin: 1.25rem 0;
 }
 .journal-tags span {
-  border: 1px solid #34445d;
+  border: 1px solid var(--line);
   padding: 0.3rem 0.75rem;
   border-radius: 2rem;
   font-size: 0.75rem;
-  color: #a9b8ce;
+  color: var(--muted);
 }
 .journal-article {
   max-width: 800px;
@@ -59,7 +59,7 @@
 }
 .journal-lede {
   font-size: 1.2rem;
-  color: #a9b8ce;
+  color: var(--muted);
   line-height: 1.7;
 }
 .article-body {
@@ -75,7 +75,7 @@
   margin-top: 2em;
 }
 .article-body a {
-  color: #a8d8ff;
+  color: var(--accent);
   text-underline-offset: 0.2em;
 }
 .article-body img {
@@ -85,15 +85,15 @@
 .article-body pre {
   overflow-x: auto;
   padding: 1.25rem;
-  background: #192840;
-  border: 1px solid #34445d;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 0.4rem;
 }
 .article-body blockquote {
   margin-left: 0;
   padding-left: 1.5rem;
-  border-left: 2px solid #a8d8ff;
-  color: #a9b8ce;
+  border-left: 2px solid var(--accent);
+  color: var(--muted);
 }
 .admin-login {
   max-width: 440px;
@@ -114,7 +114,7 @@
   gap: 3rem;
 }
 .admin-posts {
-  border-right: 1px solid #34445d;
+  border-right: 1px solid var(--line);
   padding-right: 2rem;
 }
 .admin-posts > .button {
@@ -126,7 +126,7 @@
   padding: 0;
 }
 .admin-posts li {
-  border-bottom: 1px solid #34445d;
+  border-bottom: 1px solid var(--line);
   padding: 1rem 0;
   display: grid;
   gap: 0.5rem;
@@ -146,7 +146,7 @@
 }
 .admin-post-select[aria-current="true"],
 .admin-text-button {
-  color: #a8d8ff;
+  color: var(--accent);
 }
 .admin-text-button {
   font-size: 0.8rem;
@@ -166,7 +166,7 @@
   overflow-wrap: anywhere;
 }
 .admin-preview {
-  border: 1px solid #34445d;
+  border: 1px solid var(--line);
   padding: 1.5rem;
   margin-bottom: 2rem;
 }
@@ -180,7 +180,7 @@
   }
   .admin-posts {
     border-right: 0;
-    border-bottom: 1px solid #34445d;
+    border-bottom: 1px solid var(--line);
     padding: 0 0 2rem;
   }
   .journal-back {

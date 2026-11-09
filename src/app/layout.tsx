@@ -26,11 +26,16 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.ico", apple: "/aljasonch.png" },
 };
 
+const themeScript = `try{var s=localStorage.getItem("theme");var d=s==="light"||s==="dark"?s:window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.dataset.theme=d}catch(e){}`;
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <a className="skip-link" href="#main">
           Skip to content

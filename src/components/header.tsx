@@ -23,13 +23,52 @@ export default function Header() {
   const path = usePathname();
   const [menu, setMenu] = useState(false);
   const [query, setQuery] = useState("");
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
   const palette = useRef<HTMLDialogElement>(null);
   const search = useRef<HTMLInputElement>(null);
+
+  function applyTheme(next: "dark" | "light", persist = true) {
+    setTheme(next);
+    document.documentElement.dataset.theme = next;
+    if (persist) {
+      try {
+        localStorage.setItem("theme", next);
+      } catch {}
+    }
+  }
+
+  function toggleTheme() {
+    applyTheme(theme === "dark" ? "light" : "dark", true);
+  }
+
   function openPalette() {
     setQuery("");
     palette.current?.showModal();
     search.current?.focus();
   }
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-color-scheme: light)");
+    const current = document.documentElement.dataset.theme;
+    if (current === "light" || current === "dark") {
+      setTheme(current);
+    } else {
+      applyTheme(media.matches ? "light" : "dark", false);
+    }
+    const onSchemeChange = (event: MediaQueryListEvent) => {
+      try {
+        const stored = localStorage.getItem("theme");
+        if (stored !== "light" && stored !== "dark") {
+          applyTheme(event.matches ? "light" : "dark", false);
+        }
+      } catch {
+        applyTheme(event.matches ? "light" : "dark", false);
+      }
+    };
+    media.addEventListener("change", onSchemeChange);
+    return () => media.removeEventListener("change", onSchemeChange);
+  }, []);
+
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
@@ -42,6 +81,16 @@ export default function Header() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+
+  const themeActionLabel =
+    theme === "light" ? "Switch to dark theme" : "Switch to light theme";
+  const matchesThemeAction = themeActionLabel
+    .toLowerCase()
+    .includes(query.toLowerCase());
+  const matchingCommands = commands.filter((command) =>
+    command.label.toLowerCase().includes(query.toLowerCase()),
+  );
+
   return (
     <>
       <header className="site-header container">
@@ -71,6 +120,15 @@ export default function Header() {
           ))}
         </nav>
         <div className="header-actions">
+          <button
+            type="button"
+            className="theme-toggle"
+            aria-label={themeActionLabel}
+            title={themeActionLabel}
+            onClick={toggleTheme}
+          >
+            <span aria-hidden="true">{theme === "light" ? "☾" : "☀"}</span>
+          </button>
           <button
             className="command-trigger"
             aria-label="Search pages and actions"
@@ -109,6 +167,17 @@ export default function Header() {
               <span aria-hidden="true">↗</span>
             </Link>
           ))}
+          <button
+            type="button"
+            className="mobile-theme-button"
+            onClick={() => {
+              toggleTheme();
+              setMenu(false);
+            }}
+          >
+            {themeActionLabel}
+            <span aria-hidden="true">{theme === "light" ? "☾" : "☀"}</span>
+          </button>
           <a href={profile.cv} download onClick={() => setMenu(false)}>
             Download CV ↓
           </a>
@@ -143,23 +212,30 @@ export default function Header() {
             />
           </label>
           <div className="command-results">
-            {commands
-              .filter((command) =>
-                command.label.toLowerCase().includes(query.toLowerCase()),
-              )
-              .map((command) => (
-                <a
-                  key={command.label}
-                  href={command.href}
-                  onClick={() => palette.current?.close()}
-                >
-                  {command.label}
-                  <span aria-hidden="true">↗</span>
-                </a>
-              ))}
-            {!commands.some((command) =>
-              command.label.toLowerCase().includes(query.toLowerCase()),
-            ) && (
+            {matchingCommands.map((command) => (
+              <a
+                key={command.label}
+                href={command.href}
+                onClick={() => palette.current?.close()}
+              >
+                {command.label}
+                <span aria-hidden="true">↗</span>
+              </a>
+            ))}
+            {matchesThemeAction && (
+              <button
+                type="button"
+                className="command-action"
+                onClick={() => {
+                  toggleTheme();
+                  palette.current?.close();
+                }}
+              >
+                {themeActionLabel}
+                <span aria-hidden="true">{theme === "light" ? "☾" : "☀"}</span>
+              </button>
+            )}
+            {matchingCommands.length === 0 && !matchesThemeAction && (
               <p className="muted">No matching pages. Try “work” or “CV”.</p>
             )}
           </div>
