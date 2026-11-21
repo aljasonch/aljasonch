@@ -80,6 +80,7 @@ html[data-theme="light"] {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 84px;
+  overflow-x: clip;
 }
 
 body {
@@ -91,7 +92,7 @@ body {
   font-size: 15.5px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
   transition:
     background-color 0.25s var(--ease-out),
     color 0.25s var(--ease-out);
@@ -165,10 +166,11 @@ h2 {
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 0.96;
+  overflow-wrap: break-word;
 }
 
 h1 {
-  font-size: clamp(2.9rem, 7vw, 6.2rem);
+  font-size: clamp(2rem, 6.8vw, 6.2rem);
 }
 
 h1 em,
@@ -178,7 +180,7 @@ h2 em {
 }
 
 h2 {
-  font-size: clamp(2rem, 4.2vw, 3.6rem);
+  font-size: clamp(1.38rem, 4vw, 3.5rem);
 }
 
 h3 {
@@ -541,7 +543,7 @@ textarea::placeholder {
 .studio-dock {
   position: fixed;
   left: 50%;
-  bottom: max(18px, env(safe-area-inset-bottom));
+  bottom: max(16px, env(safe-area-inset-bottom));
   transform: translateX(-50%);
   z-index: 60;
   display: flex;
@@ -554,7 +556,13 @@ textarea::placeholder {
   border: 1px solid var(--line-strong);
   border-radius: 6px;
   box-shadow: var(--shadow-dialog);
-  max-width: calc(100vw - 24px);
+  max-width: calc(100vw - 16px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.studio-dock::-webkit-scrollbar {
+  display: none;
 }
 
 .dock-item {
@@ -2114,11 +2122,12 @@ html[data-theme="light"] .chalk-band {
   display: grid;
   font-family: var(--font-display), "Syne", sans-serif;
   font-weight: 800;
-  font-size: clamp(2.8rem, 8.6vw, 7.8rem);
-  line-height: 0.92;
-  letter-spacing: -0.045em;
+  font-size: clamp(1.55rem, 7.2vw, 7.6rem);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
   padding-bottom: clamp(36px, 5vw, 56px);
   border-bottom: 1px solid var(--line-strong);
+  overflow-wrap: break-word;
   transition: color 0.2s ease;
 }
 
@@ -2174,7 +2183,7 @@ html[data-theme="light"] .chalk-band {
   .resume-section,
   .case-body-grid,
   .contact-details {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .case-specs {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2192,21 +2201,46 @@ html[data-theme="light"] .chalk-band {
   .util-label {
     display: none;
   }
+  .deck-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .deck-header > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .project-card-v2,
+  .chalk-card,
+  .systems-panel,
+  .dev-console {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .project-card-v2 {
+    padding: 14px;
+  }
+  .project-stage {
+    padding: 12px;
+  }
   .sculptural-h1 {
-    font-size: clamp(1.65rem, 8.2vw, 2.5rem);
+    font-size: clamp(1.55rem, 8vw, 2.5rem);
   }
   .sh1-row {
     flex-wrap: wrap;
     gap: 10px 14px;
   }
   .studio-dock {
-    padding: 5px;
+    padding: 4px;
     gap: 2px;
   }
   .dock-item {
-    padding: 0 9px;
-    font-size: 0.72rem;
-    height: 36px;
+    padding: 0 7px;
+    font-size: 0.7rem;
+    height: 34px;
+  }
+  .dock-ai {
+    margin-left: 2px;
   }
   .hero-top-tag {
     flex-direction: column;
@@ -2223,8 +2257,13 @@ html[data-theme="light"] .chalk-band {
   .hero-spec-strip,
   .about-facts,
   .skills-grid,
-  .case-nav {
-    grid-template-columns: 1fr;
+  .case-nav,
+  .cockpit-stack {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .search-field,
+  .search-field input {
+    width: 100%;
   }
   .deck-track {
     padding-inline: 15px;
@@ -2233,7 +2272,7 @@ html[data-theme="light"] .chalk-band {
     flex: 0 0 88vw;
   }
   .systems-tabs {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .systems-tab {
     border-right: 0;
