@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { profile, projects } from "@/lib/content";
+import TelemetryBar from "./telemetry-bar";
 
 const navLinks = [
   { href: "/portfolio", label: "Work" },
@@ -289,6 +290,7 @@ export default function Header() {
             </a>
           </nav>
         )}
+        <TelemetryBar />
       </div>
 
       <dialog

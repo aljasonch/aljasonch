@@ -1,234 +1,293 @@
 import Image from "next/image";
 import Link from "next/link";
-import { capabilities, experience, profile, projects } from "@/lib/content";
-import ProjectCard from "@/components/project-card";
-import LiveClock from "@/components/live-clock";
+import { community, experience, profile, projects } from "@/lib/content";
+import WorkStage from "@/components/work-stage";
+import SystemsExplorer from "@/components/systems-explorer";
+import ScrollStamp from "@/components/scroll-stamp";
+import Magnetic from "@/components/magnetic";
+import Reveal from "@/components/reveal";
+
+const TICKER_ITEMS = [
+  "Next.js",
+  "TypeScript",
+  "Python",
+  "Odoo ERP",
+  "PostgreSQL",
+  "Firebase",
+  "Real-Time Proctoring",
+  "AI Agents",
+  "Multilingual Systems",
+  "Azure DevOps",
+];
 
 export default function Home() {
-  const [flagship, second, third, ...archiveProjects] = projects;
+  const timeline = [
+    {
+      year: "2026",
+      dates: experience[0].dates,
+      company: experience[0].company,
+      role: experience[0].role,
+      description: experience[0].description,
+      current: true,
+    },
+    {
+      year: "2025",
+      dates: experience[1].dates,
+      company: experience[1].company,
+      role: experience[1].role,
+      description: experience[1].description,
+      current: false,
+    },
+    {
+      year: "2024",
+      dates: community[0].dates,
+      company: community[0].company,
+      role: community[0].role,
+      description: community[0].description,
+      current: false,
+    },
+  ];
 
   return (
-    <div className="container">
-      <div className="masthead-bar">
-        <span>Software Engineer · Full-Stack &amp; Business Systems</span>
-        <span>
-          Tangerang, ID · <LiveClock />
-        </span>
-        <span>PT Solusi Kode Indonesia</span>
-      </div>
+    <>
+      <section className="broadsheet-hero container" aria-labelledby="hero-heading">
+        <div className="broadsheet-headline-row">
+          <div className="broadsheet-title-wrap">
+            <p className="eyebrow">
+              00 <span className="slash">/</span> Alfonsus Jason Christian{" "}
+              <span className="slash">/</span> Software Engineer
+            </p>
+            <h1 id="hero-heading" className="broadsheet-h1">
+              <span className="h1-line">From complex</span>
+              <span className="h1-line">
+                to <em>useful.</em>
+              </span>
+            </h1>
+          </div>
+          <div className="broadsheet-stamp-slot">
+            <Magnetic strength={0.28}>
+              <ScrollStamp />
+            </Magnetic>
+          </div>
+        </div>
 
-      <section className="hero" aria-labelledby="hero-heading">
-        <div className="hero-copy">
-          <p className="eyebrow">Alfonsus Jason Christian</p>
-          <h1 id="hero-heading">
-            From complex
-            <br />
-            to <em>useful.</em>
-          </h1>
-          <p className="hero-description">
-            I design and build full-stack web applications and practical
-            business systems—combining clear interfaces with reliable
-            engineering underneath.
-          </p>
-          <div className="hero-buttons">
-            <Link className="button" href="/portfolio">
-              Selected work{" "}
-              <span className="arrow-cue" aria-hidden="true">
-                →
-              </span>
-            </Link>
-            <Link className="button secondary" href="/contact">
-              Get in touch{" "}
-              <span className="arrow-cue" aria-hidden="true">
-                ↗
-              </span>
-            </Link>
+        <div className="broadsheet-lower">
+          <div className="broadsheet-thesis">
+            <p className="hero-description">
+              I engineer full-stack web applications and real-world business
+              systems—turning tangled operational workflows into calm, durable
+              software.
+            </p>
+            <div className="hero-buttons">
+              <Magnetic>
+                <Link className="button" href="/portfolio">
+                  Selected work{" "}
+                  <span className="arrow-cue" aria-hidden="true">
+                    →
+                  </span>
+                </Link>
+              </Magnetic>
+              <Magnetic>
+                <Link className="button secondary" href="/contact">
+                  Start a conversation{" "}
+                  <span className="arrow-cue" aria-hidden="true">
+                    ↗
+                  </span>
+                </Link>
+              </Magnetic>
+            </div>
           </div>
 
-          <dl className="hero-ledger">
+          <dl className="broadsheet-dossier">
             <div>
               <dt>Currently</dt>
               <dd>
                 PT Solusi Kode Indonesia
-                <span>Software Engineer · Sep 2026 — Present</span>
+                <span>Software Engineer · FIFGROUP Proctoring</span>
               </dd>
             </div>
             <div>
               <dt>Previously</dt>
               <dd>
                 Kompas Gramedia
-                <span>Odoo ERP, Python &amp; PostgreSQL</span>
+                <span>Odoo ERP · Python · PostgreSQL</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Academic</dt>
+              <dd>
+                Universitas Multimedia Nusantara
+                <span>B.Sc. Informatics · GPA 3.74 · GRU Thesis</span>
               </dd>
             </div>
           </dl>
-        </div>
 
-        <figure className="portrait-plate">
-          <div className="portrait-frame">
-            <Image
-              src="/images/aljasonch.png"
-              alt="Portrait of Alfonsus Jason Christian"
-              width={1024}
-              height={1365}
-              priority
-              sizes="(max-width: 760px) 84vw, 380px"
-            />
-          </div>
-          <figcaption className="portrait-caption">
-            <span>Fig. 01 — Jason Christian</span>
-            <span>{profile.location}</span>
-          </figcaption>
-        </figure>
-      </section>
-
-      <section className="section" aria-labelledby="practice-heading">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">01 / Practice</p>
-            <h2 id="practice-heading" className="section-title">
-              Built with a <em>practical</em> mindset.
-            </h2>
-          </div>
-          <Link href="/cv" className="text-link">
-            Skills &amp; toolkit{" "}
-            <span className="arrow-cue" aria-hidden="true">
-              ↗
-            </span>
-          </Link>
-        </div>
-
-        <div className="capabilities-grid">
-          {capabilities.map((item) => (
-            <article className="capability-col" key={item.index}>
-              <span className="capability-index">{item.index}</span>
-              <h3>{item.title}</h3>
-              <p>{item.summary}</p>
-              <ul className="tech-list" aria-label={`${item.title} stack`}>
-                {item.stack.map((tech) => (
-                  <li key={tech}>{tech}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
+          <figure className="portrait-plate broadsheet-portrait">
+            <div className="portrait-frame">
+              <Image
+                src="/images/aljasonch.png"
+                alt="Portrait of Alfonsus Jason Christian"
+                width={1024}
+                height={1365}
+                priority
+                sizes="(max-width: 760px) 84vw, 310px"
+              />
+            </div>
+            <figcaption className="portrait-caption">
+              <span>Fig. 01 — Jason</span>
+              <span>{profile.location}</span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      <section className="section" aria-labelledby="work-heading">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">02 / Selected Work</p>
-            <h2 id="work-heading" className="section-title">
-              Work that <em>works.</em>
-            </h2>
-          </div>
-          <Link href="/portfolio" className="text-link">
-            Full archive ({String(projects.length).padStart(2, "0")}){" "}
-            <span className="arrow-cue" aria-hidden="true">
-              →
-            </span>
-          </Link>
-        </div>
-
-        {flagship && <ProjectCard project={flagship} index={0} featured />}
-
-        <div className="project-pair">
-          {second && <ProjectCard project={second} index={1} />}
-          {third && <ProjectCard project={third} index={2} />}
-        </div>
-
-        <div className="archive-ledger" aria-label="More selected projects">
-          <div className="archive-ledger-header">
-            <p className="eyebrow">More from the archive</p>
-          </div>
-          {archiveProjects.map((project, idx) => {
-            const number = String(idx + 4).padStart(2, "0");
-            return (
-              <Link
-                key={project.slug}
-                href={`/portfolio/${project.slug}`}
-                className="index-row"
-              >
-                <span className="index-num">{number}</span>
-                <span className="index-title">{project.title}</span>
-                <p className="index-desc">{project.description}</p>
-                <span className="index-meta">
-                  <span>
-                    {project.category} · {project.year}
-                  </span>
-                  <span className="arrow-cue" aria-hidden="true">
-                    →
+      <div className="kinetic-ticker" aria-label="Core engineering domains">
+        <div className="kinetic-ticker-track">
+          {[0, 1].map((dup) => (
+            <div
+              className="kinetic-ticker-group"
+              key={dup}
+              aria-hidden={dup === 1 ? "true" : undefined}
+            >
+              {TICKER_ITEMS.map((item) => (
+                <span key={`${dup}-${item}`} className="kinetic-ticker-item">
+                  <span>{item}</span>
+                  <span className="ticker-mark" aria-hidden="true">
+                    ✦
                   </span>
                 </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <section
+        id="selected-work"
+        className="section container"
+        aria-labelledby="work-heading"
+      >
+        <Reveal>
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">01 / Interactive Work Stage</p>
+              <h2 id="work-heading" className="section-title">
+                Work that <em>works.</em>
+              </h2>
+            </div>
+            <Link href="/portfolio" className="text-link">
+              Open filterable archive ({String(projects.length).padStart(2, "0")}){" "}
+              <span className="arrow-cue" aria-hidden="true">
+                →
+              </span>
+            </Link>
+          </div>
+        </Reveal>
+
+        <WorkStage />
+      </section>
+
+      <section
+        className="inverted-band"
+        aria-labelledby="systems-heading"
+      >
+        <div className="container">
+          <Reveal>
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">02 / Systems &amp; Architecture</p>
+                <h2 id="systems-heading" className="section-title">
+                  How the <em>systems</em> hold together.
+                </h2>
+              </div>
+              <Link href="/cv" className="text-link">
+                Full technical toolkit{" "}
+                <span className="arrow-cue" aria-hidden="true">
+                  ↗
+                </span>
               </Link>
-            );
-          })}
+            </div>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <SystemsExplorer />
+          </Reveal>
         </div>
       </section>
 
       <section
-        className="section experience-grid"
+        className="section container"
         aria-labelledby="experience-heading"
       >
-        <div>
-          <p className="eyebrow">03 / Experience</p>
-          <h2 id="experience-heading" className="section-title">
-            A background
-            <br />
-            in <em>building.</em>
-          </h2>
-          <p className="experience-intro">
-            From enterprise financial workflows and real-time proctoring systems
-            to products people use every day.
-          </p>
-          <Link href="/cv" className="text-link">
-            Read full CV{" "}
-            <span className="arrow-cue" aria-hidden="true">
-              ↗
-            </span>
-          </Link>
-        </div>
+        <Reveal>
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">03 / Experience &amp; Leadership</p>
+              <h2 id="experience-heading" className="section-title">
+                A background in <em>building.</em>
+              </h2>
+            </div>
+            <Link href="/cv" className="text-link">
+              Full CV &amp; certifications{" "}
+              <span className="arrow-cue" aria-hidden="true">
+                ↗
+              </span>
+            </Link>
+          </div>
+        </Reveal>
 
-        <div className="experience-list">
-          {experience.map((job) => (
-            <article
-              key={job.company}
-              className={`experience-item ${job.current ? "current" : ""}`}
-            >
-              <span className="experience-dates">{job.dates}</span>
-              <div>
-                <h3>{job.company}</h3>
-                <p className="experience-role">{job.role}</p>
-                <p>{job.description}</p>
-              </div>
-            </article>
+        <div className="monument-timeline">
+          {timeline.map((entry, idx) => (
+            <Reveal key={entry.company} delay={idx * 70}>
+              <article
+                className={`monument-row ${entry.current ? "is-current" : ""}`}
+              >
+                <div className="monument-year" aria-hidden="true">
+                  {entry.year}
+                </div>
+                <div className="monument-meta">
+                  <span className="mono">{entry.dates}</span>
+                  <h3>{entry.company}</h3>
+                  <p className="monument-role">{entry.role}</p>
+                </div>
+                <p className="monument-desc">{entry.description}</p>
+              </article>
+            </Reveal>
           ))}
         </div>
       </section>
 
-      <section className="colophon-section" aria-label="Engineering philosophy">
+      <section
+        className="colophon-section container"
+        aria-label="Engineering philosophy"
+      >
         <span className="eyebrow">04 / Perspective</span>
-        <div>
-          <p className="editorial-quote">
-            “I like turning complicated problems into software that{" "}
-            <em>makes sense</em>—thoughtful interfaces on the outside, reliable
-            systems underneath.”
-          </p>
-          <div className="project-actions">
-            <Link href="/cv" className="text-link">
-              About Jason{" "}
-              <span className="arrow-cue" aria-hidden="true">
-                →
-              </span>
-            </Link>
-            <Link href="/blog" className="text-link">
-              Read the journal{" "}
-              <span className="arrow-cue" aria-hidden="true">
-                →
-              </span>
-            </Link>
+        <Reveal>
+          <div>
+            <p className="editorial-quote">
+              “I like turning complicated problems into software that{" "}
+              <em>makes sense</em>—thoughtful interfaces on the outside,
+              reliable systems underneath.”
+            </p>
+            <div className="project-actions">
+              <Magnetic>
+                <Link href="/cv" className="button secondary">
+                  Meet Jason{" "}
+                  <span className="arrow-cue" aria-hidden="true">
+                    →
+                  </span>
+                </Link>
+              </Magnetic>
+              <Link href="/blog" className="text-link">
+                Read the journal{" "}
+                <span className="arrow-cue" aria-hidden="true">
+                  →
+                </span>
+              </Link>
+            </div>
           </div>
-        </div>
+        </Reveal>
       </section>
-    </div>
+    </>
   );
 }
