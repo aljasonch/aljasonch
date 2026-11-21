@@ -1,15 +1,31 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/manrope";
-import "@fontsource/instrument-serif/400.css";
-import "@fontsource/instrument-serif/400-italic.css";
-import "@fontsource/ibm-plex-mono/400.css";
-import "@fontsource/ibm-plex-mono/500.css";
+import { JetBrains_Mono, Space_Grotesk, Syne } from "next/font/google";
 import "./globals.css";
-import "./kinetic.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Chat from "@/components/chat";
 import { profile } from "@/lib/content";
+
+const syne = Syne({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.website),
@@ -26,13 +42,13 @@ export const metadata: Metadata = {
     siteName: "Jason Christian",
     title: "Alfonsus Jason Christian — Software Engineer",
     description:
-      "From complex to useful. Explore my work, experience, and approach to building software.",
+      "Full-stack applications, enterprise ERP systems, and practical AI workflows by Alfonsus Jason Christian.",
     images: ["/aljasonch.png"],
   },
   icons: { icon: "/favicon.ico", apple: "/aljasonch.png" },
 };
 
-const themeScript = `try{var s=localStorage.getItem("theme");var d=s==="light"||s==="dark"?s:window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=d}catch(e){}`;
+const themeScript = `try{var s=localStorage.getItem("theme");document.documentElement.dataset.theme=s==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}`;
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -75,7 +91,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${syne.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script

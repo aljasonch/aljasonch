@@ -105,28 +105,16 @@ export default function Chat() {
   const showSuggestions = messages.length === 1 && !busy;
 
   return (
-    <>
-      <button
-        type="button"
-        className="chat-launch"
-        onClick={() => dialog.current?.showModal()}
-        aria-haspopup="dialog"
-        aria-controls="portfolio-chat"
-      >
-        <span>Ask AI</span>
-        <span aria-hidden="true">↗</span>
-      </button>
-
-      <dialog
-        ref={dialog}
-        id="portfolio-chat"
-        className="chat-dialog"
-        aria-labelledby="chat-title"
-        aria-describedby="chat-description"
-        onClick={(event) => {
-          if (event.target === event.currentTarget) dialog.current?.close();
-        }}
-      >
+    <dialog
+      ref={dialog}
+      id="portfolio-chat"
+      className="chat-dialog"
+      aria-labelledby="chat-title"
+      aria-describedby="chat-description"
+      onClick={(event) => {
+        if (event.target === event.currentTarget) dialog.current?.close();
+      }}
+    >
         <header className="chat-header">
           <div>
             <p className="chat-eyebrow">Portfolio Assistant</p>
@@ -284,8 +272,7 @@ export default function Chat() {
               {busy ? "Answering…" : "Send ↗"}
             </button>
           </div>
-        </form>
-      </dialog>
-    </>
+      </form>
+    </dialog>
   );
 }
