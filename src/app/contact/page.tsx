@@ -1,42 +1,69 @@
 import type { Metadata } from "next";
 import { profile } from "@/lib/content";
-export const metadata: Metadata = { title: "Get in touch" };
+import CopyEmail from "@/components/copy-email";
+import LiveClock from "@/components/live-clock";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Get in touch with Alfonsus Jason Christian by email, GitHub, LinkedIn, or Instagram.",
+  alternates: { canonical: "/contact" },
+};
+
 export default function Contact() {
   return (
-    <div className="container contact-page">
+    <div className="container">
       <header className="page-heading">
         <p className="eyebrow">Good things start with a conversation</p>
         <h1>
           What do you
           <br />
-          have in <span>mind?</span>
+          have in <em>mind?</em>
         </h1>
-        <p>
-          A product to build, a workflow to improve, or just something
-          interesting to talk about. I’d like to hear it.
+        <p className="page-lede">
+          A product to build, a business workflow to simplify, or just something
+          worth exchanging notes on—feel free to write directly.
         </p>
       </header>
-      <a className="contact-email" href={`mailto:${profile.email}`}>
-        {profile.email}
-        <span aria-hidden="true">↗</span>
-      </a>
+
+      <CopyEmail />
+
       <div className="contact-details">
         <div>
-          <p className="eyebrow">Find me elsewhere</p>
-          <a href={profile.github} target="_blank" rel="noreferrer">
-            GitHub ↗
-          </a>
-          <a href={profile.linkedin} target="_blank" rel="noreferrer">
-            LinkedIn ↗
-          </a>
-          <a href={profile.instagram} target="_blank" rel="noreferrer">
-            Instagram ↗
-          </a>
+          <p className="eyebrow">Elsewhere</p>
+          <div className="contact-links">
+            <a href={profile.github} target="_blank" rel="noreferrer">
+              <span>GitHub</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer">
+              <span>LinkedIn</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a href={profile.instagram} target="_blank" rel="noreferrer">
+              <span>Instagram</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
+
         <div>
-          <p className="eyebrow">Based in</p>
-          <p>Tangerang, Indonesia</p>
-          <p className="muted">Western Indonesia Time · UTC+7</p>
+          <p className="eyebrow">Location &amp; Local Time</p>
+          <p style={{ fontWeight: 600, marginBottom: "0.35rem" }}>
+            {profile.location}
+          </p>
+          <p className="muted mono" style={{ fontSize: "0.82rem" }}>
+            Western Indonesia Time · <LiveClock />
+          </p>
+        </div>
+
+        <div>
+          <p className="eyebrow">Good topics to write about</p>
+          <ul className="contact-topics">
+            <li>Full-stack web products (Next.js, React, TypeScript)</li>
+            <li>Business systems, Odoo ERP, and PostgreSQL workflows</li>
+            <li>Practical AI integrations &amp; community collaborations</li>
+          </ul>
         </div>
       </div>
     </div>

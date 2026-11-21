@@ -12,7 +12,7 @@ export default function AdminPage() {
       <header className="page-heading">
         <p className="eyebrow">Behind the journal</p>
         <h1>
-          Writing <span>room.</span>
+          Writing <em>room.</em>
         </h1>
       </header>
       <Admin />

@@ -20,7 +20,12 @@ const paths = new Set([
 ]);
 
 export function allowedChatUrl(raw: string): boolean {
-  if (paths.has(raw) || /^\/blog\/[a-z0-9-]+$/.test(raw)) return true;
+  if (
+    paths.has(raw) ||
+    /^\/blog\/[a-z0-9-]+$/.test(raw) ||
+    /^\/portfolio\/[a-z0-9-]+$/.test(raw)
+  )
+    return true;
   if (raw === `mailto:${profile.email}`) return true;
   try {
     const url = new URL(raw);
