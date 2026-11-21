@@ -1,39 +1,39 @@
 import Link from "next/link";
-import Image from "next/image";
 import { profile } from "@/lib/content";
 
 export default function Footer() {
   return (
-    <footer className="container site-footer">
-      <div className="footer-invitation">
-        <h2>
-          Let’s make
-          <br />
-          it <span>useful.</span>
-        </h2>
-        <div>
-          <p className="muted">Have a project or a conversation in mind?</p>
-          <a className="email-link" href={`mailto:${profile.email}`}>
-            <span>{profile.email}</span>
-            <span aria-hidden="true">↗</span>
-          </a>
+    <footer className="studio-footer">
+      <div className="container">
+        <p className="eyebrow">NEXT STEP</p>
+        <a
+          className="footer-billboard"
+          href={`mailto:${profile.email}`}
+          aria-label={`Email ${profile.email}`}
+        >
+          <span>LET’S BUILD</span>
+          <span>
+            SOMETHING <em>REAL</em> <i aria-hidden="true">↗</i>
+          </span>
+        </a>
+
+        <div className="footer-bar mono">
+          <span>{profile.email}</span>
+          <span>TANGERANG, ID · UTC+7</span>
+          <nav className="footer-links" aria-label="Social links">
+            <a href={profile.github} target="_blank" rel="noreferrer">
+              GITHUB ↗
+            </a>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer">
+              LINKEDIN ↗
+            </a>
+            <a href={profile.instagram} target="_blank" rel="noreferrer">
+              INSTAGRAM ↗
+            </a>
+            <Link href="/admin">ADMIN</Link>
+          </nav>
+          <span>© {new Date().getFullYear()} JASON CHRISTIAN</span>
         </div>
-      </div>
-      <div className="footer-bottom">
-        <Link className="wordmark" href="/" aria-label="Jason, home">
-          <Image src="/aljasonch.png" alt="AJ logo" width={40} height={40} />
-        </Link>
-        <p>Built with intention. Based in Tangerang.</p>
-        <div>
-          <a href={profile.github} target="_blank" rel="noreferrer">
-            GitHub ↗
-          </a>
-          <a href={profile.linkedin} target="_blank" rel="noreferrer">
-            LinkedIn ↗
-          </a>
-          <Link href="/admin">Admin</Link>
-        </div>
-        <span>© {new Date().getFullYear()} Jason</span>
       </div>
     </footer>
   );

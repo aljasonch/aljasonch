@@ -124,7 +124,7 @@ export function Journal({ slug }: { slug?: string }) {
           </label>
         </div>
       )}
-      <p className="muted" role="status">
+      <p className="journal-status" role="status">
         {posts.length === 0
           ? "No articles yet. New notes will appear here."
           : `${filtered.length} article${filtered.length === 1 ? "" : "s"}`}

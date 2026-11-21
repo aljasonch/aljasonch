@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 export default function NotFound() {
   return (
     <div className="container page-heading">
@@ -6,11 +7,14 @@ export default function NotFound() {
       <h1>
         Nothing here.
         <br />
-        <span>Yet.</span>
+        <em>Yet.</em>
       </h1>
-      <p>The page may have moved. Let’s get you back to the work.</p>
+      <p className="page-lede" style={{ marginBottom: "28px" }}>
+        This page may have moved or never existed. Let’s get you back to the
+        work.
+      </p>
       <Link className="button" href="/">
-        Back home ↗
+        Back home <span className="arrow-cue" aria-hidden="true">→</span>
       </Link>
     </div>
   );

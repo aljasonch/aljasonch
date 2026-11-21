@@ -8,6 +8,13 @@ import { chatEnterAction } from "../lib/chat-keyboard";
 import "./chat.css";
 
 type Message = { role: "user" | "assistant"; text: string };
+
+const STARTER_PROMPTS = [
+  "What does Jason currently work on?",
+  "Tell me about Chainew and Tjahyadi Consulting.",
+  "Summarize his tech stack and education.",
+];
+
 export default function Chat() {
   const dialog = useRef<HTMLDialogElement>(null);
   const inputField = useRef<HTMLTextAreaElement>(null);
@@ -16,19 +23,30 @@ export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      text: "Hi, I’m Jason’s portfolio assistant. Ask me about his work, projects, or background.",
+      text: "Hi, I’m Jason’s portfolio assistant. Ask about his engineering roles, projects, tech stack, or education.",
     },
   ]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+
   useEffect(() => {
     log.current?.scrollTo({ top: log.current.scrollHeight });
   }, [messages, busy, error]);
+
   useEffect(() => () => controller.current?.abort(), []);
-  async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const message = input.trim();
+
+  useEffect(() => {
+    const onOpen = () => {
+      if (!dialog.current?.open) dialog.current?.showModal();
+      requestAnimationFrame(() => inputField.current?.focus());
+    };
+    window.addEventListener("open-portfolio-chat", onOpen);
+    return () => window.removeEventListener("open-portfolio-chat", onOpen);
+  }, []);
+
+  async function sendQuestion(raw: string) {
+    const message = raw.trim();
     if (!message || busy) return;
     setBusy(true);
     setError("");
@@ -78,27 +96,28 @@ export default function Chat() {
       });
     }
   }
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    await sendQuestion(input);
+  }
+
+  const showSuggestions = messages.length === 1 && !busy;
+
   return (
-    <>
-      <button
-        type="button"
-        className="chat-launch"
-        onClick={() => dialog.current?.showModal()}
-        aria-haspopup="dialog"
-        aria-controls="portfolio-chat"
-      >
-        Ask about Jason <span aria-hidden="true">↗</span>
-      </button>
-      <dialog
-        ref={dialog}
-        id="portfolio-chat"
-        className="chat-dialog"
-        aria-labelledby="chat-title"
-        aria-describedby="chat-description"
-      >
+    <dialog
+      ref={dialog}
+      id="portfolio-chat"
+      className="chat-dialog"
+      aria-labelledby="chat-title"
+      aria-describedby="chat-description"
+      onClick={(event) => {
+        if (event.target === event.currentTarget) dialog.current?.close();
+      }}
+    >
         <header className="chat-header">
           <div>
-            <p className="chat-eyebrow">A LITTLE HELP</p>
+            <p className="chat-eyebrow">Portfolio Assistant</p>
             <h2 id="chat-title">Ask about Jason.</h2>
           </div>
           <button
@@ -110,10 +129,12 @@ export default function Chat() {
             ×
           </button>
         </header>
+
         <p id="chat-description" className="chat-description">
-          AI answers based on this portfolio. For a conversation,{" "}
+          Grounded strictly in this portfolio. For direct inquiries,{" "}
           <a href="/contact">contact Jason</a>.
         </p>
+
         <div
           ref={log}
           className="chat-log"
@@ -167,20 +188,39 @@ export default function Chat() {
               )}
             </div>
           ))}
+
+          {showSuggestions && (
+            <div className="chat-suggestions" aria-label="Suggested questions">
+              {STARTER_PROMPTS.map((prompt) => (
+                <button
+                  key={prompt}
+                  type="button"
+                  className="chat-suggestion"
+                  onClick={() => void sendQuestion(prompt)}
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
+          )}
+
           {busy && (
             <p className="chat-pending" role="status">
               Thinking…
             </p>
           )}
         </div>
+
         {error && (
           <p className="chat-error" role="alert">
             {error}
           </p>
         )}
+
         <form className="chat-form" onSubmit={submit}>
           <label htmlFor="chat-input">
-            Your question <span>{input.length}/500</span>
+            <span>Your question</span>
+            <span>{input.length}/500</span>
           </label>
           <textarea
             id="chat-input"
@@ -217,21 +257,22 @@ export default function Chat() {
                 }
               }
             }}
-            placeholder="What has Jason worked on?"
+            placeholder="Ask about projects, Odoo, Next.js, or background…"
             required
           />
-          <p className="chat-keyboard-hint">
-            Enter to send · Ctrl + Enter for a new line
-          </p>
-          <button
-            className="chat-send"
-            type="submit"
-            disabled={busy || !input.trim()}
-          >
-            {busy ? "Waiting for answer…" : "Send question ↗"}
-          </button>
-        </form>
-      </dialog>
-    </>
+          <div className="chat-form-footer">
+            <p className="chat-keyboard-hint">
+              Enter to send · Ctrl+Enter for new line
+            </p>
+            <button
+              className="chat-send"
+              type="submit"
+              disabled={busy || !input.trim()}
+            >
+              {busy ? "Answering…" : "Send ↗"}
+            </button>
+          </div>
+      </form>
+    </dialog>
   );
 }
